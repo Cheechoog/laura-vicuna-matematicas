@@ -1,0 +1,18 @@
+# Node
+node_modules/
+
+# Database
+*.sqlite
+*.sqlite-journal
+
+# Env
+.env
+
+# Logs
+npm-debug.log*
+
+# Editor
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

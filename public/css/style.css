@@ -1,0 +1,228 @@
+/* ================= RESET ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ================= BODY ================= */
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  font-family: 'Segoe UI', sans-serif;
+  color: white;
+  text-align: center;
+}
+
+/* ================= HEADER ================= */
+.header {
+  padding: 50px 20px 30px 20px;
+}
+
+.logo {
+  width: 120px;
+  margin-bottom: 15px;
+  filter: drop-shadow(0 5px 10px rgba(0,0,0,0.4));
+}
+
+.header-text h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.subtitulo {
+  font-size: 1rem;
+  opacity: 0.8;
+}
+
+/* ================= CONTENT ================= */
+.content {
+  padding: 40px 20px;
+}
+
+.titulo-grados {
+  font-size: 1.8rem;
+  margin-bottom: 40px;
+}
+
+/* ================= CARDS ================= */
+.card-container {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+/* ================= BOTON VOLVER ================= */
+.btn-volver {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  text-decoration: none;
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(10px);
+  padding: 10px 20px;
+  border-radius: 15px;
+  color: white;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.btn-volver:hover {
+  background: rgba(255,255,255,0.35);
+  transform: translateY(-3px);
+}
+
+.card {
+  display: flex;               /* IMPORTANTE */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 250px;
+  height: 160px;
+
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  text-decoration: none;
+  color: white;
+
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+
+  transition: all 0.3s ease;
+}
+
+.card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  background: rgba(255,255,255,0.25);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+
+  .card-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    width: 90%;
+  }
+
+  .header-text h1 {
+    font-size: 1.8rem;
+  }
+
+  /* ================= HEADER INTERNO ================= */
+.header-interno {
+  position: relative;
+  padding: 40px 20px 20px 20px;
+}
+
+/* Ajustamos botón volver dentro del header */
+.header-interno .btn-volver {
+  position: absolute;
+  left: 20px;
+  top: 40px;
+}
+
+/* Título centrado */
+.header-interno h1 {
+  font-size: 2rem;
+}
+
+/* ================= EJERCICIO ================= */
+
+.ejercicio-box {
+  max-width: 400px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#respuesta {
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.btn-principal {
+  padding: 12px;
+  border: none;
+  border-radius: 15px;
+  background: #00c9a7;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.btn-salir{
+  position:absolute;
+  top:20px;
+  right:20px;
+  padding:10px 16px;
+  border:none;
+  border-radius:14px;
+  background: rgba(255,255,255,0.2);
+  color:#fff;
+  cursor:pointer;
+}
+.btn-salir:hover{ background: rgba(255,255,255,0.35); }
+
+.btn-principal:hover {
+  transform: translateY(-3px);
+  background: #00b394;
+}
+
+.btn-logout{
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.18);
+  backdrop-filter: blur(10px);
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  transition: .2s;
+}
+.btn-logout:hover{
+  background: rgba(255,255,255,0.28);
+  transform: translateY(-2px);
+}
+
+#resultado {
+  font-weight: bold;
+  min-height: 24px;
+}
+
+.correcto {
+  color: #00ff9d;
+}
+
+.incorrecto {
+  color: #ff6b6b;
+}
+
+.puntaje {
+  margin-top: 10px;
+  font-size: 1.2rem;
+}
+}

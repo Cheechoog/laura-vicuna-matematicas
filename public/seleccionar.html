@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Seleccionar estudiante</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="header header-interno">
+   
+<script src="logout.js"></script>
+    <h1>Seleccionar estudiante</h1>
+  </header>
+
+  <section class="content ejercicio-box">
+    <select id="grupo" style="padding:12px;border-radius:12px;">
+      <option value="">Cargando grupos...</option>
+    </select>
+
+    <select id="estudiante" style="padding:12px;border-radius:12px;">
+      <option value="">Selecciona un grupo primero</option>
+    </select>
+
+    <input id="pin" type="password" inputmode="numeric" maxlength="4"
+      placeholder="PIN (4 dígitos)" style="padding:12px;border-radius:12px;border:none;text-align:center"/>
+
+    <button id="btn" class="btn-principal">Entrar</button>
+    <p id="msg"></p>
+  </section>
+
+  <script src="seleccionar.js"></script>
+  
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matemáticas - Laura Vicuña</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <img src="img/logo.png" alt="Logo Institucional" class="logo">
+    <button id="btn-logout" class="btn-logout">Cerrar sesión</button>
+    
+    <div class="header-text">
+      <h1>Plataforma de Matemáticas</h1>
+      <p class="subtitulo">Institución Educativa Laura Vicuña</p>
+    </div>
+  </header>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="content">
+    <h2 class="titulo-grados">Selecciona el grado</h2>
+
+    <div id="grados-container" class="card-container">
+
+      <!-- ✅ Cambiado: ahora manda a seleccionar.html con gradoId -->
+      <a href="seleccionar.html?gradoId=1" class="card">
+        <h3>Sexto</h3>
+        <p>Ejercicios interactivos</p>
+      </a>
+
+      <a href="seleccionar.html?gradoId=2" class="card">
+        <h3>Séptimo</h3>
+        <p>Retos matemáticos</p>
+      </a>
+
+    </div>
+  </main>
+
+  <script src="main.js"></script>
+  <script src="session.js"></script>
+</body>
+
+</html>
