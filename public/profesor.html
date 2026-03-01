@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Panel del Profesor</title>
+
+  <!-- Si ya tienes CSS global, esto lo toma -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    /* Estilos mínimos por si tu CSS no tiene estos */
+    body { font-family: system-ui, Arial, sans-serif; margin: 0; padding: 0; }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 20px; }
+    .topbar { display:flex; gap:12px; align-items:center; justify-content:space-between; margin-bottom: 16px; }
+    .title { font-size: 28px; font-weight: 800; }
+    .panel { padding: 16px; border-radius: 18px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); }
+    .row { display:flex; gap:12px; flex-wrap: wrap; align-items: end; }
+    label { font-size: 13px; opacity: .85; display:block; margin-bottom:6px; }
+    select, input { padding: 10px 12px; border-radius: 12px; border: 1px solid #cfd5dd33; background: rgba(255,255,255,0.08); color: inherit; outline: none; }
+    .btn { padding: 10px 14px; border-radius: 12px; border: none; cursor: pointer; font-weight: 700; }
+    .btn-primary { background: #00c2a8; color: #05302a; }
+    .btn-sec { background: rgba(255,255,255,0.10); color: inherit; border: 1px solid rgba(255,255,255,0.12); }
+    .btn-danger { background: rgba(255,0,0,0.10); color: #ffb4b4; border: 1px solid rgba(255,0,0,0.18); }
+    .msg { margin-top: 10px; font-size: 14px; }
+    .grid { display:grid; grid-template-columns: repeat(1, minmax(0, 1fr)); gap: 12px; margin-top: 14px; }
+    @media (min-width: 860px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+    .card { padding: 14px; border-radius: 18px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); display:flex; justify-content:space-between; align-items:center; gap: 12px; }
+    .card h3 { margin: 0 0 6px; font-size: 18px; }
+    .meta { margin: 0; opacity: .8; font-size: 13px; }
+    .pill { padding: 8px 10px; border-radius: 999px; font-size: 12px; font-weight: 800; display:inline-flex; align-items:center; gap:8px; }
+    .pill-ok { background: rgba(0,194,168,0.16); border: 1px solid rgba(0,194,168,0.28); }
+    .pill-off { background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.15); opacity: .8; }
+
+    /* Switch */
+    .switch { display:flex; align-items:center; gap:10px; }
+    .toggle {
+      width: 50px; height: 28px; border-radius: 999px;
+      background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.18);
+      position: relative; cursor: pointer; transition: .2s;
+    }
+    .toggle::after {
+      content: ""; width: 22px; height: 22px; border-radius: 50%;
+      background: rgba(255,255,255,0.92);
+      position: absolute; top: 2px; left: 2px; transition: .2s;
+    }
+    .toggle.on { background: rgba(0,194,168,0.35); border-color: rgba(0,194,168,0.55); }
+    .toggle.on::after { left: 26px; background: rgba(255,255,255,0.95); }
+
+    .small { font-size: 12px; opacity: .8; }
+    .hr { height: 1px; background: rgba(255,255,255,0.10); margin: 14px 0; }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="title">👩‍🏫 Panel del Profesor</div>
+      <div style="display:flex; gap:10px; align-items:center;">
+        <button id="btn-logout" class="btn btn-sec" style="display:none;">Cerrar sesión</button>
+        <a class="btn btn-sec" href="index.html">Volver</a>
+      </div>
+    </div>
+
+    <!-- LOGIN -->
+    <div id="login-box" class="panel">
+      <div class="row">
+        <div style="min-width: 240px;">
+          <label>PIN del profesor</label>
+          <input id="pin" type="password" placeholder="Ej: 9999" />
+          <div class="small">Este PIN lo defines en tu <b>.env</b> como <b>TEACHER_PIN</b>.</div>
+        </div>
+
+        <button id="btn-login" class="btn btn-primary">Entrar</button>
+      </div>
+      <div id="login-msg" class="msg"></div>
+    </div>
+
+    <!-- PANEL -->
+    <div id="panel-box" class="panel" style="display:none;">
+      <div class="row">
+        <div style="min-width: 240px;">
+          <label>Grado</label>
+          <select id="grado">
+            <option value="">Selecciona grado</option>
+          </select>
+        </div>
+
+        <div style="min-width: 340px;">
+          <label>Tema</label>
+          <select id="tema">
+            <option value="">Selecciona tema</option>
+          </select>
+        </div>
+
+        <button id="btn-cargar" class="btn btn-sec">Cargar subtemas</button>
+      </div>
+
+      <div class="hr"></div>
+
+      <div class="row">
+        <button id="btn-habilitar-todos" class="btn btn-primary">✅ Habilitar todo</button>
+        <button id="btn-bloquear-todos" class="btn btn-danger">🔒 Bloquear todo</button>
+
+        <div style="min-width: 260px;">
+          <label>Disponible desde (opcional)</label>
+          <input id="disponible-desde" type="datetime-local" />
+          <div class="small">Si pones fecha, se habilita cuando llegue esa hora.</div>
+        </div>
+      </div>
+
+      <div id="panel-msg" class="msg"></div>
+
+      <div id="lista" class="grid"></div>
+    </div>
+  </div>
+
+  <script src="js/profesor.js"></script>
+</body>
+</html>

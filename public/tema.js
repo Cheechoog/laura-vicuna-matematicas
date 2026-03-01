@@ -1,5 +1,7 @@
+// public/tema.js
+
 // ======================
-// 🔒 Guard: token + grado correcto
+// 🔒 Guard helpers (usa session.js)
 // ======================
 function getNextUrl() {
   return window.location.pathname + window.location.search;
@@ -19,89 +21,252 @@ function clearSession() {
   localStorage.removeItem("gradoId");
 }
 
-function requireTokenAndGrade(expectedGradoId) {
+function $(id) {
+  return document.getElementById(id);
+}
+
+function escapeHtml(s) {
+  return String(s ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+// ✅ fetch con token + auto logout si 401
+async function fetchAuth(url, options = {}, gradoIdForRedirect = null) {
   const token = localStorage.getItem("token");
-  const storedGradoId = localStorage.getItem("gradoId");
 
   if (!token) {
-    redirectToSeleccionar(expectedGradoId);
-    return false;
+    redirectToSeleccionar(gradoIdForRedirect);
+    throw new Error("Sin token");
   }
 
-  // ✅ Bloquea entrar al grado contrario
-  if (expectedGradoId && storedGradoId && String(storedGradoId) !== String(expectedGradoId)) {
-    alert("❌ No puedes entrar a este grado con tu sesión actual.");
+  const res = await fetch(url, {
+    ...options,
+    headers: {
+      ...(options.headers || {}),
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  if (res.status === 401) {
     clearSession();
-    window.location.href = "index.html";
-    return false;
+    redirectToSeleccionar(gradoIdForRedirect);
+    throw new Error("No autorizado / token vencido");
   }
 
-  return true;
-}
-
-// ✅ Helper: obtener gradoId real (nunca null)
-function resolveGradoId(params) {
-  // A veces viene como ?id=1 (tema.html?id=1)
-  // A veces viene como ?gradoId=1
-  let g = params.get("gradoId") || params.get("id");
-
-  // Si viene "null" o vacío, intenta localStorage
-  if (!g || g === "null") g = localStorage.getItem("gradoId");
-
-  // Si ya lo tenemos, lo guardamos
-  if (g && g !== "null") localStorage.setItem("gradoId", String(g));
-
-  return g;
+  return res;
 }
 
 // ======================
-// TU CÓDIGO (igual, solo corregí gradoId y el href)
+// Main
 // ======================
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   const params = new URLSearchParams(window.location.search);
 
-  const gradoId = resolveGradoId(params); // ✅ FIX REAL
+  // ✅ oficiales
+  // ✅ compatibilidad vieja: grado, id
+  const gradoId = params.get("gradoId") || params.get("grado") || params.get("id");
   const temaId = params.get("temaId");
-  const nombreTema = params.get("tema");
+  const nombreTema = params.get("tema") || "Subtemas";
 
-  // ✅ PROTEGER: antes de cargar nada
-  if (!requireTokenAndGrade(gradoId)) return;
+  // 🔒 sesión
+  if (typeof requireSession === "function") {
+    requireSession(gradoId);
+  }
 
-  const titulo = document.getElementById("titulo-tema");
-  if (titulo) titulo.textContent = nombreTema || "Subtemas";
+  // 🔒 grado correcto
+  if (typeof requireGrade === "function" && gradoId) {
+    const ok = requireGrade(gradoId);
+    if (!ok) return;
+  }
 
-  if (!temaId) {
-    console.error("No se recibió el id del tema");
+  // UI titulo
+  const titulo = $("titulo-tema");
+  if (titulo) titulo.textContent = nombreTema;
+
+  // Validación
+  if (!gradoId) {
+    console.error("❌ Falta gradoId en la URL. Usa: tema.html?gradoId=1&temaId=1");
+    const container = $("subtemas-container");
+    if (container) container.innerHTML = `<div class="cardbox">❌ Falta gradoId en la URL.</div>`;
     return;
   }
 
-  cargarSubtemas(temaId, gradoId);
+  if (!temaId) {
+    console.error("❌ Falta temaId en la URL. Usa: tema.html?gradoId=1&temaId=1");
+    const container = $("subtemas-container");
+    if (container) container.innerHTML = `<div class="cardbox">❌ Falta temaId en la URL.</div>`;
+    return;
+  }
+
+  await cargarSubtemasConResumen(temaId, gradoId);
 });
 
-function cargarSubtemas(temaId, gradoId) {
-  fetch(`/api/subtemas/${temaId}`)
-    .then((res) => res.json())
-    .then((data) => {
-      const container = document.getElementById("subtemas-container");
-      container.innerHTML = "";
+// ======================
+// ✅ LISTAR SUBTEMAS + DISPONIBILIDAD + PROGRESO
+// ======================
+async function cargarSubtemasConResumen(temaId, gradoId) {
+  const container = $("subtemas-container");
+  if (!container) return;
 
-      // ✅ grado seguro (nunca null)
-      const g = (gradoId && gradoId !== "null") ? gradoId : localStorage.getItem("gradoId");
+  container.innerHTML = "Cargando...";
 
-      data.forEach((subtema) => {
-        const card = document.createElement("a");
-        card.className = "card";
+  try {
+    // ✅ Llamamos resumen + progreso al mismo tiempo
+    const [resResumen, resProgreso] = await Promise.all([
+      fetchAuth(`/api/tema/${encodeURIComponent(temaId)}/resumen`, {}, gradoId),
+      fetchAuth(`/api/progreso/tema/${encodeURIComponent(temaId)}`, {}, gradoId),
+    ]);
 
-        // ✅ Mantengo tu href, pero garantizo gradoId válido
-        card.href = `subtema.html?gradoId=${encodeURIComponent(g)}&subtemaId=${subtema.id}&subtema=${encodeURIComponent(subtema.nombre)}`;
+    if (!resResumen.ok) {
+      container.innerHTML = `<div class="cardbox">❌ No se pudo cargar el resumen del tema.</div>`;
+      return;
+    }
 
-        card.innerHTML = `
-          <h3>${subtema.nombre}</h3>
-          <p>Practicar ahora</p>
-        `;
+    const resumen = await resResumen.json();
+    const progreso = await resProgreso.json();
 
-        container.appendChild(card);
+    // progresoMap[subtema_id] = { estado, ... }
+    const progresoMap = {};
+    if (Array.isArray(progreso)) {
+      progreso.forEach((p) => {
+        progresoMap[p.subtema_id] = p;
       });
-    })
-    .catch((error) => console.error("Error cargando subtemas:", error));
+    }
+
+    container.innerHTML = "";
+
+    if (!Array.isArray(resumen) || resumen.length === 0) {
+      container.innerHTML = `<div class="cardbox">Aún no hay subtemas para este tema.</div>`;
+      return;
+    }
+
+    resumen.forEach((row) => {
+      const introCount = Number(row.intro_count || 0);
+      const talleresCount = Number(row.talleres_count || 0);
+      const quizCount = Number(row.quiz_count || 0);
+      const plantillasCount = Number(row.plantillas_count || 0);
+
+      const hasContent = introCount > 0 || talleresCount > 0 || quizCount > 0 || plantillasCount > 0;
+
+      // ✅ disponible real (habilitado + fecha)
+      const disponible = Number(row.disponible || 0) === 1;
+
+      // ✅ progreso del estudiante
+      const prog = progresoMap[row.subtema_id];
+      const estado = prog?.estado || "no_iniciado";
+
+      let progresoBadge = "";
+      if (estado === "completado") {
+        progresoBadge = `<span class="badge badge-success">🟢 Completado</span>`;
+      } else if (estado === "en_progreso") {
+        progresoBadge = `<span class="badge badge-warn">🟡 En progreso</span>`;
+      } else {
+        progresoBadge = `<span class="badge badge-neutral">⚪ No iniciado</span>`;
+      }
+
+      const card = document.createElement("a");
+      card.className = "card";
+
+      // ✅ Si NO tiene contenido -> tarjeta inactiva
+      if (!hasContent) {
+        card.classList.add("card-disabled");
+        card.href = "#";
+        card.addEventListener("click", (e) => {
+          e.preventDefault();
+          alert("⚠️ Este subtema aún no tiene contenido. Próximamente estará disponible.");
+        });
+      } else if (!disponible) {
+        // ✅ Tiene contenido pero está BLOQUEADO por el profesor
+        card.classList.add("card-disabled");
+        card.href = "#";
+        card.addEventListener("click", (e) => {
+          e.preventDefault();
+          alert("🔒 Este subtema aún no está disponible. Pregunta al profesor.");
+        });
+      } else {
+        // ✅ disponible: entra normal
+        card.href = `subtema.html?gradoId=${encodeURIComponent(gradoId)}&subtemaId=${encodeURIComponent(
+          row.subtema_id
+        )}&subtema=${encodeURIComponent(row.subtema_nombre)}`;
+      }
+
+      const parts = [];
+      if (introCount > 0) parts.push(`📘 Intro (${introCount})`);
+      if (talleresCount > 0) parts.push(`🧩 Taller (${talleresCount})`);
+      if (quizCount > 0) parts.push(`✅ Quiz (${quizCount})`);
+      if (plantillasCount > 0) parts.push(`⚡ Práctica`);
+
+      // ✅ badge disponibilidad
+      const disponibilidadBadge = hasContent
+        ? (disponible
+          ? `<span class="badge badge-ok">✅ Disponible</span>`
+          : `<span class="badge badge-off">🔒 Bloqueado</span>`)
+        : `<span class="badge badge-off">⏳ Sin contenido</span>`;
+
+      card.innerHTML = `
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+          <h3 style="margin:0">${escapeHtml(row.subtema_nombre)}</h3>
+          <div style="display:flex;gap:6px;flex-wrap:wrap">
+            ${disponibilidadBadge}
+            ${progresoBadge}
+          </div>
+        </div>
+        <p>${hasContent ? parts.join(" · ") : "Sin contenido disponible"}</p>
+      `;
+
+      container.appendChild(card);
+    });
+
+    injectBadgeStylesIfMissing();
+  } catch (e) {
+    console.error(e);
+    container.innerHTML = `<div class="cardbox">❌ Error cargando subtemas.</div>`;
+  }
 }
+
+// ✅ si no tienes estilos badge, los inyecto aquí para que se vea bien
+function injectBadgeStylesIfMissing() {
+  if (document.getElementById("badge-styles")) return;
+  const style = document.createElement("style");
+  style.id = "badge-styles";
+  style.textContent = `
+    .badge {
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:6px 10px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:800;
+      border:1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.10);
+      white-space:nowrap;
+    }
+    .badge-ok {
+      background: rgba(0,194,168,0.20);
+      border-color: rgba(0,194,168,0.35);
+    }
+    .badge-off {
+      opacity: 0.85;
+    }
+
+    /* ✅ progreso */
+    .badge-success {
+      background: rgba(34,197,94,0.20);
+      border-color: rgba(34,197,94,0.40);
+    }
+    .badge-warn {
+      background: rgba(245,158,11,0.20);
+      border-color: rgba(245,158,11,0.40);
+    }
+    .badge-neutral {
+      background: rgba(148,163,184,0.20);
+      border-color: rgba(148,163,184,0.40);
+    }
+  `;
+  document.head.appendChild(style);
+} 

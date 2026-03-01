@@ -2,24 +2,32 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Temas</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <!-- HEADER -->
   <header class="header header-interno">
-    <button id="btn-logout" class="btn-logout">Cerrar sesión</button>
-    <a href="javascript:history.back()" class="btn-volver">← Volver</a>
-    <h1 id="titulo-grado">Temas</h1>
+    <div class="header-row">
+      <div class="header-left">
+        <a href="javascript:history.back()" class="btn btn-ghost">← Volver</a>
+      </div>
+
+      <div class="header-center" id="titulo-grado">Temas</div>
+
+      <div class="header-right">
+        <button id="btn-logout" class="btn btn-ghost btn-logout">Cerrar sesión</button>
+      </div>
+    </div>
   </header>
 
-  <!-- CONTENIDO -->
-  <section class="content">
-    <div id="temas-container" class="card-container"></div>
-  </section>
+  <main class="content">
+    <div class="container">
+      <div id="temas-container" class="card-container"></div>
+    </div>
+  </main>
 
-  <!-- ✅ Orden correcto -->
   <script src="session.js"></script>
   <script src="grado.js"></script>
 </body>

@@ -1,6 +1,10 @@
 // ======================
-// 🔒 Punto 4 PRO: proteger entrada + manejar token vencido + BLOQUEO GRADO
+// 🔒 Guard: token + grado correcto (si aplica)
 // ======================
+
+function $(id) {
+  return document.getElementById(id);
+}
 
 function getNextUrl() {
   return window.location.pathname + window.location.search;
@@ -23,12 +27,12 @@ function clearSession() {
 const params = new URLSearchParams(window.location.search);
 const subtemaId = params.get("subtemaId");
 const subtemaNombre = params.get("subtema") || "Subtema";
-const gradoId = params.get("gradoId"); // ✅ NUEVO: viene desde tema.js
+const gradoId = params.get("gradoId"); // viene desde tema.js
 
 let token = localStorage.getItem("token");
 const storedGradoId = localStorage.getItem("gradoId");
 
-// ✅ Si no hay token -> seleccionar
+// ✅ Si no hay token -> login
 if (!token) {
   redirectToSeleccionar(gradoId);
 }
@@ -40,7 +44,7 @@ if (gradoId && storedGradoId && String(gradoId) !== String(storedGradoId)) {
   window.location.href = "index.html";
 }
 
-// Fetch con token + auto-logout si 401 (token malo / vencido)
+// Fetch con token + auto-logout si 401
 async function fetchAuth(url, options = {}) {
   token = localStorage.getItem("token");
   if (!token) {
@@ -62,6 +66,21 @@ async function fetchAuth(url, options = {}) {
     throw new Error("No autorizado (token vencido o inválido)");
   }
 
+  // ✅ si está bloqueado por el profesor
+  if (res.status === 403) {
+    let msg = "🔒 Este subtema aún no está disponible. Pregunta al profesor.";
+    try {
+      const data = await res.json();
+      if (data?.error) msg = data.error;
+    } catch {}
+    alert(msg);
+    // vuelve atrás
+    window.location.href = `tema.html?gradoId=${encodeURIComponent(gradoId)}&temaId=${encodeURIComponent(
+      params.get("temaId") || ""
+    )}&tema=${encodeURIComponent(params.get("tema") || "")}`;
+    throw new Error("Bloqueado");
+  }
+
   return res;
 }
 
@@ -70,27 +89,8 @@ async function validarSesionOnLoad() {
   try {
     await fetchAuth("/api/me");
   } catch (e) {
-    // fetchAuth ya redirige
+    // fetchAuth ya redirige o bloquea
   }
-}
-
-// ======================
-// Estado práctica
-// ======================
-let puntos = 0;
-let respondidas = 0;
-const LIMITE_PREGUNTAS = 10;
-
-const MAX_INTENTOS = 3;
-let intentos = 0;
-
-let ejercicioActual = null;
-
-// ======================
-// Helpers DOM seguros
-// ======================
-function $(id) {
-  return document.getElementById(id);
 }
 
 // ======================
@@ -104,7 +104,7 @@ if (!subtemaId) {
 }
 
 // ======================
-// -------- Tabs --------
+// Tabs / Views
 // ======================
 const tabs = document.querySelectorAll(".tab");
 const views = {
@@ -114,8 +114,32 @@ const views = {
   practica: $("tab-practica"),
 };
 
+// ✅ ÚNICA FUNCIÓN disableTab (sin duplicados)
+function disableTab(tabKey, message) {
+  const btn = document.querySelector(`.tab[data-tab="${tabKey}"]`);
+  const view = document.getElementById(`tab-${tabKey}`);
+
+  if (btn) {
+    btn.classList.add("disabled");
+    btn.setAttribute("aria-disabled", "true");
+    btn.title = message || "No disponible";
+  }
+
+  if (view) {
+    view.innerHTML = `<div class="empty-box">${message || "Aún no hay contenido disponible."}</div>`;
+  }
+}
+
+function showEmpty(containerId, text) {
+  const cont = $(containerId);
+  if (!cont) return;
+  cont.innerHTML = `<div class="empty-box">${text}</div>`;
+}
+
 tabs.forEach((btn) => {
   btn.addEventListener("click", () => {
+    if (btn.classList.contains("disabled")) return;
+
     tabs.forEach((b) => b.classList.remove("active"));
     btn.classList.add("active");
 
@@ -143,11 +167,11 @@ async function cargarIntro() {
   cont.innerHTML = "Cargando...";
 
   try {
-    const res = await fetch(`/api/intro/${subtemaId}`);
+    const res = await fetchAuth(`/api/intro/${subtemaId}`);
     const data = await res.json();
 
     if (!Array.isArray(data) || data.length === 0) {
-      cont.innerHTML = `<div class="cardbox">Aún no hay introducción para este subtema.</div>`;
+      showEmpty("intro-container", "Aún no hay introducción para este subtema.");
       return;
     }
 
@@ -162,7 +186,7 @@ async function cargarIntro() {
       )
       .join("");
   } catch (e) {
-    cont.innerHTML = `<div class="cardbox">❌ Error cargando introducción.</div>`;
+    showEmpty("intro-container", "❌ Error cargando introducción.");
   }
 }
 
@@ -181,11 +205,11 @@ async function cargarTalleres() {
   cont.innerHTML = "Cargando...";
 
   try {
-    const res = await fetch(`/api/talleres/${subtemaId}`);
+    const res = await fetchAuth(`/api/talleres/${subtemaId}`);
     const data = await res.json();
 
     if (!Array.isArray(data) || data.length === 0) {
-      cont.innerHTML = `<div class="cardbox">Aún no hay talleres para este subtema.</div>`;
+      showEmpty("taller-container", "Aún no hay talleres para este subtema.");
       return;
     }
 
@@ -208,7 +232,7 @@ async function cargarTalleres() {
       )
       .join("");
   } catch (e) {
-    cont.innerHTML = `<div class="cardbox">❌ Error cargando talleres.</div>`;
+    showEmpty("taller-container", "❌ Error cargando talleres.");
   }
 }
 
@@ -228,11 +252,11 @@ async function cargarQuiz() {
   if (quizMeta) quizMeta.textContent = "";
 
   try {
-    const res = await fetch(`/api/quiz/${subtemaId}?limit=10`);
+    const res = await fetchAuth(`/api/quiz/${subtemaId}?limit=10`);
     const preguntas = await res.json();
 
     if (!Array.isArray(preguntas) || preguntas.length === 0) {
-      quizCont.innerHTML = `<div class="cardbox">Aún no hay preguntas de quiz para este subtema.</div>`;
+      quizCont.innerHTML = `<div class="empty-box">Aún no hay preguntas de quiz para este subtema.</div>`;
       return;
     }
 
@@ -255,7 +279,9 @@ async function cargarQuiz() {
             <div class="cardbox">
               <h3>${idx + 1}. ${escapeHtml(q.pregunta)}</h3>
               ${opts}
-              <button class="btn-secundario" onclick="revisarMCQ(${q.id}, '${escapeQuotes(q.respuesta)}', '${escapeQuotes(q.explicacion || "")}')">Revisar</button>
+              <button class="btn-secundario" onclick="revisarMCQ(${q.id}, '${escapeQuotes(
+                q.respuesta
+              )}', '${escapeQuotes(q.explicacion || "")}')">Revisar</button>
               <p id="r${q.id}" class="meta"></p>
             </div>
           `;
@@ -268,7 +294,9 @@ async function cargarQuiz() {
               <label style="margin-right:10px"><input type="radio" name="q${q.id}" value="V"> Verdadero</label>
               <label><input type="radio" name="q${q.id}" value="F"> Falso</label>
               <div style="margin-top:10px">
-                <button class="btn-secundario" onclick="revisarMCQ(${q.id}, '${escapeQuotes(q.respuesta)}', '${escapeQuotes(q.explicacion || "")}')">Revisar</button>
+                <button class="btn-secundario" onclick="revisarMCQ(${q.id}, '${escapeQuotes(
+                  q.respuesta
+                )}', '${escapeQuotes(q.explicacion || "")}')">Revisar</button>
                 <p id="r${q.id}" class="meta"></p>
               </div>
             </div>
@@ -281,7 +309,9 @@ async function cargarQuiz() {
             <input id="in${q.id}" type="text" placeholder="Tu respuesta"
               style="padding:10px;border-radius:12px;border:1px solid #d1d5db;width:min(360px,100%)">
             <div style="margin-top:10px">
-              <button class="btn-secundario" onclick="revisarAbierta(${q.id}, '${escapeQuotes(q.respuesta)}', '${escapeQuotes(q.explicacion || "")}')">Revisar</button>
+              <button class="btn-secundario" onclick="revisarAbierta(${q.id}, '${escapeQuotes(
+                q.respuesta
+              )}', '${escapeQuotes(q.explicacion || "")}')">Revisar</button>
               <p id="r${q.id}" class="meta"></p>
             </div>
           </div>
@@ -289,14 +319,14 @@ async function cargarQuiz() {
       })
       .join("");
   } catch (e) {
-    quizCont.innerHTML = `<div class="cardbox">❌ Error cargando quiz.</div>`;
+    quizCont.innerHTML = `<div class="empty-box">❌ Error cargando quiz.</div>`;
   }
 }
 
+// helpers quiz
 function escapeQuotes(s) {
   return String(s ?? "").replaceAll("\\", "\\\\").replaceAll("'", "\\'");
 }
-
 function escapeHtml(s) {
   return String(s ?? "")
     .replaceAll("&", "&amp;")
@@ -340,6 +370,15 @@ window.revisarAbierta = function (id, correcta, explicacion) {
 // ======================
 // -------- Práctica --------
 // ======================
+let puntos = 0;
+let respondidas = 0;
+const LIMITE_PREGUNTAS = 10;
+
+const MAX_INTENTOS = 3;
+let intentos = 0;
+
+let ejercicioActual = null;
+
 const preguntaEl = $("pregunta");
 const inputRespuesta = $("respuesta");
 const resultadoEl = $("resultado");
@@ -379,11 +418,27 @@ async function cargarPractica() {
     intentos = 0;
     if (intentosEl) intentosEl.textContent = String(intentos);
 
-    const res = await fetch(`/api/ejercicio/random/${subtemaId}`);
+    const res = await fetchAuth(`/api/ejercicio/random/${subtemaId}`);
+
+    // ✅ Si no hay plantillas
+    if (res.status === 404) {
+      if (preguntaEl) preguntaEl.textContent = "⚠️ No hay práctica disponible para este subtema.";
+      if (btnValidar) btnValidar.disabled = true;
+      if (btnSaltar) btnSaltar.disabled = true;
+      if (inputRespuesta) inputRespuesta.disabled = true;
+      if (resultadoEl) resultadoEl.textContent = "";
+      disableTab("practica", "⚡ Aún no hay práctica para este subtema.");
+      return;
+    }
+
     if (!res.ok) throw new Error("No se pudo cargar práctica");
 
     ejercicioActual = await res.json();
     if (preguntaEl) preguntaEl.textContent = ejercicioActual.pregunta;
+
+    if (btnValidar) btnValidar.disabled = false;
+    if (btnSaltar) btnSaltar.disabled = false;
+    if (inputRespuesta) inputRespuesta.disabled = false;
   } catch (e) {
     if (preguntaEl) preguntaEl.textContent = "❌ Error cargando práctica.";
   }
@@ -482,8 +537,58 @@ function validarPractica() {
 }
 
 // ======================
+// ✅ Detectar contenido y desactivar tabs vacías usando endpoints reales
+// + Si el subtema está bloqueado, el backend dará 403 y ya se redirige
+// ======================
+async function detectarContenidoYDesactivarTabs() {
+  // Intro
+  try {
+    const r = await fetchAuth(`/api/intro/${subtemaId}`);
+    const data = await r.json();
+    if (!Array.isArray(data) || data.length === 0) disableTab("intro", "📘 Aún no hay introducción para este subtema.");
+  } catch {
+    disableTab("intro", "📘 Error cargando introducción.");
+  }
+
+  // Taller
+  try {
+    const r = await fetchAuth(`/api/talleres/${subtemaId}`);
+    const data = await r.json();
+    if (!Array.isArray(data) || data.length === 0) disableTab("taller", "🧩 Aún no hay talleres para este subtema.");
+  } catch {
+    disableTab("taller", "🧩 Error cargando talleres.");
+  }
+
+  // Quiz
+  try {
+    const r = await fetchAuth(`/api/quiz/${subtemaId}?limit=1`);
+    const data = await r.json();
+    if (!Array.isArray(data) || data.length === 0) disableTab("quiz", "✅ Aún no hay quiz para este subtema.");
+  } catch {
+    disableTab("quiz", "✅ Error cargando quiz.");
+  }
+
+  // Práctica
+  try {
+    const r = await fetchAuth(`/api/ejercicio/random/${subtemaId}`);
+    if (r.status === 404) disableTab("practica", "⚡ Aún no hay práctica para este subtema.");
+  } catch {}
+}
+
+// ======================
 // Carga inicial
 // ======================
-validarSesionOnLoad();
-cargarIntro();
-cargarPractica();
+(async function init() {
+  await validarSesionOnLoad();
+  await detectarContenidoYDesactivarTabs();
+
+  const introBtn = document.querySelector(`.tab[data-tab="intro"]`);
+  if (introBtn && !introBtn.classList.contains("disabled")) {
+    introBtn.click();
+  } else {
+    const first = Array.from(document.querySelectorAll(".tab")).find((b) => !b.classList.contains("disabled"));
+    if (first) first.click();
+  }
+
+  cargarPractica();
+})();

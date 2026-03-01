@@ -10,62 +10,71 @@
 <body>
 
 <header class="header header-interno">
-  <button id="btn-logout" class="btn-logout">Cerrar sesión</button>
-  <a href="javascript:history.back()" class="btn-volver">← Volver</a>
-  <h1 id="titulo-subtema">Subtema</h1>
+  <div class="header-row">
+    <div class="header-left">
+      <a href="javascript:history.back()" class="btn btn-ghost">← Volver</a>
+    </div>
+
+    <div class="header-center" id="titulo-subtema">Subtema</div>
+
+    <div class="header-right">
+      <button id="btn-logout" class="btn btn-ghost btn-logout">Cerrar sesión</button>
+    </div>
+  </div>
 </header>
 
-<main class="wrap">
-  <section class="panel">
+<main class="content">
+  <div class="container">
+    <section class="panel">
 
-    <div class="tabs">
-      <button class="tab active" data-tab="intro">📘 Intro</button>
-      <button class="tab" data-tab="taller">🧩 Taller</button>
-      <button class="tab" data-tab="quiz">✅ Quiz</button>
-      <button class="tab" data-tab="practica">⚡ Práctica</button>
-    </div>
-
-    <div class="content">
-      <div class="tabview active" id="tab-intro">
-        <div id="intro-container"></div>
+      <div class="tabs">
+        <button class="tab active" data-tab="intro">📘 Intro</button>
+        <button class="tab" data-tab="taller">🧩 Taller</button>
+        <button class="tab" data-tab="quiz">✅ Quiz</button>
+        <button class="tab" data-tab="practica">⚡ Práctica</button>
       </div>
 
-      <div class="tabview" id="tab-taller">
-        <div id="taller-container"></div>
-      </div>
-
-      <div class="tabview" id="tab-quiz">
-        <div class="row">
-          <button id="btn-cargar-quiz" class="btn-principal">Cargar 10 preguntas</button>
-          <span id="quiz-meta" class="meta"></span>
+      <div class="content">
+        <div class="tabview active" id="tab-intro">
+          <div id="intro-container"></div>
         </div>
-        <div id="quiz-container"></div>
-      </div>
 
-      <div class="tabview" id="tab-practica">
-        <div class="practica-box">
-          <h2 id="pregunta"></h2>
-          <input type="text" id="respuesta" placeholder="Escribe tu respuesta">
+        <div class="tabview" id="tab-taller">
+          <div id="taller-container"></div>
+        </div>
 
+        <div class="tabview" id="tab-quiz">
           <div class="row">
-            <button id="btn-validar" class="btn-principal">Responder</button>
-            <button id="btn-saltar" class="btn-secundario">Saltar</button>
-
-            <span class="meta">Puntaje: <b id="puntaje">0</b></span>
-            <span class="meta">Respondidas: <b id="respondidas">0</b></span>
-            <span class="meta">Intentos: <b id="intentos">0</b>/3</span>
+            <button id="btn-cargar-quiz" class="btn btn-primary">Cargar 10 preguntas</button>
+            <span id="quiz-meta" class="meta"></span>
           </div>
+          <div id="quiz-container"></div>
+        </div>
 
-          <p id="resultado"></p>
+        <div class="tabview" id="tab-practica">
+          <div class="practica-box">
+            <h2 id="pregunta"></h2>
+            <input type="text" id="respuesta" placeholder="Escribe tu respuesta">
+
+            <div class="row">
+              <button id="btn-validar" class="btn btn-primary">Responder</button>
+              <button id="btn-saltar" class="btn btn-ghost">Saltar</button>
+
+              <span class="meta">Puntaje: <b id="puntaje">0</b></span>
+              <span class="meta">Respondidas: <b id="respondidas">0</b></span>
+              <span class="meta">Intentos: <b id="intentos">0</b>/3</span>
+            </div>
+
+            <p id="resultado"></p>
+          </div>
         </div>
       </div>
-    </div>
 
-  </section>
+    </section>
+  </div>
 </main>
 
 <script src="session.js"></script>
 <script src="subtema.js"></script>
-
 </body>
 </html>

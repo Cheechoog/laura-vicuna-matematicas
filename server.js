@@ -3,9 +3,11 @@
 // ✅ token con caducidad REAL (server valida exp)
 // ✅ endpoint /api/me para validar sesión desde el front
 // ✅ resultados guardados (requiere token)
-// ✅ intro / talleres / quiz (PÚBLICOS)
-// ✅ plantillas + generador aleatorio (PÚBLICO)
+// ✅ intro / talleres / quiz (PÚBLICOS) -> ahora con bloqueo por subtema
+// ✅ plantillas + generador aleatorio (PÚBLICO) -> ahora con bloqueo por subtema
 // ✅ mantiene tus rutas grados/temas/subtemas/actividades
+// ✅ PANEL PROFESOR: habilitar/bloquear subtemas + opcional disponible_desde
+// ✅ PROGRESO: estado por subtema para el tema (no iniciado / en progreso / completado)
 
 const express = require("express");
 const sqlite3 = require("sqlite3").verbose();
@@ -19,6 +21,8 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const SERVER_SECRET = process.env.SERVER_SECRET || "dev-secret-cambia-esto";
 const TOKEN_HORAS = Number(process.env.TOKEN_HORAS || 6);
+const TEACHER_PIN = String(process.env.TEACHER_PIN || "9999");
+const TEACHER_TOKEN_HORAS = Number(process.env.TEACHER_TOKEN_HORAS || 12);
 const DB_PATH = process.env.DB_PATH || "./database.sqlite";
 
 app.use(cors());
@@ -54,20 +58,14 @@ function all(sql, params = []) {
 // --- Auth “suave” (token firmado) ---
 function signToken(payloadObj) {
   const payload = Buffer.from(JSON.stringify(payloadObj)).toString("base64url");
-  const sig = crypto
-    .createHmac("sha256", SERVER_SECRET)
-    .update(payload)
-    .digest("base64url");
+  const sig = crypto.createHmac("sha256", SERVER_SECRET).update(payload).digest("base64url");
   return `${payload}.${sig}`;
 }
 
 function verifyToken(token) {
   if (!token || !token.includes(".")) return null;
   const [payload, sig] = token.split(".");
-  const expected = crypto
-    .createHmac("sha256", SERVER_SECRET)
-    .update(payload)
-    .digest("base64url");
+  const expected = crypto.createHmac("sha256", SERVER_SECRET).update(payload).digest("base64url");
   if (sig !== expected) return null;
 
   try {
@@ -87,7 +85,19 @@ function authRequired(req, res, next) {
   const data = verifyToken(token);
   if (!data) return res.status(401).json({ error: "No autorizado / sesión vencida" });
 
-  req.user = data; // { estudiante_id, grupo_id, exp }
+  req.user = data;
+  next();
+}
+
+function teacherRequired(req, res, next) {
+  const auth = req.headers.authorization || "";
+  const token = auth.startsWith("Bearer ") ? auth.slice(7) : null;
+
+  const data = verifyToken(token);
+  if (!data || data.role !== "teacher") {
+    return res.status(401).json({ error: "No autorizado (profesor)" });
+  }
+  req.teacher = data;
   next();
 }
 
@@ -96,10 +106,51 @@ function makeSalt() {
   return crypto.randomBytes(8).toString("hex");
 }
 function hashPin(pin, salt) {
-  return crypto
-    .createHash("sha256")
-    .update(String(salt) + String(pin))
-    .digest("hex");
+  return crypto.createHash("sha256").update(String(salt) + String(pin)).digest("hex");
+}
+
+// -------------------------
+// Bloqueo por subtema (habilitado + disponible_desde)
+// -------------------------
+async function isSubtemaDisponible(subtemaId) {
+  const row = await get("SELECT habilitado, disponible_desde FROM subtemas WHERE id = ?", [subtemaId]);
+  if (!row) return false;
+
+  const habilitado = Number(row.habilitado || 0) === 1;
+
+  // Si no está habilitado, NO disponible
+  if (!habilitado) return false;
+
+  // Si hay fecha, debe ya haber llegado
+  if (row.disponible_desde) {
+    const check = await get(
+      "SELECT CASE WHEN datetime('now') >= datetime(?) THEN 1 ELSE 0 END AS ok",
+      [row.disponible_desde]
+    );
+    return Number(check?.ok || 0) === 1;
+  }
+
+  return true;
+}
+
+function bloqueoMensaje() {
+  return "🔒 Este subtema aún no está disponible. Pregunta al profesor.";
+}
+
+function requireSubtemaDisponible(paramName = "subtemaId") {
+  return async (req, res, next) => {
+    try {
+      const subtemaId = Number(req.params[paramName]);
+      if (!subtemaId) return res.status(400).json({ error: "subtemaId inválido" });
+
+      const ok = await isSubtemaDisponible(subtemaId);
+      if (!ok) return res.status(403).json({ error: bloqueoMensaje() });
+
+      next();
+    } catch (e) {
+      res.status(500).json({ error: e.message });
+    }
+  };
 }
 
 // -------------------------
@@ -125,15 +176,22 @@ db.serialize(async () => {
       )
     `);
 
+    // ✅ subtemas con control de disponibilidad
     await run(`
       CREATE TABLE IF NOT EXISTS subtemas (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         nombre TEXT NOT NULL,
         tema_id INTEGER,
         orden INTEGER,
+        habilitado INTEGER NOT NULL DEFAULT 0,
+        disponible_desde TEXT,
         FOREIGN KEY (tema_id) REFERENCES temas(id)
       )
     `);
+
+    // Asegurar columnas si venías de versión anterior
+    try { await run("ALTER TABLE subtemas ADD COLUMN habilitado INTEGER NOT NULL DEFAULT 0"); } catch {}
+    try { await run("ALTER TABLE subtemas ADD COLUMN disponible_desde TEXT"); } catch {}
 
     await run(`
       CREATE TABLE IF NOT EXISTS actividades (
@@ -254,6 +312,7 @@ db.serialize(async () => {
 
     const s = await get("SELECT COUNT(*) as count FROM subtemas");
     if ((s?.count ?? 0) === 0) {
+      // Por defecto quedan BLOQUEADOS (habilitado=0)
       await run("INSERT INTO subtemas (nombre, tema_id, orden) VALUES ('Operaciones básicas', 1, 1)");
       await run("INSERT INTO subtemas (nombre, tema_id, orden) VALUES ('Potenciación', 1, 2)");
       await run("INSERT INTO subtemas (nombre, tema_id, orden) VALUES ('Radicación', 1, 3)");
@@ -346,6 +405,7 @@ db.serialize(async () => {
 
       console.log("✅ Seed: plantillas");
     }
+
   } catch (e) {
     console.error("❌ Error init DB:", e.message);
   }
@@ -365,11 +425,54 @@ app.get("/api/temas/:gradoId", (req, res) => {
     (err, rows) => (err ? res.status(500).json(err) : res.json(rows)))
 });
 
-app.get("/api/subtemas/:temaId", (req, res) => {
-  db.all(
-    "SELECT * FROM subtemas WHERE tema_id = ? ORDER BY orden ASC",
-    [req.params.temaId],
-    (err, rows) => (err ? res.status(500).json(err) : res.json(rows)))
+app.get("/api/subtemas/:temaId", async (req, res) => {
+  try {
+    const rows = await all(
+      "SELECT * FROM subtemas WHERE tema_id = ? ORDER BY orden ASC",
+      [req.params.temaId]
+    );
+    res.json(rows);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+// ✅ RESUMEN DE CONTENIDO POR TEMA (para tarjetas) + incluye disponibilidad
+app.get("/api/tema/:temaId/resumen", async (req, res) => {
+  try {
+    const temaId = Number(req.params.temaId);
+    if (!temaId) return res.status(400).json({ error: "temaId inválido" });
+
+    const rows = await all(
+      `
+      SELECT
+        s.id AS subtema_id,
+        s.nombre AS subtema_nombre,
+        s.orden AS subtema_orden,
+        s.habilitado AS habilitado,
+        s.disponible_desde AS disponible_desde,
+
+        (SELECT COUNT(*) FROM intro i WHERE i.subtema_id = s.id) AS intro_count,
+        (SELECT COUNT(*) FROM talleres t WHERE t.subtema_id = s.id) AS talleres_count,
+        (SELECT COUNT(*) FROM quiz q WHERE q.subtema_id = s.id) AS quiz_count,
+        (SELECT COUNT(*) FROM plantillas p WHERE p.subtema_id = s.id) AS plantillas_count,
+
+        CASE
+          WHEN s.habilitado = 1 AND (s.disponible_desde IS NULL OR datetime('now') >= datetime(s.disponible_desde))
+          THEN 1 ELSE 0
+        END AS disponible
+
+      FROM subtemas s
+      WHERE s.tema_id = ?
+      ORDER BY s.orden ASC
+      `,
+      [temaId]
+    );
+
+    res.json(rows);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
 });
 
 app.get("/api/actividades/:subtemaId", (req, res) => {
@@ -416,6 +519,7 @@ app.post("/api/sesion", async (req, res) => {
     if (h !== est.pin_hash) return res.status(401).json({ error: "PIN incorrecto" });
 
     const token = signToken({
+      role: "student",
       estudiante_id: est.id,
       grupo_id: est.grupo_id,
       exp: Date.now() + TOKEN_HORAS * 60 * 60 * 1000,
@@ -427,12 +531,18 @@ app.post("/api/sesion", async (req, res) => {
   }
 });
 
-// ✅ para que el FRONT pueda validar si la sesión sigue viva
+// ✅ /api/me sirve para estudiante o profesor
 app.get("/api/me", authRequired, async (req, res) => {
   try {
+    // profesor
+    if (req.user.role === "teacher") {
+      return res.json({ ok: true, role: "teacher" });
+    }
+
+    // estudiante
     const est = await get("SELECT id, grupo_id, nombre FROM estudiantes WHERE id = ?", [req.user.estudiante_id]);
     if (!est) return res.status(404).json({ error: "Estudiante no existe" });
-    res.json({ ok: true, ...est });
+    res.json({ ok: true, role: "student", ...est });
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
@@ -444,9 +554,52 @@ app.post("/api/logout", (req, res) => {
 });
 
 // -------------------------
-// Contenido (TABS) — ✅ PÚBLICO (SIN authRequired)
+// ✅ PANEL PROFESOR
 // -------------------------
-app.get("/api/intro/:subtemaId", async (req, res) => {
+app.post("/api/profesor/sesion", async (req, res) => {
+  try {
+    const { pin } = req.body || {};
+    if (String(pin || "") !== TEACHER_PIN) {
+      return res.status(401).json({ error: "PIN profesor incorrecto" });
+    }
+
+    const token = signToken({
+      role: "teacher",
+      exp: Date.now() + TEACHER_TOKEN_HORAS * 60 * 60 * 1000,
+    });
+
+    res.json({ ok: true, token, role: "teacher", exp_horas: TEACHER_TOKEN_HORAS });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+// Habilitar / bloquear subtema + disponible_desde (profesor)
+app.post("/api/profesor/subtema/:subtemaId/disponibilidad", teacherRequired, async (req, res) => {
+  try {
+    const subtemaId = Number(req.params.subtemaId);
+    if (!subtemaId) return res.status(400).json({ error: "subtemaId inválido" });
+
+    const { habilitado, disponible_desde } = req.body || {};
+
+    const hab = habilitado ? 1 : 0;
+    const dd = disponible_desde ? String(disponible_desde) : null;
+
+    await run(
+      "UPDATE subtemas SET habilitado = ?, disponible_desde = ? WHERE id = ?",
+      [hab, dd, subtemaId]
+    );
+
+    res.json({ ok: true, subtema_id: subtemaId, habilitado: hab, disponible_desde: dd });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+// -------------------------
+// Contenido (TABS) — ahora BLOQUEADOS si subtema no disponible
+// -------------------------
+app.get("/api/intro/:subtemaId", requireSubtemaDisponible("subtemaId"), async (req, res) => {
   try {
     const rows = await all("SELECT * FROM intro WHERE subtema_id = ? ORDER BY id ASC", [req.params.subtemaId]);
     res.json(rows);
@@ -455,7 +608,7 @@ app.get("/api/intro/:subtemaId", async (req, res) => {
   }
 });
 
-app.get("/api/talleres/:subtemaId", async (req, res) => {
+app.get("/api/talleres/:subtemaId", requireSubtemaDisponible("subtemaId"), async (req, res) => {
   try {
     const rows = await all("SELECT * FROM talleres WHERE subtema_id = ? ORDER BY id ASC", [req.params.subtemaId]);
     res.json(rows);
@@ -464,7 +617,7 @@ app.get("/api/talleres/:subtemaId", async (req, res) => {
   }
 });
 
-app.get("/api/quiz/:subtemaId", async (req, res) => {
+app.get("/api/quiz/:subtemaId", requireSubtemaDisponible("subtemaId"), async (req, res) => {
   try {
     const limit = Math.max(1, Math.min(50, Number(req.query.limit || 10)));
     const rows = await all(
@@ -483,6 +636,51 @@ app.get("/api/quiz/:subtemaId", async (req, res) => {
   }
 });
 
+// ✅ STATUS DE CONTENIDO POR SUBTEMA (para activar/desactivar tabs en subtema.html)
+app.get("/api/subtema/:subtemaId/status", async (req, res) => {
+  try {
+    const subtemaId = Number(req.params.subtemaId);
+    if (!subtemaId) return res.status(400).json({ error: "subtemaId inválido" });
+
+    const disponible = await isSubtemaDisponible(subtemaId);
+
+    if (!disponible) {
+      return res.json({
+        subtema_id: subtemaId,
+        bloqueado: true,
+        mensaje: bloqueoMensaje(),
+        intro: false,
+        talleres: false,
+        quiz: false,
+        practica: false,
+        counts: { intro: 0, talleres: 0, quiz: 0, plantillas: 0 },
+      });
+    }
+
+    const introRow = await get("SELECT COUNT(*) as c FROM intro WHERE subtema_id = ?", [subtemaId]);
+    const talleresRow = await get("SELECT COUNT(*) as c FROM talleres WHERE subtema_id = ?", [subtemaId]);
+    const quizRow = await get("SELECT COUNT(*) as c FROM quiz WHERE subtema_id = ?", [subtemaId]);
+    const plantillasRow = await get("SELECT COUNT(*) as c FROM plantillas WHERE subtema_id = ?", [subtemaId]);
+
+    res.json({
+      subtema_id: subtemaId,
+      bloqueado: false,
+      intro: (introRow?.c ?? 0) > 0,
+      talleres: (talleresRow?.c ?? 0) > 0,
+      quiz: (quizRow?.c ?? 0) > 0,
+      practica: (plantillasRow?.c ?? 0) > 0,
+      counts: {
+        intro: introRow?.c ?? 0,
+        talleres: talleresRow?.c ?? 0,
+        quiz: quizRow?.c ?? 0,
+        plantillas: plantillasRow?.c ?? 0,
+      },
+    });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
 // -------------------------
 // Resultados (PROTEGIDO)
 // -------------------------
@@ -492,6 +690,15 @@ app.post("/api/resultados", authRequired, async (req, res) => {
     if (!subtema_id || !tipo || puntaje == null || total == null) {
       return res.status(400).json({ error: "Faltan datos" });
     }
+
+    // ✅ estudiante solamente
+    if (req.user.role !== "student") {
+      return res.status(403).json({ error: "Solo estudiantes pueden guardar resultados" });
+    }
+
+    // si el subtema está bloqueado, no guardar
+    const ok = await isSubtemaDisponible(Number(subtema_id));
+    if (!ok) return res.status(403).json({ error: bloqueoMensaje() });
 
     const estudiante_id = req.user.estudiante_id;
 
@@ -524,9 +731,9 @@ app.get("/api/resultados/estudiante/:id", async (req, res) => {
 });
 
 // -------------------------
-// EJERCICIO RANDOM (plantillas) — ✅ PÚBLICO (SIN authRequired)
+// EJERCICIO RANDOM (plantillas) — ahora BLOQUEADO si subtema no disponible
 // -------------------------
-app.get("/api/ejercicio/random/:subtemaId", async (req, res) => {
+app.get("/api/ejercicio/random/:subtemaId", requireSubtemaDisponible("subtemaId"), async (req, res) => {
   try {
     const subtemaId = Number(req.params.subtemaId);
     if (!subtemaId) return res.status(400).json({ error: "subtemaId inválido" });
@@ -623,6 +830,66 @@ app.get("/api/ejercicio/random/:subtemaId", async (req, res) => {
   } catch (e) {
     console.error(e);
     res.status(500).json({ error: "Error generando ejercicio", detail: e.message });
+  }
+});
+
+// ==========================
+// ✅ PROGRESO POR TEMA (ESTUDIANTE)
+// ==========================
+app.get("/api/progreso/tema/:temaId", authRequired, async (req, res) => {
+  try {
+    if (req.user.role !== "student") {
+      return res.status(403).json({ error: "Solo estudiantes" });
+    }
+
+    const temaId = Number(req.params.temaId);
+    if (!temaId) return res.status(400).json({ error: "temaId inválido" });
+
+    const estudianteId = req.user.estudiante_id;
+
+    const rows = await all(
+      `
+      SELECT 
+        s.id as subtema_id,
+        s.nombre as subtema_nombre,
+
+        COUNT(r.id) as intentos,
+        MAX(r.puntaje) as mejor_puntaje,
+        MAX(r.total) as total,
+        MAX(r.created_at) as ultimo_intento
+
+      FROM subtemas s
+      LEFT JOIN resultados r 
+        ON r.subtema_id = s.id 
+        AND r.estudiante_id = ?
+
+      WHERE s.tema_id = ?
+      GROUP BY s.id
+      `,
+      [estudianteId, temaId]
+    );
+
+    const out = rows.map(r => {
+      let estado = "no_iniciado";
+
+      if (Number(r.intentos || 0) > 0) {
+        // si alguna vez hizo puntaje > 0, lo marcamos completado
+        if (Number(r.mejor_puntaje || 0) > 0) estado = "completado";
+        else estado = "en_progreso";
+      }
+
+      return {
+        subtema_id: r.subtema_id,
+        estado,
+        mejor_puntaje: Number(r.mejor_puntaje || 0),
+        total: Number(r.total || 0),
+        ultimo_intento: r.ultimo_intento || null
+      };
+    });
+
+    res.json(out);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
   }
 });
 

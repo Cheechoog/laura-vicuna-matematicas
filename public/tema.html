@@ -2,20 +2,31 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Subtemas</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
   <header class="header header-interno">
-    <button id="btn-logout" class="btn-logout">Cerrar sesión</button>
-    <a href="javascript:history.back()" class="btn-volver">← Volver</a>
-    <h1 id="titulo-tema">Subtemas</h1>
+    <div class="header-row">
+      <div class="header-left">
+        <a href="javascript:history.back()" class="btn btn-ghost">← Volver</a>
+      </div>
+
+      <div class="header-center" id="titulo-tema">Subtemas</div>
+
+      <div class="header-right">
+        <button id="btn-logout" class="btn btn-ghost btn-logout">Cerrar sesión</button>
+      </div>
+    </div>
   </header>
 
-  <section class="content">
-    <div id="subtemas-container" class="card-container"></div>
-  </section>
+  <main class="content">
+    <div class="container">
+      <div id="subtemas-container" class="card-container"></div>
+    </div>
+  </main>
 
   <script src="session.js"></script>
   <script src="tema.js"></script>

@@ -1,21 +1,24 @@
 // public/grado.js
 
 document.addEventListener("DOMContentLoaded", () => {
+  const params = new URLSearchParams(window.location.search);
+
+  // ✅ Formato oficial: gradoId
+  // ✅ Compatibilidad: id (antiguo)
+  const gradoId = params.get("gradoId") || params.get("id");
+
   // 🔒 Requiere sesión (si no hay token, manda a seleccionar.html)
   if (typeof requireSession === "function") {
-    // gradoId viene en ?id=1 (tu página de temas por grado)
-    const params = new URLSearchParams(window.location.search);
-    const gradoId = params.get("id");
-
-    // si no hay gradoId, igual deja continuar para que salga tu error normal
     requireSession(gradoId);
   }
 
-  const params = new URLSearchParams(window.location.search);
-  const gradoId = params.get("id");
-
+  // Validación
   if (!gradoId) {
-    console.error("No se recibió el id del grado");
+    console.error("❌ Falta gradoId en la URL. Usa: grado.html?gradoId=1");
+    const container = document.getElementById("temas-container");
+    if (container) {
+      container.innerHTML = `<div class="cardbox">❌ Falta gradoId en la URL.</div>`;
+    }
     return;
   }
 
@@ -29,17 +32,24 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function cargarTemas(gradoId) {
-  fetch(`/api/temas/${gradoId}`)
+  fetch(`/api/temas/${encodeURIComponent(gradoId)}`)
     .then((res) => res.json())
     .then((data) => {
       const container = document.getElementById("temas-container");
+      if (!container) return;
+
       container.innerHTML = "";
+
+      if (!Array.isArray(data) || data.length === 0) {
+        container.innerHTML = `<div class="cardbox">Aún no hay temas para este grado.</div>`;
+        return;
+      }
 
       data.forEach((tema) => {
         const card = document.createElement("a");
         card.className = "card";
 
-        // ✅ CORRECTO: manda gradoId (NO "grado")
+        // ✅ UNIFICADO: siempre gradoId + temaId + tema
         card.href = `tema.html?gradoId=${encodeURIComponent(gradoId)}&temaId=${encodeURIComponent(
           tema.id
         )}&tema=${encodeURIComponent(tema.nombre)}`;
@@ -52,5 +62,9 @@ function cargarTemas(gradoId) {
         container.appendChild(card);
       });
     })
-    .catch((error) => console.error("Error cargando temas:", error));
+    .catch((error) => {
+      console.error("Error cargando temas:", error);
+      const container = document.getElementById("temas-container");
+      if (container) container.innerHTML = `<div class="cardbox">❌ Error cargando temas.</div>`;
+    });
 }

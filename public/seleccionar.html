@@ -2,33 +2,47 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Seleccionar estudiante</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
   <header class="header header-interno">
-   
-<script src="logout.js"></script>
-    <h1>Seleccionar estudiante</h1>
+    <div class="header-row">
+      <div class="header-left">
+        <a href="index.html" class="btn btn-ghost">← Volver</a>
+      </div>
+
+      <div class="header-center">Seleccionar estudiante</div>
+
+      <div class="header-right">
+        <!-- intencionalmente vacío -->
+      </div>
+    </div>
   </header>
 
-  <section class="content ejercicio-box">
-    <select id="grupo" style="padding:12px;border-radius:12px;">
-      <option value="">Cargando grupos...</option>
-    </select>
+  <main class="content">
+    <div class="container">
+      <section class="ejercicio-box">
+        <select id="grupo">
+          <option value="">Cargando grupos...</option>
+        </select>
 
-    <select id="estudiante" style="padding:12px;border-radius:12px;">
-      <option value="">Selecciona un grupo primero</option>
-    </select>
+        <select id="estudiante">
+          <option value="">Selecciona un grupo primero</option>
+        </select>
 
-    <input id="pin" type="password" inputmode="numeric" maxlength="4"
-      placeholder="PIN (4 dígitos)" style="padding:12px;border-radius:12px;border:none;text-align:center"/>
+        <input id="pin" type="password" inputmode="numeric" maxlength="4"
+          placeholder="PIN (4 dígitos)" style="text-align:center"/>
 
-    <button id="btn" class="btn-principal">Entrar</button>
-    <p id="msg"></p>
-  </section>
+        <button id="btn" class="btn btn-primary">Entrar</button>
+        <p id="msg" class="meta"></p>
+      </section>
+    </div>
+  </main>
 
+  <script src="session.js"></script>
   <script src="seleccionar.js"></script>
-  
 </body>
 </html>

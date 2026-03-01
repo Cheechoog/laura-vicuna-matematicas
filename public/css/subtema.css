@@ -144,12 +144,37 @@
 #resultado.correcto { color: #00ff9d; }
 #resultado.incorrecto { color: #ff6b6b; }
 
+/* ===== Tabs disabled (paso 1) ===== */
+.tab.disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.tab .badge {
+  margin-left: 8px;
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.08);
+}
+
+.tab.disabled .badge {
+  background: rgba(0,0,0,0.06);
+}
+
+/* Mensaje estándar cuando no hay contenido */
+.empty-box {
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px dashed #cbd5e1;
+  background: #f8fafc;
+  color: #334155;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
-  .panel {
-    padding: 16px;
-  }
-  #pregunta {
-    font-size: 1.4rem;
-  }
+  .panel { padding: 16px; }
+
+  #pregunta { font-size: 1.4rem; }
 }
