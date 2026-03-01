@@ -5,13 +5,76 @@
     "pregunta": "¿Cuál es √81?",
     "opciones": ["7", "8", "9", "10"],
     "respuesta": "9",
-    "explicacion": "Porque 9×9=81."
+    "explicacion": "Porque 9×9 = 81."
   },
   {
     "subtema_id": 3,
     "tipo": "vf",
     "pregunta": "√16 = 8",
     "respuesta": "F",
-    "explicacion": "√16=4."
+    "explicacion": "√16 = 4 porque 4×4=16."
+  },
+
+  {
+    "subtema_id": 3,
+    "tipo": "mcq",
+    "pregunta": "¿Cuál es √49?",
+    "opciones": ["5", "6", "7", "8"],
+    "respuesta": "7",
+    "explicacion": "7×7 = 49."
+  },
+  {
+    "subtema_id": 3,
+    "tipo": "mcq",
+    "pregunta": "¿Cuál es √144?",
+    "opciones": ["10", "11", "12", "13"],
+    "respuesta": "12",
+    "explicacion": "12×12 = 144."
+  },
+  {
+    "subtema_id": 3,
+    "tipo": "mcq",
+    "pregunta": "Si √x = 9, entonces x es:",
+    "opciones": ["18", "81", "9", "72"],
+    "respuesta": "81",
+    "explicacion": "Si √x=9 entonces 9×9=81."
+  },
+  {
+    "subtema_id": 3,
+    "tipo": "vf",
+    "pregunta": "√100 = 10",
+    "respuesta": "V",
+    "explicacion": "10×10 = 100."
+  },
+  {
+    "subtema_id": 3,
+    "tipo": "vf",
+    "pregunta": "√25 = 6",
+    "respuesta": "F",
+    "explicacion": "√25 = 5."
+  },
+  {
+    "subtema_id": 3,
+    "tipo": "mcq",
+    "pregunta": "¿Cuál operación es inversa de la radicación?",
+    "opciones": ["Suma", "Potenciación", "Resta", "División"],
+    "respuesta": "Potenciación",
+    "explicacion": "La radicación es inversa de elevar al cuadrado."
+  },
+  {
+    "subtema_id": 3,
+    "tipo": "mcq",
+    "pregunta": "¿Cuál es √64?",
+    "opciones": ["6", "7", "8", "9"],
+    "respuesta": "8",
+    "explicacion": "8×8 = 64."
+  },
+  {
+    "subtema_id": 3,
+    "tipo": "mcq",
+    "pregunta": "¿Cuál es √36?",
+    "opciones": ["5", "6", "7", "8"],
+    "respuesta": "6",
+    "explicacion": "6×6 = 36."
   }
 ]

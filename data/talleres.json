@@ -4,5 +4,17 @@
     "titulo": "Taller 1 - Raíces",
     "enunciado": "<p>Calcula: √36, √49, √64</p>",
     "solucion": "<p>√36=6, √49=7, √64=8</p>"
+  },
+  {
+    "subtema_id": 3,
+    "titulo": "Taller 2 - Raíces exactas (nivel 1)",
+    "enunciado": "<p>Calcula:</p><ol><li>√9</li><li>√16</li><li>√25</li><li>√81</li><li>√100</li></ol>",
+    "solucion": "<ol><li>3</li><li>4</li><li>5</li><li>9</li><li>10</li></ol>"
+  },
+  {
+    "subtema_id": 3,
+    "titulo": "Taller 3 - Encuentra el número (nivel 2)",
+    "enunciado": "<p>Encuentra el número que falta:</p><ol><li>√__ = 6</li><li>√__ = 12</li><li>√__ = 15</li><li>√__ = 8</li></ol>",
+    "solucion": "<ol><li>36</li><li>144</li><li>225</li><li>64</li></ol>"
   }
 ]

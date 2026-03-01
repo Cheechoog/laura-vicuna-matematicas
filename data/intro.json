@@ -2,6 +2,16 @@
   {
     "subtema_id": 3,
     "titulo": "¿Qué es una raíz?",
-    "html": "<p>La <b>radicación</b> es la operación inversa de la potenciación.</p><p>Ej: √25 = 5 porque 5² = 25.</p>"
+    "html": "<h3>✅ ¿Qué es una raíz?</h3><p>La <b>radicación</b> es la operación inversa de la potenciación.</p><p><b>Ejemplo:</b> √25 = 5 porque 5² = 25.</p><p>📌 En números naturales usamos el resultado <b>positivo</b>.</p>"
+  },
+  {
+    "subtema_id": 3,
+    "titulo": "Cómo resolver raíces paso a paso",
+    "html": "<h3>🧠 Paso a paso</h3><p>Para resolver una raíz cuadrada buscamos el número que multiplicado por sí mismo da el número de adentro.</p><p><b>Ejemplo:</b> √36</p><ol><li>Busco un número que al cuadrado dé 36.</li><li>6×6 = 36</li><li>Entonces √36 = 6</li></ol><p>✅ Si no existe exacta, decimos que <b>no es raíz exacta</b> (por ahora solo trabajaremos raíces exactas).</p>"
+  },
+  {
+    "subtema_id": 3,
+    "titulo": "Errores comunes en radicación",
+    "html": "<h3>⚠️ Errores comunes</h3><ul><li><b>Confundir</b> √16 con 8. En realidad √16 = 4.</li><li>Pensar que √49 = ±7. En naturales solo es <b>7</b>.</li><li>Creer que √(a+b)=√a+√b. ❌ Eso no se puede.</li></ul>"
   }
 ]
