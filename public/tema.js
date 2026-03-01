@@ -208,15 +208,15 @@ async function cargarSubtemasConResumen(temaId, gradoId) {
         : `<span class="badge badge-off">⏳ Sin contenido</span>`;
 
       card.innerHTML = `
-        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
-          <h3 style="margin:0">${escapeHtml(row.subtema_nombre)}</h3>
-          <div style="display:flex;gap:6px;flex-wrap:wrap">
-            ${disponibilidadBadge}
-            ${progresoBadge}
-          </div>
-        </div>
-        <p>${hasContent ? parts.join(" · ") : "Sin contenido disponible"}</p>
-      `;
+  <div class="card-top">
+    <h3 style="margin:0">${escapeHtml(row.subtema_nombre)}</h3>
+    <div class="badges">
+      ${disponibilidadBadge}
+      ${progresoBadge}
+    </div>
+  </div>
+  <p>${hasContent ? parts.join(" · ") : "Sin contenido disponible"}</p>
+`;
 
       container.appendChild(card);
     });

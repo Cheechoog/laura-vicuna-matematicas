@@ -2,20 +2,22 @@
 
 /* Contenedor principal centrado */
 .wrap{
-  padding: 25px 18px 60px;
+  padding: 26px 18px 60px;
   display:flex;
   justify-content:center;
 }
 
-/* Panel estilo glass como tus cards */
 .panel{
-  width:min(980px, 95%);
-  background: rgba(255,255,255,0.10);
-  backdrop-filter: blur(12px);
-  border-radius: 22px;
-  padding: 22px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.35);
-  border: 1px solid rgba(255,255,255,0.14);
+  width: min(980px, 100%);
+  border-radius: 26px;
+
+  background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.05));
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 18px 50px rgba(0,0,0,0.45);
+  backdrop-filter: blur(14px);
+
+  padding: 18px;
+  overflow: hidden;
 }
 
 /* Tabs */
@@ -23,68 +25,87 @@
   display:flex;
   gap: 10px;
   flex-wrap: wrap;
-  justify-content: center;
-  margin-bottom: 16px;
+  justify-content:center;
+  padding: 8px 0 14px;
+  margin-bottom: 10px;
 }
 
+/* Botón tab pro */
 .tab{
-  border:none;
-  padding: 10px 16px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.08);
+  color: #EAF3F7;
+
+  padding: 10px 14px;
   border-radius: 999px;
-  background: rgba(255,255,255,0.14);
-  color: #fff;
-  font-weight: 900;
-  cursor:pointer;
-  transition: 0.2s ease;
-  box-shadow: 0 8px 18px rgba(0,0,0,0.20);
+
+  font-weight: 950;
+  cursor: pointer;
+  transition: 0.18s ease;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.35);
+
+  display:inline-flex;
+  align-items:center;
+  gap: 10px;
 }
 
 .tab:hover{
-  transform: translateY(-2px);
-  background: rgba(255,255,255,0.20);
+  transform: translateY(-1px);
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(255,255,255,0.18);
 }
 
 .tab.active{
-  background: rgba(0,201,167,0.55);
-  border: 1px solid rgba(0,201,167,0.35);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.30);
+  background: linear-gradient(135deg, rgba(24,227,200,0.26), rgba(0,201,167,0.18));
+  border-color: rgba(24,227,200,0.50);
+  box-shadow: 0 14px 34px rgba(0,0,0,0.42);
 }
 
-/* Tabs disabled */
+/* Disabled */
 .tab.disabled{
   opacity: 0.45;
   cursor: not-allowed;
   pointer-events: none;
 }
 
+/* Icono (si luego cambias emojis por imágenes) */
+.tab .icon{
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  display:inline-block;
+  filter: drop-shadow(0 8px 14px rgba(0,0,0,0.45));
+}
+
 /* Vistas */
 .tabview{ display:none; }
 .tabview.active{ display:block; }
 
-/* ✅ CLAVE: práctica solo visible cuando esté activa */
-#tab-practica{ display:none; }
-#tab-practica.active{
-  display:flex;
-  justify-content:center;
-}
-
 /* Caja interna tipo card */
 .cardbox{
-  background: rgba(255,255,255,0.10);
-  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
   border-radius: 18px;
-  padding: 18px;
-  margin-bottom: 14px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.22);
-  text-align:left;
+  padding: 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 10px 26px rgba(0,0,0,0.35);
+  text-align: left;
 }
 
-.cardbox h2, .cardbox h3{ margin-bottom: 10px; }
+.cardbox h2, .cardbox h3{
+  margin-bottom: 10px;
+  text-shadow: 0 12px 22px rgba(0,0,0,0.45);
+}
 
-/* Fila de botones / metas */
+.cardbox p, .cardbox li{
+  line-height: 1.45;
+  opacity: 0.92;
+}
+
+/* row (meta y botones) */
 .row{
   display:flex;
-  gap: 10px;
+  gap: 12px;
   align-items:center;
   flex-wrap: wrap;
   justify-content:center;
@@ -101,72 +122,94 @@
   padding: 14px;
   border-radius: 12px;
   border: 1px dashed rgba(255,255,255,0.25);
-  background: rgba(0,0,0,0.18);
-  color: rgba(255,255,255,0.9);
+  background: rgba(0,0,0,0.20);
+  color: rgba(234,243,247,0.85);
 }
 
-/* ================= PRACTICA (BONITA Y CENTRADA) ================= */
+/* ================= QUIZ ================= */
+#quiz-container{
+  display:flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.quiz-card{
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 18px;
+  padding: 16px;
+  box-shadow: 0 10px 26px rgba(0,0,0,0.35);
+}
+
+.quiz-card h3{
+  margin-bottom: 10px;
+  font-size: 1.05rem;
+}
+
+.quiz-options{
+  display:grid;
+  gap: 10px;
+}
+
+.quiz-options button{
+  text-align:left;
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.06);
+  color: #EAF3F7;
+  cursor:pointer;
+  font-weight: 850;
+  transition: .18s ease;
+}
+.quiz-options button:hover{
+  background: rgba(255,255,255,0.10);
+  transform: translateY(-1px);
+}
+
+/* ================= PRACTICA (ARREGLA EL BUG) ================= */
+/* MUY IMPORTANTE: no usar #tab-practica {display:flex} fijo */
+#tab-practica.tabview{ display:none; }
+#tab-practica.tabview.active{ display:flex; justify-content:center; }
+
 #tab-practica .practica-box{
   width: min(560px, 100%);
   text-align:center;
-  background: rgba(255,255,255,0.10);
-  border: 1px solid rgba(255,255,255,0.14);
-  border-radius: 20px;
-  padding: 22px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.30);
+
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 22px;
+  padding: 20px;
+  box-shadow: 0 18px 50px rgba(0,0,0,0.45);
 }
 
 #pregunta{
-  font-size: 1.8rem;
-  margin: 6px 0 16px;
-  text-shadow: 0 6px 16px rgba(0,0,0,0.30);
+  font-size: 1.85rem;
+  margin: 8px 0 18px;
+  text-shadow: 0 16px 28px rgba(0,0,0,0.55);
 }
 
 #respuesta{
-  width: min(360px, 100%);
+  width: min(380px, 100%);
   padding: 12px;
   border-radius: 14px;
   border: 1px solid rgba(255,255,255,0.12);
-  background: rgba(0,0,0,0.18);
-  color:#fff;
-  font-size: 1rem;
-  text-align:center;
+  background: rgba(0,0,0,0.20);
+  color: #EAF3F7;
   outline:none;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.18);
-}
-
-#respuesta:focus{
-  border-color: rgba(0,201,167,0.45);
-  box-shadow: 0 0 0 4px rgba(0,201,167,0.12);
-}
-
-.btn-secundario{
-  padding: 12px 14px;
-  border-radius: 15px;
-  border: 1px solid rgba(255,255,255,0.22);
-  background: rgba(255,255,255,0.10);
-  color:#fff;
-  font-weight: 900;
-  cursor:pointer;
-  transition: .2s ease;
-}
-
-.btn-secundario:hover{
-  transform: translateY(-2px);
-  background: rgba(255,255,255,0.18);
+  box-shadow: 0 10px 26px rgba(0,0,0,0.35);
 }
 
 #resultado{
   margin-top: 12px;
-  font-weight: 900;
+  font-weight: 950;
   min-height: 26px;
 }
-
-#resultado.correcto{ color: #00ff9d; }
-#resultado.incorrecto{ color: #ff6b6b; }
+#resultado.correcto{ color: #22C55E; }
+#resultado.incorrecto{ color: #FF6B6B; }
 
 /* Responsive */
 @media (max-width: 768px){
-  .panel{ padding: 16px; }
-  #pregunta{ font-size: 1.4rem; }
+  .panel{ padding: 14px; }
+  #pregunta{ font-size: 1.45rem; }
 }

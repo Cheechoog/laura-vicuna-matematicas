@@ -1,80 +1,167 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Subtema</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/subtema.css">
-</head>
-<body>
+/* ================= SUBTEMA (TABS PAGE) ================= */
 
-<header class="header header-interno">
-  <div class="header-row">
-    <div class="header-left">
-      <a href="javascript:history.back()" class="btn btn-ghost">← Volver</a>
-    </div>
+.wrap{
+  padding: 26px 18px 50px;
+  display: flex;
+  justify-content: center;
+}
 
-    <div class="header-center" id="titulo-subtema">Subtema</div>
+.panel{
+  width: min(980px, 100%);
+  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 26px;
+  padding: 22px;
+  box-shadow: 0 18px 46px rgba(0,0,0,0.36);
+  backdrop-filter: blur(14px);
+}
 
-    <div class="header-right">
-      <button id="btn-logout" class="btn btn-ghost btn-logout">Cerrar sesión</button>
-    </div>
-  </div>
-</header>
+/* Tabs */
+.tabs{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 18px;
+}
 
-<main class="content">
-  <div class="container wrap">
-    <section class="panel">
+.tab{
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 11px 16px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.10);
+  color: rgba(255,255,255,0.92);
+  font-weight: 900;
+  cursor: pointer;
+  transition: .18s ease;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.28);
+}
 
-      <div class="tabs">
-        <button class="tab active" data-tab="intro">📘 Intro</button>
-        <button class="tab" data-tab="taller">🧩 Taller</button>
-        <button class="tab" data-tab="quiz">✅ Quiz</button>
-        <button class="tab" data-tab="practica">⚡ Práctica</button>
-      </div>
+.tab:hover{
+  transform: translateY(-2px);
+  background: rgba(255,255,255,0.16);
+}
 
-      <div class="content">
-        <div class="tabview active" id="tab-intro">
-          <div id="intro-container"></div>
-        </div>
+.tab.active{
+  background: rgba(0,201,167,0.28);
+  border-color: rgba(0,201,167,0.40);
+  box-shadow: 0 16px 38px rgba(0,0,0,0.34);
+}
 
-        <div class="tabview" id="tab-taller">
-          <div id="taller-container"></div>
-        </div>
+/* ✅ tabs deshabilitadas */
+.tab.disabled{
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
 
-        <div class="tabview" id="tab-quiz">
-          <div class="row">
-            <button id="btn-cargar-quiz" class="btn btn-primary">Cargar 10 preguntas</button>
-            <span id="quiz-meta" class="meta"></span>
-          </div>
-          <div id="quiz-container"></div>
-        </div>
+/* Vistas */
+.tabview{ display: none; }
+.tabview.active{ display: block; }
 
-        <div class="tabview" id="tab-practica">
-          <div class="practica-box">
-            <h2 id="pregunta"></h2>
-            <input type="text" id="respuesta" placeholder="Escribe tu respuesta">
+/* Caja tipo card */
+.cardbox{
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 20px;
+  padding: 16px;
+  margin-bottom: 14px;
+  box-shadow: 0 14px 34px rgba(0,0,0,0.28);
+  text-align: left;
+}
 
-            <div class="row">
-              <button id="btn-validar" class="btn btn-primary">Responder</button>
-              <button id="btn-saltar" class="btn btn-ghost">Saltar</button>
+/* Fila botones / meta */
+.row{
+  display:flex;
+  gap: 10px;
+  align-items:center;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 12px 0;
+}
 
-              <span class="meta">Puntaje: <b id="puntaje">0</b></span>
-              <span class="meta">Respondidas: <b id="respondidas">0</b></span>
-              <span class="meta">Intentos: <b id="intentos">0</b>/3</span>
-            </div>
+.meta{
+  opacity: .85;
+  font-size: 14px;
+}
 
-            <p id="resultado"></p>
-          </div>
-        </div>
-      </div>
+/* ================= PRACTICA ================= */
 
-    </section>
-  </div>
-</main>
+/* ✅ IMPORTANTE: tab-practica NO debe forzar display siempre */
+#tab-practica.tabview{ display:none; }
+#tab-practica.tabview.active{
+  display:flex;
+  justify-content:center;
+}
 
-<script src="session.js"></script>
-<script src="subtema.js"></script>
-</body>
-</html>
+#tab-practica .practica-box{
+  width: min(560px, 100%);
+  text-align:center;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 22px;
+  padding: 22px;
+  box-shadow: 0 18px 46px rgba(0,0,0,0.34);
+}
+
+#pregunta{
+  font-size: clamp(1.35rem, 2.2vw, 1.9rem);
+  margin: 6px 0 16px 0;
+  text-shadow: 0 6px 18px rgba(0,0,0,0.35);
+}
+
+#respuesta{
+  width: min(380px, 100%);
+  padding: 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(0,0,0,0.18);
+  color: #fff;
+  font-size: 1rem;
+  text-align: center;
+  outline: none;
+}
+
+#respuesta:focus{
+  border-color: rgba(0,201,167,0.45);
+  box-shadow: 0 0 0 4px rgba(0,201,167,0.12);
+}
+
+.btn-secundario{
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.10);
+  color: #fff;
+  font-weight: 900;
+  cursor:pointer;
+  transition: .18s ease;
+}
+
+.btn-secundario:hover{
+  transform: translateY(-2px);
+  background: rgba(255,255,255,0.16);
+}
+
+#resultado{
+  margin-top: 12px;
+  font-weight: 900;
+  min-height: 26px;
+}
+
+#resultado.correcto{ color:#00ff9d; }
+#resultado.incorrecto{ color:#ff6b6b; }
+
+/* Mensaje estándar cuando no hay contenido */
+.empty-box{
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px dashed rgba(255,255,255,0.22);
+  background: rgba(0,0,0,0.20);
+  color: rgba(255,255,255,0.92);
+}
+
+/* Responsive */
+@media (max-width: 768px){
+  .panel{ padding: 16px; }
+}
