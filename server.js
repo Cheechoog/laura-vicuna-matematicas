@@ -3,11 +3,11 @@
 // ✅ token con caducidad REAL (server valida exp)
 // ✅ endpoint /api/me para validar sesión desde el front
 // ✅ resultados guardados (requiere token)
-// ✅ intro / talleres / quiz (PÚBLICOS) -> ahora con bloqueo por subtema
-// ✅ plantillas + generador aleatorio (PÚBLICO) -> ahora con bloqueo por subtema
+// ✅ intro / talleres / quiz -> ahora con bloqueo por subtema
+// ✅ plantillas + generador aleatorio -> ahora con bloqueo por subtema
 // ✅ mantiene tus rutas grados/temas/subtemas/actividades
 // ✅ PANEL PROFESOR: habilitar/bloquear subtemas + opcional disponible_desde
-// ✅ PROGRESO: estado por subtema para el tema (no iniciado / en progreso / completado)
+// ✅ PASO 5: PROGRESO por tema/subtema (no exige nota mínima, solo participación)
 
 const express = require("express");
 const sqlite3 = require("sqlite3").verbose();
@@ -58,14 +58,20 @@ function all(sql, params = []) {
 // --- Auth “suave” (token firmado) ---
 function signToken(payloadObj) {
   const payload = Buffer.from(JSON.stringify(payloadObj)).toString("base64url");
-  const sig = crypto.createHmac("sha256", SERVER_SECRET).update(payload).digest("base64url");
+  const sig = crypto
+    .createHmac("sha256", SERVER_SECRET)
+    .update(payload)
+    .digest("base64url");
   return `${payload}.${sig}`;
 }
 
 function verifyToken(token) {
   if (!token || !token.includes(".")) return null;
   const [payload, sig] = token.split(".");
-  const expected = crypto.createHmac("sha256", SERVER_SECRET).update(payload).digest("base64url");
+  const expected = crypto
+    .createHmac("sha256", SERVER_SECRET)
+    .update(payload)
+    .digest("base64url");
   if (sig !== expected) return null;
 
   try {
@@ -106,14 +112,20 @@ function makeSalt() {
   return crypto.randomBytes(8).toString("hex");
 }
 function hashPin(pin, salt) {
-  return crypto.createHash("sha256").update(String(salt) + String(pin)).digest("hex");
+  return crypto
+    .createHash("sha256")
+    .update(String(salt) + String(pin))
+    .digest("hex");
 }
 
 // -------------------------
 // Bloqueo por subtema (habilitado + disponible_desde)
 // -------------------------
 async function isSubtemaDisponible(subtemaId) {
-  const row = await get("SELECT habilitado, disponible_desde FROM subtemas WHERE id = ?", [subtemaId]);
+  const row = await get(
+    "SELECT habilitado, disponible_desde FROM subtemas WHERE id = ?",
+    [subtemaId]
+  );
   if (!row) return false;
 
   const habilitado = Number(row.habilitado || 0) === 1;
@@ -637,6 +649,7 @@ app.get("/api/quiz/:subtemaId", requireSubtemaDisponible("subtemaId"), async (re
 });
 
 // ✅ STATUS DE CONTENIDO POR SUBTEMA (para activar/desactivar tabs en subtema.html)
+// ahora también bloquea si no disponible
 app.get("/api/subtema/:subtemaId/status", async (req, res) => {
   try {
     const subtemaId = Number(req.params.subtemaId);
@@ -725,6 +738,118 @@ app.get("/api/resultados/estudiante/:id", async (req, res) => {
       [req.params.id]
     );
     res.json(rows);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+// -------------------------
+// ✅ PASO 5: PROGRESO (PROTEGIDO) — para pintar badges en tema.html
+// No exige nota mínima. "Completado" = terminó la práctica (total=10) al menos una vez.
+// -------------------------
+
+// Progreso por TEMA: devuelve estado por cada subtema del tema
+app.get("/api/progreso/tema/:temaId", authRequired, async (req, res) => {
+  try {
+    if (req.user.role !== "student") {
+      return res.status(403).json({ error: "Solo estudiantes" });
+    }
+
+    const temaId = Number(req.params.temaId);
+    if (!temaId) return res.status(400).json({ error: "temaId inválido" });
+
+    const estudianteId = Number(req.user.estudiante_id);
+
+    const rows = await all(
+      `
+      SELECT
+        s.id AS subtema_id,
+        s.tema_id AS tema_id,
+        s.nombre AS subtema_nombre,
+
+        COUNT(r.id) AS intentos_total,
+        SUM(CASE WHEN r.tipo = 'practica' THEN 1 ELSE 0 END) AS intentos_practica,
+        MAX(CASE WHEN r.tipo = 'practica' THEN r.puntaje ELSE NULL END) AS mejor_puntaje_practica,
+        MAX(CASE WHEN r.tipo = 'practica' THEN r.total ELSE NULL END) AS total_practica,
+        MAX(r.created_at) AS ultimo_intento
+
+      FROM subtemas s
+      LEFT JOIN resultados r
+        ON r.subtema_id = s.id
+       AND r.estudiante_id = ?
+
+      WHERE s.tema_id = ?
+      GROUP BY s.id
+      ORDER BY s.orden ASC
+      `,
+      [estudianteId, temaId]
+    );
+
+    const out = rows.map((x) => {
+      const intentos = Number(x.intentos_total || 0);
+
+      // ✅ completado = al menos una práctica guardada con total=10
+      const completado =
+        Number(x.intentos_practica || 0) > 0 && Number(x.total_practica || 0) === 10;
+
+      const estado = completado ? "completado" : intentos > 0 ? "en_progreso" : "no_iniciado";
+
+      return {
+        subtema_id: x.subtema_id,
+        tema_id: x.tema_id,
+        subtema_nombre: x.subtema_nombre,
+        estado,
+        intentos,
+        mejor_puntaje_practica: x.mejor_puntaje_practica == null ? null : Number(x.mejor_puntaje_practica),
+        ultimo_intento: x.ultimo_intento || null,
+      };
+    });
+
+    res.json(out);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+// Progreso por SUBTEMA (opcional)
+app.get("/api/progreso/subtema/:subtemaId", authRequired, async (req, res) => {
+  try {
+    if (req.user.role !== "student") {
+      return res.status(403).json({ error: "Solo estudiantes" });
+    }
+
+    const subtemaId = Number(req.params.subtemaId);
+    if (!subtemaId) return res.status(400).json({ error: "subtemaId inválido" });
+
+    const estudianteId = Number(req.user.estudiante_id);
+
+    const row = await get(
+      `
+      SELECT
+        COUNT(*) AS intentos_total,
+        SUM(CASE WHEN tipo = 'practica' THEN 1 ELSE 0 END) AS intentos_practica,
+        MAX(CASE WHEN tipo = 'practica' THEN puntaje ELSE NULL END) AS mejor_puntaje_practica,
+        MAX(CASE WHEN tipo = 'practica' THEN total ELSE NULL END) AS total_practica,
+        MAX(created_at) AS ultimo_intento
+      FROM resultados
+      WHERE estudiante_id = ? AND subtema_id = ?
+      `,
+      [estudianteId, subtemaId]
+    );
+
+    const intentos = Number(row?.intentos_total || 0);
+    const completado =
+      Number(row?.intentos_practica || 0) > 0 && Number(row?.total_practica || 0) === 10;
+
+    const estado = completado ? "completado" : intentos > 0 ? "en_progreso" : "no_iniciado";
+
+    res.json({
+      subtema_id: subtemaId,
+      estado,
+      intentos,
+      mejor_puntaje_practica: row?.mejor_puntaje_practica == null ? null : Number(row.mejor_puntaje_practica),
+      ultimo_intento: row?.ultimo_intento || null,
+    });
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
@@ -833,118 +958,8 @@ app.get("/api/ejercicio/random/:subtemaId", requireSubtemaDisponible("subtemaId"
   }
 });
 
-// ==========================
-// ✅ PROGRESO POR TEMA (ESTUDIANTE)
-// ==========================
-app.get("/api/progreso/tema/:temaId", authRequired, async (req, res) => {
-  try {
-    if (req.user.role !== "student") {
-      return res.status(403).json({ error: "Solo estudiantes" });
-    }
-
-    const temaId = Number(req.params.temaId);
-    if (!temaId) return res.status(400).json({ error: "temaId inválido" });
-
-    const estudianteId = req.user.estudiante_id;
-
-    const rows = await all(
-      `
-      SELECT 
-        s.id as subtema_id,
-        s.nombre as subtema_nombre,
-
-        COUNT(r.id) as intentos,
-        MAX(r.puntaje) as mejor_puntaje,
-        MAX(r.total) as total,
-        MAX(r.created_at) as ultimo_intento
-
-      FROM subtemas s
-      LEFT JOIN resultados r 
-        ON r.subtema_id = s.id 
-        AND r.estudiante_id = ?
-
-      WHERE s.tema_id = ?
-      GROUP BY s.id
-      `,
-      [estudianteId, temaId]
-    );
-
-    const out = rows.map(r => {
-      let estado = "no_iniciado";
-
-      if (Number(r.intentos || 0) > 0) {
-        // si alguna vez hizo puntaje > 0, lo marcamos completado
-        if (Number(r.mejor_puntaje || 0) > 0) estado = "completado";
-        else estado = "en_progreso";
-      }
-
-      return {
-        subtema_id: r.subtema_id,
-        estado,
-        mejor_puntaje: Number(r.mejor_puntaje || 0),
-        total: Number(r.total || 0),
-        ultimo_intento: r.ultimo_intento || null
-      };
-    });
-
-    res.json(out);
-  } catch (e) {
-    res.status(500).json({ error: e.message });
-  }
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`✅ Servidor corriendo en:`);
+  console.log(`   http://localhost:${PORT}`);
+  console.log(`   http://<TU_IP_LOCAL>:${PORT}`);
 });
-
-// ✅ PROGRESO POR TEMA (para tema.js)
-// Requiere token (estudiante)
-app.get("/api/progreso/tema/:temaId", authRequired, async (req, res) => {
-  try {
-    if (req.user.role !== "student") {
-      return res.status(403).json({ error: "Solo estudiantes" });
-    }
-
-    const temaId = Number(req.params.temaId);
-    if (!temaId) return res.status(400).json({ error: "temaId inválido" });
-
-    // subtemas del tema
-    const subtemas = await all(
-      "SELECT id AS subtema_id FROM subtemas WHERE tema_id = ?",
-      [temaId]
-    );
-
-    if (!subtemas.length) return res.json([]);
-
-    const ids = subtemas.map(s => s.subtema_id);
-    const placeholders = ids.map(() => "?").join(",");
-
-    // resultados del estudiante para esos subtemas
-    const rows = await all(
-      `
-      SELECT subtema_id, MAX(created_at) AS last_at,
-             MAX(CASE WHEN puntaje = total THEN 1 ELSE 0 END) AS any_full,
-             COUNT(*) AS attempts
-      FROM resultados
-      WHERE estudiante_id = ? AND subtema_id IN (${placeholders})
-      GROUP BY subtema_id
-      `,
-      [req.user.estudiante_id, ...ids]
-    );
-
-    const map = {};
-    rows.forEach(r => map[r.subtema_id] = r);
-
-    const out = ids.map(subtema_id => {
-      const r = map[subtema_id];
-      let estado = "no_iniciado";
-
-      if (r?.attempts > 0) estado = "en_progreso";
-      if (Number(r?.any_full || 0) === 1) estado = "completado";
-
-      return { subtema_id, estado };
-    });
-
-    res.json(out);
-  } catch (e) {
-    res.status(500).json({ error: e.message });
-  }
-});
-
-app.listen(PORT, () => console.log(`✅ Servidor corriendo en http://localhost:${PORT}`));

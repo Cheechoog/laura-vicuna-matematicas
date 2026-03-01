@@ -13,6 +13,13 @@
   <header class="header">
     <img src="img/logo.png" alt="Logo Institucional" class="logo">
 
+    <!-- ✅ Botón profesor (pueden verlo, pero requiere PIN) -->
+    <div style="position:absolute; top:20px; left:20px;">
+      <a class="btn btn-ghost" href="profesor.html">👨‍🏫 Profesor</a>
+    </div>
+
+    <button id="btn-logout" class="btn-logout">Cerrar sesión</button>
+
     <div class="header-text">
       <h1>Plataforma de Matemáticas</h1>
       <p class="subtitulo">Institución Educativa Laura Vicuña</p>
@@ -21,20 +28,19 @@
 
   <!-- CONTENIDO PRINCIPAL -->
   <main class="content">
-    <div class="container">
-      <h2 class="titulo-grados">Selecciona el grado</h2>
+    <h2 class="titulo-grados">Selecciona el grado</h2>
 
-      <div id="grados-container" class="card-container">
-        <a href="seleccionar.html?gradoId=1" class="card">
-          <h3>Sexto</h3>
-          <p>Ejercicios interactivos</p>
-        </a>
+    <div id="grados-container" class="card-container">
+      <!-- ✅ Cambiado: ahora manda a seleccionar.html con gradoId -->
+      <a href="seleccionar.html?gradoId=1" class="card">
+        <h3>Sexto</h3>
+        <p>Ejercicios interactivos</p>
+      </a>
 
-        <a href="seleccionar.html?gradoId=2" class="card">
-          <h3>Séptimo</h3>
-          <p>Retos matemáticos</p>
-        </a>
-      </div>
+      <a href="seleccionar.html?gradoId=2" class="card">
+        <h3>Séptimo</h3>
+        <p>Retos matemáticos</p>
+      </a>
     </div>
   </main>
 
