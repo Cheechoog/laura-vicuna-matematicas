@@ -893,4 +893,58 @@ app.get("/api/progreso/tema/:temaId", authRequired, async (req, res) => {
   }
 });
 
+// ✅ PROGRESO POR TEMA (para tema.js)
+// Requiere token (estudiante)
+app.get("/api/progreso/tema/:temaId", authRequired, async (req, res) => {
+  try {
+    if (req.user.role !== "student") {
+      return res.status(403).json({ error: "Solo estudiantes" });
+    }
+
+    const temaId = Number(req.params.temaId);
+    if (!temaId) return res.status(400).json({ error: "temaId inválido" });
+
+    // subtemas del tema
+    const subtemas = await all(
+      "SELECT id AS subtema_id FROM subtemas WHERE tema_id = ?",
+      [temaId]
+    );
+
+    if (!subtemas.length) return res.json([]);
+
+    const ids = subtemas.map(s => s.subtema_id);
+    const placeholders = ids.map(() => "?").join(",");
+
+    // resultados del estudiante para esos subtemas
+    const rows = await all(
+      `
+      SELECT subtema_id, MAX(created_at) AS last_at,
+             MAX(CASE WHEN puntaje = total THEN 1 ELSE 0 END) AS any_full,
+             COUNT(*) AS attempts
+      FROM resultados
+      WHERE estudiante_id = ? AND subtema_id IN (${placeholders})
+      GROUP BY subtema_id
+      `,
+      [req.user.estudiante_id, ...ids]
+    );
+
+    const map = {};
+    rows.forEach(r => map[r.subtema_id] = r);
+
+    const out = ids.map(subtema_id => {
+      const r = map[subtema_id];
+      let estado = "no_iniciado";
+
+      if (r?.attempts > 0) estado = "en_progreso";
+      if (Number(r?.any_full || 0) === 1) estado = "completado";
+
+      return { subtema_id, estado };
+    });
+
+    res.json(out);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
 app.listen(PORT, () => console.log(`✅ Servidor corriendo en http://localhost:${PORT}`));

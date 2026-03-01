@@ -1,0 +1,9 @@
+[
+  { "subtema_id": 1, "tipo": "aritmetica", "config": { "op": "add", "min": 1, "max": 30 }, "peso": 4 },
+  { "subtema_id": 1, "tipo": "aritmetica", "config": { "op": "sub", "min": 1, "max": 30, "noNegativos": true }, "peso": 3 },
+  { "subtema_id": 1, "tipo": "aritmetica", "config": { "op": "mul", "min": 2, "max": 12 }, "peso": 2 },
+
+  { "subtema_id": 2, "tipo": "potencia", "config": { "baseMin": 2, "baseMax": 12, "expMin": 2, "expMax": 3 }, "peso": 1 },
+  { "subtema_id": 3, "tipo": "raiz", "config": { "nMin": 2, "nMax": 15 }, "peso": 1 },
+  { "subtema_id": 4, "tipo": "log", "config": { "base": 10, "expMin": 1, "expMax": 4 }, "peso": 1 }
+]

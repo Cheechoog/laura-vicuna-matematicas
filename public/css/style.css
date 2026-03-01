@@ -321,3 +321,20 @@ select:focus, input:focus{
   .header-center{ order: -1; }
   .card{ align-items: flex-start; }
 }
+
+/* ✅ progreso (tema.js) */
+.badge-success{
+  background: rgba(34,197,94,0.20);
+  border-color: rgba(34,197,94,0.40);
+}
+.badge-warn{
+  background: rgba(245,158,11,0.20);
+  border-color: rgba(245,158,11,0.40);
+}
+.badge-neutral{
+  background: rgba(148,163,184,0.20);
+  border-color: rgba(148,163,184,0.40);
+}
+.badge-off{
+  opacity: 0.85;
+}

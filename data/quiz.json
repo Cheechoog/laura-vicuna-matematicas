@@ -1,0 +1,17 @@
+[
+  {
+    "subtema_id": 3,
+    "tipo": "mcq",
+    "pregunta": "¿Cuál es √81?",
+    "opciones": ["7", "8", "9", "10"],
+    "respuesta": "9",
+    "explicacion": "Porque 9×9=81."
+  },
+  {
+    "subtema_id": 3,
+    "tipo": "vf",
+    "pregunta": "√16 = 8",
+    "respuesta": "F",
+    "explicacion": "√16=4."
+  }
+]
