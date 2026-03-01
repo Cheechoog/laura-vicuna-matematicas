@@ -1,5 +1,37 @@
 [
   {
+    "subtema_id": 1,
+    "titulo": "Operaciones básicas: suma, resta, multiplicación y división",
+    "html": "<h3>✅ Operaciones básicas</h3><p>Las <b>operaciones básicas</b> nos ayudan a resolver problemas con números naturales:</p><ul><li><b>Suma (+):</b> juntar cantidades.</li><li><b>Resta (−):</b> quitar o comparar.</li><li><b>Multiplicación (×):</b> suma repetida.</li><li><b>División (÷):</b> repartir en partes iguales.</li></ul><p><b>Ejemplo:</b> 3×4 significa 3+3+3+3 = 12.</p>"
+  },
+  {
+    "subtema_id": 1,
+    "titulo": "Jerarquía de operaciones",
+    "html": "<h3>🧠 Jerarquía (orden) de operaciones</h3><p>Cuando hay varias operaciones en un mismo ejercicio, se resuelve en este orden:</p><ol><li><b>Paréntesis</b></li><li><b>Potencias y raíces</b></li><li><b>Multiplicación y división</b> (de izquierda a derecha)</li><li><b>Suma y resta</b> (de izquierda a derecha)</li></ol><p><b>Ejemplo:</b> 8 + 2×5 = 8 + 10 = 18 (primero la multiplicación).</p>"
+  },
+  {
+    "subtema_id": 1,
+    "titulo": "Errores comunes en operaciones",
+    "html": "<h3>⚠️ Errores comunes</h3><ul><li>Hacer 8+2×5 como (8+2)×5 ❌</li><li>Dividir sin repartir exacto (si no es exacto, en naturales se dice “no exacta”).</li><li>Confundir 6−9 con resultado natural (en naturales no hay negativos).</li></ul>"
+  },
+
+  {
+    "subtema_id": 2,
+    "titulo": "Potenciación: qué es y cómo funciona",
+    "html": "<h3>✅ Potenciación</h3><p>Una <b>potencia</b> es una multiplicación repetida.</p><p><b>base</b><sup><b>exponente</b></sup></p><p><b>Ejemplo:</b> 2<sup>4</sup> = 2×2×2×2 = 16</p><ul><li><b>Base:</b> número que se repite.</li><li><b>Exponente:</b> cuántas veces se multiplica.</li></ul>"
+  },
+  {
+    "subtema_id": 2,
+    "titulo": "Propiedades básicas de las potencias",
+    "html": "<h3>🧠 Propiedades básicas</h3><ul><li>a<sup>1</sup> = a</li><li>a<sup>0</sup> = 1 (si a ≠ 0)</li><li>a<sup>m</sup> × a<sup>n</sup> = a<sup>m+n</sup></li><li>(a<sup>m</sup>)<sup>n</sup> = a<sup>m·n</sup></li></ul><p><b>Ejemplo:</b> 3<sup>2</sup>×3<sup>3</sup>=3<sup>5</sup></p>"
+  },
+  {
+    "subtema_id": 2,
+    "titulo": "Errores comunes en potenciación",
+    "html": "<h3>⚠️ Errores comunes</h3><ul><li>Creer que (2+3)<sup>2</sup> = 2<sup>2</sup>+3<sup>2</sup> ❌</li><li>Confundir 2<sup>3</sup> con 3<sup>2</sup>.</li><li>Olvidar que a<sup>0</sup>=1.</li></ul>"
+  },
+
+  {
     "subtema_id": 3,
     "titulo": "¿Qué es una raíz?",
     "html": "<h3>✅ ¿Qué es una raíz?</h3><p>La <b>radicación</b> es la operación inversa de la potenciación.</p><p><b>Ejemplo:</b> √25 = 5 porque 5² = 25.</p><p>📌 En números naturales usamos el resultado <b>positivo</b>.</p>"
@@ -13,5 +45,21 @@
     "subtema_id": 3,
     "titulo": "Errores comunes en radicación",
     "html": "<h3>⚠️ Errores comunes</h3><ul><li><b>Confundir</b> √16 con 8. En realidad √16 = 4.</li><li>Pensar que √49 = ±7. En naturales solo es <b>7</b>.</li><li>Creer que √(a+b)=√a+√b. ❌ Eso no se puede.</li></ul>"
+  },
+
+  {
+    "subtema_id": 4,
+    "titulo": "Logaritmación: idea básica",
+    "html": "<h3>✅ Logaritmación</h3><p>El <b>logaritmo</b> responde: <b>¿a qué exponente debo elevar la base para obtener un número?</b></p><p><b>Ejemplo:</b> log<sub>10</sub>(100) = 2 porque 10<sup>2</sup> = 100</p><p>Entonces el logaritmo es la operación inversa de la potenciación.</p>"
+  },
+  {
+    "subtema_id": 4,
+    "titulo": "Cómo resolver logaritmos sencillos",
+    "html": "<h3>🧠 Paso a paso</h3><p>Para resolver log<sub>b</sub>(n) buscas un exponente x tal que:</p><p><b>b</b><sup><b>x</b></sup> = <b>n</b></p><p><b>Ejemplo:</b> log<sub>2</sub>(8) = 3 porque 2<sup>3</sup>=8</p>"
+  },
+  {
+    "subtema_id": 4,
+    "titulo": "Errores comunes en logaritmos",
+    "html": "<h3>⚠️ Errores comunes</h3><ul><li>Creer que log<sub>10</sub>(100)=10 ❌</li><li>Confundir base con resultado.</li><li>Olvidar la pregunta clave: <b>¿qué potencia?</b></li></ul>"
   }
 ]

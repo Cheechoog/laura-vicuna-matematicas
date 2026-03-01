@@ -1,4 +1,26 @@
 [
+  { "subtema_id": 1, "tipo": "mcq", "pregunta": "¿Cuánto es 18 + 27?", "opciones": ["35", "45", "55", "46"], "respuesta": "45", "explicacion": "18+27=45." },
+  { "subtema_id": 1, "tipo": "mcq", "pregunta": "¿Cuánto es 90 - 33?", "opciones": ["57", "63", "47", "60"], "respuesta": "57", "explicacion": "90-33=57." },
+  { "subtema_id": 1, "tipo": "mcq", "pregunta": "¿Cuánto es 7 × 8?", "opciones": ["54", "56", "64", "48"], "respuesta": "56", "explicacion": "7×8=56." },
+  { "subtema_id": 1, "tipo": "mcq", "pregunta": "¿Cuánto es 72 ÷ 9?", "opciones": ["7", "8", "9", "6"], "respuesta": "8", "explicacion": "72/9=8." },
+  { "subtema_id": 1, "tipo": "vf", "pregunta": "En 8 + 2×5 se hace primero la suma.", "respuesta": "F", "explicacion": "Primero multiplicación: 2×5=10." },
+  { "subtema_id": 1, "tipo": "mcq", "pregunta": "Resuelve: 8 + 2×5", "opciones": ["50", "18", "20", "16"], "respuesta": "18", "explicacion": "2×5=10, luego 8+10=18." },
+  { "subtema_id": 1, "tipo": "mcq", "pregunta": "Resuelve: (10+6) ÷ 4", "opciones": ["4", "3", "6", "8"], "respuesta": "4", "explicacion": "10+6=16, 16/4=4." },
+  { "subtema_id": 1, "tipo": "vf", "pregunta": "La multiplicación es suma repetida.", "respuesta": "V", "explicacion": "3×4 es 3+3+3+3." },
+  { "subtema_id": 1, "tipo": "mcq", "pregunta": "¿Cuánto es 120 - 85?", "opciones": ["45", "35", "25", "40"], "respuesta": "35", "explicacion": "120-85=35." },
+  { "subtema_id": 1, "tipo": "mcq", "pregunta": "¿Cuánto es 9×6?", "opciones": ["45", "54", "56", "60"], "respuesta": "54", "explicacion": "9×6=54." },
+
+  { "subtema_id": 2, "tipo": "mcq", "pregunta": "¿Cuánto es 2^3?", "opciones": ["6", "8", "9", "12"], "respuesta": "8", "explicacion": "2×2×2=8." },
+  { "subtema_id": 2, "tipo": "mcq", "pregunta": "¿Cuánto es 5^2?", "opciones": ["10", "20", "25", "15"], "respuesta": "25", "explicacion": "5×5=25." },
+  { "subtema_id": 2, "tipo": "vf", "pregunta": "a^0 = 1 (si a ≠ 0).", "respuesta": "V", "explicacion": "Propiedad de potencias." },
+  { "subtema_id": 2, "tipo": "mcq", "pregunta": "2^2 × 2^3 es igual a:", "opciones": ["2^5", "2^6", "2^1", "4^3"], "respuesta": "2^5", "explicacion": "Se suman exponentes: 2^(2+3)=2^5." },
+  { "subtema_id": 2, "tipo": "mcq", "pregunta": "¿Cuánto es 3^4 ÷ 3^2?", "opciones": ["3^6", "3^2", "3^8", "9^2"], "respuesta": "3^2", "explicacion": "Se restan exponentes: 3^(4-2)=3^2." },
+  { "subtema_id": 2, "tipo": "mcq", "pregunta": "(2^3)^2 es igual a:", "opciones": ["2^5", "2^6", "2^9", "6^2"], "respuesta": "2^6", "explicacion": "Se multiplican exponentes: 2^(3×2)=2^6." },
+  { "subtema_id": 2, "tipo": "vf", "pregunta": "2^4 = 2×2×2×2", "respuesta": "V", "explicacion": "Definición de potencia." },
+  { "subtema_id": 2, "tipo": "mcq", "pregunta": "¿Cuánto es 10^3?", "opciones": ["30", "100", "1000", "300"], "respuesta": "1000", "explicacion": "10×10×10=1000." },
+  { "subtema_id": 2, "tipo": "mcq", "pregunta": "¿Cuánto es 4^2?", "opciones": ["6", "8", "12", "16"], "respuesta": "16", "explicacion": "4×4=16." },
+  { "subtema_id": 2, "tipo": "mcq", "pregunta": "¿Cuál es la base en 7^3?", "opciones": ["7", "3", "21", "10"], "respuesta": "7", "explicacion": "La base es el número que se repite." },
+
   {
     "subtema_id": 3,
     "tipo": "mcq",
@@ -14,67 +36,23 @@
     "respuesta": "F",
     "explicacion": "√16 = 4 porque 4×4=16."
   },
+  { "subtema_id": 3, "tipo": "mcq", "pregunta": "¿Cuál es √49?", "opciones": ["5", "6", "7", "8"], "respuesta": "7", "explicacion": "7×7=49." },
+  { "subtema_id": 3, "tipo": "mcq", "pregunta": "¿Cuál es √144?", "opciones": ["10", "11", "12", "13"], "respuesta": "12", "explicacion": "12×12=144." },
+  { "subtema_id": 3, "tipo": "mcq", "pregunta": "Si √x = 9, entonces x es:", "opciones": ["18", "81", "9", "72"], "respuesta": "81", "explicacion": "9×9=81." },
+  { "subtema_id": 3, "tipo": "vf", "pregunta": "√100 = 10", "respuesta": "V", "explicacion": "10×10=100." },
+  { "subtema_id": 3, "tipo": "vf", "pregunta": "√25 = 6", "respuesta": "F", "explicacion": "√25=5." },
+  { "subtema_id": 3, "tipo": "mcq", "pregunta": "¿Cuál operación es inversa de la radicación?", "opciones": ["Suma", "Potenciación", "Resta", "División"], "respuesta": "Potenciación", "explicacion": "Raíz deshace potencia." },
+  { "subtema_id": 3, "tipo": "mcq", "pregunta": "¿Cuál es √64?", "opciones": ["6", "7", "8", "9"], "respuesta": "8", "explicacion": "8×8=64." },
+  { "subtema_id": 3, "tipo": "mcq", "pregunta": "¿Cuál es √36?", "opciones": ["5", "6", "7", "8"], "respuesta": "6", "explicacion": "6×6=36." },
 
-  {
-    "subtema_id": 3,
-    "tipo": "mcq",
-    "pregunta": "¿Cuál es √49?",
-    "opciones": ["5", "6", "7", "8"],
-    "respuesta": "7",
-    "explicacion": "7×7 = 49."
-  },
-  {
-    "subtema_id": 3,
-    "tipo": "mcq",
-    "pregunta": "¿Cuál es √144?",
-    "opciones": ["10", "11", "12", "13"],
-    "respuesta": "12",
-    "explicacion": "12×12 = 144."
-  },
-  {
-    "subtema_id": 3,
-    "tipo": "mcq",
-    "pregunta": "Si √x = 9, entonces x es:",
-    "opciones": ["18", "81", "9", "72"],
-    "respuesta": "81",
-    "explicacion": "Si √x=9 entonces 9×9=81."
-  },
-  {
-    "subtema_id": 3,
-    "tipo": "vf",
-    "pregunta": "√100 = 10",
-    "respuesta": "V",
-    "explicacion": "10×10 = 100."
-  },
-  {
-    "subtema_id": 3,
-    "tipo": "vf",
-    "pregunta": "√25 = 6",
-    "respuesta": "F",
-    "explicacion": "√25 = 5."
-  },
-  {
-    "subtema_id": 3,
-    "tipo": "mcq",
-    "pregunta": "¿Cuál operación es inversa de la radicación?",
-    "opciones": ["Suma", "Potenciación", "Resta", "División"],
-    "respuesta": "Potenciación",
-    "explicacion": "La radicación es inversa de elevar al cuadrado."
-  },
-  {
-    "subtema_id": 3,
-    "tipo": "mcq",
-    "pregunta": "¿Cuál es √64?",
-    "opciones": ["6", "7", "8", "9"],
-    "respuesta": "8",
-    "explicacion": "8×8 = 64."
-  },
-  {
-    "subtema_id": 3,
-    "tipo": "mcq",
-    "pregunta": "¿Cuál es √36?",
-    "opciones": ["5", "6", "7", "8"],
-    "respuesta": "6",
-    "explicacion": "6×6 = 36."
-  }
+  { "subtema_id": 4, "tipo": "mcq", "pregunta": "log10(100) es:", "opciones": ["1", "2", "10", "100"], "respuesta": "2", "explicacion": "10^2=100." },
+  { "subtema_id": 4, "tipo": "mcq", "pregunta": "log10(1000) es:", "opciones": ["2", "3", "10", "100"], "respuesta": "3", "explicacion": "10^3=1000." },
+  { "subtema_id": 4, "tipo": "vf", "pregunta": "log10(1)=0", "respuesta": "V", "explicacion": "10^0=1." },
+  { "subtema_id": 4, "tipo": "mcq", "pregunta": "log2(8) es:", "opciones": ["2", "3", "4", "8"], "respuesta": "3", "explicacion": "2^3=8." },
+  { "subtema_id": 4, "tipo": "mcq", "pregunta": "log2(16) es:", "opciones": ["2", "3", "4", "5"], "respuesta": "4", "explicacion": "2^4=16." },
+  { "subtema_id": 4, "tipo": "mcq", "pregunta": "log3(81) es:", "opciones": ["2", "3", "4", "5"], "respuesta": "4", "explicacion": "3^4=81." },
+  { "subtema_id": 4, "tipo": "vf", "pregunta": "El logaritmo pregunta: ¿qué exponente?", "respuesta": "V", "explicacion": "Busca el exponente que produce el número." },
+  { "subtema_id": 4, "tipo": "mcq", "pregunta": "log10(10) es:", "opciones": ["0", "1", "2", "10"], "respuesta": "1", "explicacion": "10^1=10." },
+  { "subtema_id": 4, "tipo": "mcq", "pregunta": "Si log5(x)=2, entonces x es:", "opciones": ["7", "10", "25", "5"], "respuesta": "25", "explicacion": "5^2=25." },
+  { "subtema_id": 4, "tipo": "mcq", "pregunta": "log3(9) es:", "opciones": ["1", "2", "3", "9"], "respuesta": "2", "explicacion": "3^2=9." }
 ]

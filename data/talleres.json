@@ -1,5 +1,43 @@
 [
   {
+    "subtema_id": 1,
+    "titulo": "Taller 1 - Suma y resta",
+    "enunciado": "<p>Resuelve:</p><ol><li>35 + 27</li><li>90 - 48</li><li>120 + 85</li><li>70 - 33</li></ol>",
+    "solucion": "<ol><li>62</li><li>42</li><li>205</li><li>37</li></ol>"
+  },
+  {
+    "subtema_id": 1,
+    "titulo": "Taller 2 - Multiplicación y división",
+    "enunciado": "<p>Resuelve:</p><ol><li>12 × 7</li><li>9 × 8</li><li>72 ÷ 9</li><li>96 ÷ 12</li></ol>",
+    "solucion": "<ol><li>84</li><li>72</li><li>8</li><li>8</li></ol>"
+  },
+  {
+    "subtema_id": 1,
+    "titulo": "Taller 3 - Jerarquía de operaciones",
+    "enunciado": "<p>Resuelve respetando el orden:</p><ol><li>8 + 2×5</li><li>(10 + 6) ÷ 4</li><li>30 - 3×6</li><li>5 + 12 ÷ 3</li></ol>",
+    "solucion": "<ol><li>18</li><li>4</li><li>12</li><li>9</li></ol>"
+  },
+
+  {
+    "subtema_id": 2,
+    "titulo": "Taller 1 - Potencias básicas",
+    "enunciado": "<p>Calcula:</p><ol><li>2<sup>3</sup></li><li>3<sup>2</sup></li><li>5<sup>2</sup></li><li>10<sup>3</sup></li></ol>",
+    "solucion": "<ol><li>8</li><li>9</li><li>25</li><li>1000</li></ol>"
+  },
+  {
+    "subtema_id": 2,
+    "titulo": "Taller 2 - Propiedades de potencias",
+    "enunciado": "<p>Resuelve:</p><ol><li>2<sup>2</sup>×2<sup>3</sup></li><li>3<sup>4</sup> ÷ 3<sup>2</sup></li><li>(2<sup>3</sup>)<sup>2</sup></li><li>5<sup>0</sup></li></ol>",
+    "solucion": "<ol><li>2<sup>5</sup>=32</li><li>3<sup>2</sup>=9</li><li>2<sup>6</sup>=64</li><li>1</li></ol>"
+  },
+  {
+    "subtema_id": 2,
+    "titulo": "Taller 3 - Potencias en problemas",
+    "enunciado": "<p>Resuelve:</p><ol><li>Un cuadrado tiene lado 7. ¿Cuál es su área? (usa potencia)</li><li>¿Cuántos cubos pequeños hay en un cubo de 3×3×3?</li></ol>",
+    "solucion": "<ol><li>7<sup>2</sup>=49</li><li>3<sup>3</sup>=27</li></ol>"
+  },
+
+  {
     "subtema_id": 3,
     "titulo": "Taller 1 - Raíces",
     "enunciado": "<p>Calcula: √36, √49, √64</p>",
@@ -16,5 +54,24 @@
     "titulo": "Taller 3 - Encuentra el número (nivel 2)",
     "enunciado": "<p>Encuentra el número que falta:</p><ol><li>√__ = 6</li><li>√__ = 12</li><li>√__ = 15</li><li>√__ = 8</li></ol>",
     "solucion": "<ol><li>36</li><li>144</li><li>225</li><li>64</li></ol>"
+  },
+
+  {
+    "subtema_id": 4,
+    "titulo": "Taller 1 - Logaritmos base 10",
+    "enunciado": "<p>Calcula:</p><ol><li>log<sub>10</sub>(10)</li><li>log<sub>10</sub>(100)</li><li>log<sub>10</sub>(1000)</li><li>log<sub>10</sub>(1)</li></ol>",
+    "solucion": "<ol><li>1</li><li>2</li><li>3</li><li>0</li></ol>"
+  },
+  {
+    "subtema_id": 4,
+    "titulo": "Taller 2 - Logaritmos con base 2 y 3",
+    "enunciado": "<p>Calcula:</p><ol><li>log<sub>2</sub>(8)</li><li>log<sub>2</sub>(16)</li><li>log<sub>3</sub>(27)</li><li>log<sub>3</sub>(81)</li></ol>",
+    "solucion": "<ol><li>3</li><li>4</li><li>3</li><li>4</li></ol>"
+  },
+  {
+    "subtema_id": 4,
+    "titulo": "Taller 3 - Convierte a potencia",
+    "enunciado": "<p>Convierte a forma de potencia:</p><ol><li>log<sub>10</sub>(100)=2</li><li>log<sub>2</sub>(32)=5</li><li>log<sub>3</sub>(9)=2</li></ol>",
+    "solucion": "<ol><li>10<sup>2</sup>=100</li><li>2<sup>5</sup>=32</li><li>3<sup>2</sup>=9</li></ol>"
   }
 ]
