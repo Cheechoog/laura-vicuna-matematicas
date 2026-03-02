@@ -1,3 +1,5 @@
+// public/subtema.js
+
 // ======================
 // 🔒 Guard: token + grado correcto (si aplica)
 // ======================
@@ -22,6 +24,14 @@ function clearSession() {
   localStorage.removeItem("grupoId");
   localStorage.removeItem("estudianteNombre");
   localStorage.removeItem("gradoId");
+
+  // ✅ profesor
+  localStorage.removeItem("teacher");
+  localStorage.removeItem("teacherToken");
+}
+
+function isTeacher() {
+  return localStorage.getItem("teacher") === "1";
 }
 
 const params = new URLSearchParams(window.location.search);
@@ -32,38 +42,55 @@ const gradoId = params.get("gradoId"); // viene desde tema.js
 let token = localStorage.getItem("token");
 const storedGradoId = localStorage.getItem("gradoId");
 
-// ✅ Si no hay token -> login
-if (!token) {
+// ✅ Si no hay token y NO es profe -> login
+if (!token && !isTeacher()) {
   redirectToSeleccionar(gradoId);
 }
 
-// ✅ Si el grado de la URL no coincide con el guardado -> bloquea
-if (gradoId && storedGradoId && String(gradoId) !== String(storedGradoId)) {
+// ✅ Si el grado de la URL no coincide con el guardado -> bloquea (solo alumnos)
+if (!isTeacher() && gradoId && storedGradoId && String(gradoId) !== String(storedGradoId)) {
   alert("❌ No puedes entrar a este grado con tu sesión actual.");
   clearSession();
   window.location.href = "index.html";
 }
 
-// Fetch con token + auto-logout si 401
-async function fetchAuth(url, options = {}) {
+// ======================
+// fetchAuth (usa el global de session.js si existe)
+// ======================
+async function fetchAuthLocal(url, options = {}) {
+  // ✅ si session.js está cargado, úsalo
+  if (typeof window.fetchAuth === "function") {
+    return window.fetchAuth(url, options, gradoId);
+  }
+
+  // fallback (por si no cargó session.js)
   token = localStorage.getItem("token");
-  if (!token) {
+  const teacherToken = localStorage.getItem("teacherToken");
+  const authToken = token || teacherToken;
+
+  if (!authToken) {
+    if (isTeacher()) {
+      alert("⚠️ Profesor sin sesión. Entra al panel del profesor.");
+      window.location.href = "profesor.html";
+      throw new Error("Sin token profesor");
+    }
     redirectToSeleccionar(gradoId);
-    throw new Error("Sin token");
+    throw new Error("Sin token alumno");
   }
 
   const res = await fetch(url, {
     ...options,
     headers: {
       ...(options.headers || {}),
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${authToken}`,
     },
   });
 
   if (res.status === 401) {
     clearSession();
-    redirectToSeleccionar(gradoId);
-    throw new Error("No autorizado (token vencido o inválido)");
+    if (isTeacher()) window.location.href = "profesor.html";
+    else redirectToSeleccionar(gradoId);
+    throw new Error("No autorizado");
   }
 
   // ✅ si está bloqueado por el profesor
@@ -74,7 +101,6 @@ async function fetchAuth(url, options = {}) {
       if (data?.error) msg = data.error;
     } catch {}
     alert(msg);
-    // vuelve atrás
     window.location.href = `tema.html?gradoId=${encodeURIComponent(gradoId)}&temaId=${encodeURIComponent(
       params.get("temaId") || ""
     )}&tema=${encodeURIComponent(params.get("tema") || "")}`;
@@ -87,9 +113,11 @@ async function fetchAuth(url, options = {}) {
 // ✅ Validar token al cargar
 async function validarSesionOnLoad() {
   try {
-    await fetchAuth("/api/me");
+    // Para alumno normalmente existe /api/me.
+    // Para profe, depende de tu backend.
+    await fetchAuthLocal("/api/me");
   } catch (e) {
-    // fetchAuth ya redirige o bloquea
+    // fetchAuthLocal ya redirige si aplica
   }
 }
 
@@ -114,7 +142,6 @@ const views = {
   practica: $("tab-practica"),
 };
 
-// ✅ ÚNICA FUNCIÓN disableTab (sin duplicados)
 function disableTab(tabKey, message) {
   const btn = document.querySelector(`.tab[data-tab="${tabKey}"]`);
   const view = document.getElementById(`tab-${tabKey}`);
@@ -167,7 +194,7 @@ async function cargarIntro() {
   cont.innerHTML = "Cargando...";
 
   try {
-    const res = await fetchAuth(`/api/intro/${subtemaId}`);
+    const res = await fetchAuthLocal(`/api/intro/${subtemaId}`);
     const data = await res.json();
 
     if (!Array.isArray(data) || data.length === 0) {
@@ -179,8 +206,8 @@ async function cargarIntro() {
       .map(
         (x) => `
         <div class="cardbox">
-          <h2>${x.titulo}</h2>
-          <div>${x.html}</div>
+          <h2>${escapeHtml(x.titulo)}</h2>
+          <div class="rich">${x.html || ""}</div>
         </div>
       `
       )
@@ -205,7 +232,7 @@ async function cargarTalleres() {
   cont.innerHTML = "Cargando...";
 
   try {
-    const res = await fetchAuth(`/api/talleres/${subtemaId}`);
+    const res = await fetchAuthLocal(`/api/talleres/${subtemaId}`);
     const data = await res.json();
 
     if (!Array.isArray(data) || data.length === 0) {
@@ -213,24 +240,62 @@ async function cargarTalleres() {
       return;
     }
 
+    const teacher = isTeacher();
+
     cont.innerHTML = data
-      .map(
-        (t) => `
-        <div class="cardbox">
-          <h2>${t.titulo}</h2>
-          <div>${t.enunciado}</div>
-          ${
-            t.solucion
-              ? `<details style="margin-top:10px">
-                  <summary><b>Ver solución</b></summary>
-                  <div style="margin-top:8px">${t.solucion}</div>
-                </details>`
-              : ""
-          }
-        </div>
-      `
-      )
+      .map((t, idx) => {
+        const titulo = t.titulo || `Taller ${idx + 1}`;
+        const enunciado = t.enunciado || "<p>(Sin enunciado)</p>";
+        const solucion = t.solucion || "";
+
+        const solHtml = teacher
+          ? `
+            <div style="margin-top:12px">
+              <button class="btn btn-ghost" type="button" data-toggle="sol-${idx}">👁️ Mostrar/ocultar solución</button>
+              <div id="sol-${idx}" style="display:none;margin-top:10px">
+                <div class="cardbox">
+                  <div class="rich">${solucion || "<p>(Sin solución)</p>"}</div>
+                </div>
+              </div>
+            </div>
+          `
+          : `
+            <div class="solution-note">
+              🔒 La solución la revisa el docente. Resuelve primero y luego valida con tu profesor.
+            </div>
+          `;
+
+        return `
+          <div class="cardbox taller-card">
+            <div class="taller-head">
+              <div>
+                <h2 class="taller-title">${escapeHtml(titulo)}</h2>
+                <p class="meta">Actividad ${idx + 1}</p>
+              </div>
+              <span class="taller-tag">🧩 Taller</span>
+            </div>
+
+            <div class="taller-section">
+              <h4>📌 Enunciado</h4>
+              <div class="rich">${enunciado}</div>
+            </div>
+
+            ${solHtml}
+          </div>
+        `;
+      })
       .join("");
+
+    if (teacher) {
+      cont.querySelectorAll("[data-toggle]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const id = btn.getAttribute("data-toggle");
+          const el = document.getElementById(id);
+          if (!el) return;
+          el.style.display = el.style.display === "none" ? "block" : "none";
+        });
+      });
+    }
   } catch (e) {
     showEmpty("taller-container", "❌ Error cargando talleres.");
   }
@@ -252,7 +317,7 @@ async function cargarQuiz() {
   if (quizMeta) quizMeta.textContent = "";
 
   try {
-    const res = await fetchAuth(`/api/quiz/${subtemaId}?limit=10`);
+    const res = await fetchAuthLocal(`/api/quiz/${subtemaId}?limit=10`);
     const preguntas = await res.json();
 
     if (!Array.isArray(preguntas) || preguntas.length === 0) {
@@ -268,7 +333,7 @@ async function cargarQuiz() {
           const opts = q.opciones
             .map(
               (op) => `
-              <label style="display:block;margin:6px 0">
+              <label style="display:block;margin:8px 0" class="meta">
                 <input type="radio" name="q${q.id}" value="${escapeHtml(op)}"> ${escapeHtml(op)}
               </label>
             `
@@ -291,8 +356,8 @@ async function cargarQuiz() {
           return `
             <div class="cardbox">
               <h3>${idx + 1}. ${escapeHtml(q.pregunta)}</h3>
-              <label style="margin-right:10px"><input type="radio" name="q${q.id}" value="V"> Verdadero</label>
-              <label><input type="radio" name="q${q.id}" value="F"> Falso</label>
+              <label style="margin-right:10px" class="meta"><input type="radio" name="q${q.id}" value="V"> Verdadero</label>
+              <label class="meta"><input type="radio" name="q${q.id}" value="F"> Falso</label>
               <div style="margin-top:10px">
                 <button class="btn-secundario" onclick="revisarMCQ(${q.id}, '${escapeQuotes(
                   q.respuesta
@@ -307,7 +372,7 @@ async function cargarQuiz() {
           <div class="cardbox">
             <h3>${idx + 1}. ${escapeHtml(q.pregunta)}</h3>
             <input id="in${q.id}" type="text" placeholder="Tu respuesta"
-              style="padding:10px;border-radius:12px;border:1px solid #d1d5db;width:min(360px,100%)">
+              style="padding:12px;border-radius:14px;border:1px solid rgba(255,255,255,0.14);background:rgba(0,0,0,0.22);color:#fff;width:min(420px,100%)">
             <div style="margin-top:10px">
               <button class="btn-secundario" onclick="revisarAbierta(${q.id}, '${escapeQuotes(
                 q.respuesta
@@ -418,9 +483,8 @@ async function cargarPractica() {
     intentos = 0;
     if (intentosEl) intentosEl.textContent = String(intentos);
 
-    const res = await fetchAuth(`/api/ejercicio/random/${subtemaId}`);
+    const res = await fetchAuthLocal(`/api/ejercicio/random/${subtemaId}`);
 
-    // ✅ Si no hay plantillas
     if (res.status === 404) {
       if (preguntaEl) preguntaEl.textContent = "⚠️ No hay práctica disponible para este subtema.";
       if (btnValidar) btnValidar.disabled = true;
@@ -446,7 +510,7 @@ async function cargarPractica() {
 
 async function guardarResultado(tipo, puntaje, total) {
   try {
-    await fetchAuth("/api/resultados", {
+    await fetchAuthLocal("/api/resultados", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -537,40 +601,35 @@ function validarPractica() {
 }
 
 // ======================
-// ✅ Detectar contenido y desactivar tabs vacías usando endpoints reales
-// + Si el subtema está bloqueado, el backend dará 403 y ya se redirige
+// Detectar contenido y desactivar tabs vacías
 // ======================
 async function detectarContenidoYDesactivarTabs() {
-  // Intro
   try {
-    const r = await fetchAuth(`/api/intro/${subtemaId}`);
+    const r = await fetchAuthLocal(`/api/intro/${subtemaId}`);
     const data = await r.json();
     if (!Array.isArray(data) || data.length === 0) disableTab("intro", "📘 Aún no hay introducción para este subtema.");
   } catch {
     disableTab("intro", "📘 Error cargando introducción.");
   }
 
-  // Taller
   try {
-    const r = await fetchAuth(`/api/talleres/${subtemaId}`);
+    const r = await fetchAuthLocal(`/api/talleres/${subtemaId}`);
     const data = await r.json();
     if (!Array.isArray(data) || data.length === 0) disableTab("taller", "🧩 Aún no hay talleres para este subtema.");
   } catch {
     disableTab("taller", "🧩 Error cargando talleres.");
   }
 
-  // Quiz
   try {
-    const r = await fetchAuth(`/api/quiz/${subtemaId}?limit=1`);
+    const r = await fetchAuthLocal(`/api/quiz/${subtemaId}?limit=1`);
     const data = await r.json();
     if (!Array.isArray(data) || data.length === 0) disableTab("quiz", "✅ Aún no hay quiz para este subtema.");
   } catch {
     disableTab("quiz", "✅ Error cargando quiz.");
   }
 
-  // Práctica
   try {
-    const r = await fetchAuth(`/api/ejercicio/random/${subtemaId}`);
+    const r = await fetchAuthLocal(`/api/ejercicio/random/${subtemaId}`);
     if (r.status === 404) disableTab("practica", "⚡ Aún no hay práctica para este subtema.");
   } catch {}
 }

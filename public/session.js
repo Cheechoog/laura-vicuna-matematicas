@@ -1,9 +1,25 @@
 // public/session.js
+// Sesión unificada: estudiante (token) + profesor (teacherToken)
+// ✅ Profesor NO debe ir a seleccionar.html
+// ✅ fetchAuth usa teacherToken si teacher=1
 
 // -------------------------
 // Storage helpers
 // -------------------------
 function clearSession() {
+  // estudiante
+  localStorage.removeItem("token");
+  localStorage.removeItem("estudianteId");
+  localStorage.removeItem("grupoId");
+  localStorage.removeItem("estudianteNombre");
+  localStorage.removeItem("gradoId");
+
+  // profesor
+  localStorage.removeItem("teacherToken");
+  localStorage.removeItem("teacher");
+}
+
+function clearStudentSession() {
   localStorage.removeItem("token");
   localStorage.removeItem("estudianteId");
   localStorage.removeItem("grupoId");
@@ -11,11 +27,30 @@ function clearSession() {
   localStorage.removeItem("gradoId");
 }
 
+function clearTeacherSession() {
+  localStorage.removeItem("teacherToken");
+  localStorage.removeItem("teacher");
+}
+
+function isTeacher() {
+  return localStorage.getItem("teacher") === "1" && !!localStorage.getItem("teacherToken");
+}
+
+function getAuthToken() {
+  // ✅ si es profesor, usa su token
+  if (isTeacher()) return localStorage.getItem("teacherToken");
+  // ✅ si no, token estudiante
+  return localStorage.getItem("token");
+}
+
 function getNextUrl() {
   return window.location.pathname + window.location.search;
 }
 
 function redirectToSeleccionar(gradoId) {
+  // ✅ IMPORTANTE: profesor NUNCA va a seleccionar
+  if (isTeacher()) return;
+
   const next = encodeURIComponent(getNextUrl());
   const g = gradoId ? `&gradoId=${encodeURIComponent(gradoId)}` : "";
   window.location.href = `seleccionar.html?next=${next}${g}`;
@@ -25,6 +60,9 @@ function redirectToSeleccionar(gradoId) {
 // Guards
 // -------------------------
 function requireSession(gradoIdOpcional) {
+  // ✅ profesor pasa sin pedir login alumno
+  if (isTeacher()) return true;
+
   const token = localStorage.getItem("token");
   if (!token) {
     redirectToSeleccionar(gradoIdOpcional);
@@ -34,13 +72,16 @@ function requireSession(gradoIdOpcional) {
 }
 
 function requireGrade(expectedGradoId) {
+  // ✅ profesor puede ver TODOS los grados
+  if (isTeacher()) return true;
+
   const stored = localStorage.getItem("gradoId");
   if (!expectedGradoId) return true;
   if (!stored) return true;
 
   if (String(stored) !== String(expectedGradoId)) {
     toast("Grado incorrecto", "No puedes entrar a este grado con tu sesión actual.", "err");
-    clearSession();
+    clearStudentSession();
     window.location.href = "index.html";
     return false;
   }
@@ -74,7 +115,6 @@ function toast(title, message = "", type = "ok", ms = 2600) {
       setTimeout(() => el.remove(), 180);
     }, ms);
   } catch {
-    // fallback
     alert(`${title}\n${message}`);
   }
 }
@@ -91,12 +131,11 @@ function escapeHtml(s) {
 // -------------------------
 // fetchAuth global (ÚNICO)
 // -------------------------
-// uso:
-//   fetchAuth("/api/...", { method:"POST", body: JSON.stringify(...) }, gradoId)
-// si 401 => limpia y manda a seleccionar
+// ✅ usa teacherToken si teacher=1
 async function fetchAuth(url, options = {}, gradoIdForRedirect = null) {
-  const token = localStorage.getItem("token");
+  const token = getAuthToken();
 
+  // si NO hay token, solo redirige si es alumno
   if (!token) {
     redirectToSeleccionar(gradoIdForRedirect);
     throw new Error("Sin token");
@@ -111,7 +150,15 @@ async function fetchAuth(url, options = {}, gradoIdForRedirect = null) {
   });
 
   if (res.status === 401) {
-    clearSession();
+    // ✅ si era profesor, lo mandamos a profesor.html
+    if (isTeacher()) {
+      clearTeacherSession();
+      window.location.href = "profesor.html";
+      throw new Error("Sesión profesor vencida");
+    }
+
+    // ✅ alumno -> seleccionar
+    clearStudentSession();
     redirectToSeleccionar(gradoIdForRedirect);
     throw new Error("No autorizado / token vencido");
   }
@@ -132,6 +179,13 @@ function setupLogoutButton() {
     return;
   }
 
+  // ✅ Si es profesor, NO mostramos el logout de alumno (opcional)
+  // (si quieres logout para profesor, lo manejas en profesor.html)
+  if (isTeacher()) {
+    btn.style.display = "none";
+    return;
+  }
+
   const token = localStorage.getItem("token");
   btn.style.display = token ? "inline-flex" : "none";
 
@@ -139,7 +193,7 @@ function setupLogoutButton() {
   btn.dataset.bound = "1";
 
   btn.addEventListener("click", () => {
-    clearSession();
+    clearStudentSession();
     window.location.href = "index.html";
   });
 }
@@ -148,8 +202,11 @@ document.addEventListener("DOMContentLoaded", () => {
   setupLogoutButton();
 });
 
-// Exporta a window (por si lo llamas desde otros scripts)
+// Exporta a window
 window.clearSession = clearSession;
+window.clearStudentSession = clearStudentSession;
+window.clearTeacherSession = clearTeacherSession;
+window.isTeacher = isTeacher;
 window.requireSession = requireSession;
 window.requireGrade = requireGrade;
 window.fetchAuth = fetchAuth;
