@@ -1,20 +1,31 @@
 {
   "name": "laura-vicuna-matematicas",
   "version": "1.0.0",
-  "description": "Plataforma educativa local (Node + Express + SQLite)",
+  "description": "Plataforma local de matematicas para la Institucion Educativa Laura Vicuna",
   "main": "server.js",
-  "type": "commonjs",
   "scripts": {
     "start": "node server.js",
-    "dev": "node server.js",
-
     "import": "node import.js",
-    "import:wipe": "set WIPE=1 && node import.js"
+    "students": "node scripts/import_students.js",
+    "septimo": "node scripts/import_septimo.js",
+    "septimo-subtemas": "node scripts/import_subtemas_septimo.js",
+    "septimo-p23": "node scripts/import_septimo_periodos_2_y_3.js",
+    "all": "node import.js && node scripts/import_students.js"
   },
+  "keywords": [
+    "matematicas",
+    "escuela",
+    "sqlite",
+    "node",
+    "educacion"
+  ],
+  "author": "Laura Vicuna",
+  "license": "MIT",
   "dependencies": {
-    "cors": "^2.8.6",
-    "dotenv": "^17.3.1",
-    "express": "^5.2.1",
-    "sqlite3": "^5.1.7"
+    "cors": "^2.8.5",
+    "dotenv": "^17.0.0",
+    "express": "^4.21.2",
+    "sqlite3": "^5.1.7",
+    "xlsx": "^0.18.5"
   }
 }

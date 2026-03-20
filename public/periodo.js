@@ -4,24 +4,13 @@ function $(id) {
 
 document.addEventListener("DOMContentLoaded", async () => {
   const params = new URLSearchParams(window.location.search);
+
   const gradoId = params.get("gradoId") || params.get("id");
+  const periodoId = params.get("periodoId");
+  const nombrePeriodo = params.get("periodo") || "Periodo";
 
   if (typeof requireSession === "function") {
     requireSession(gradoId);
-  }
-
-  if (!gradoId) {
-    const container = $("temas-container");
-    if (container) {
-      container.innerHTML = `
-        <div class="empty-state">
-          <div class="empty-state-icon">⚠️</div>
-          <h3>Falta el grado</h3>
-          <p>No se encontró el grado para cargar los periodos.</p>
-        </div>
-      `;
-    }
-    return;
   }
 
   if (typeof requireGrade === "function") {
@@ -29,81 +18,76 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (!ok) return;
   }
 
-  injectGradoCardStyles();
-  await cargarTituloGrado(gradoId);
-  await cargarPeriodos(gradoId);
-});
-
-async function cargarTituloGrado(gradoId) {
-  const titulo = $("titulo-grado");
-  if (!titulo) return;
-
-  try {
-    const res = await fetch("/api/grados");
-    const grados = await res.json();
-
-    const grado = Array.isArray(grados)
-      ? grados.find((g) => String(g.id) === String(gradoId))
-      : null;
-
-    const nombre = grado?.nombre || "Grado";
-
+  const titulo = $("titulo-periodo");
+  if (titulo) {
     titulo.innerHTML = `
       <div class="page-title-stack">
-        <span class="page-kicker">Ruta académica</span>
-        <span>${escapeHtml(nombre)}</span>
-      </div>
-    `;
-  } catch {
-    titulo.innerHTML = `
-      <div class="page-title-stack">
-        <span class="page-kicker">Ruta académica</span>
-        <span>Grado</span>
+        <span class="page-kicker">Periodo académico</span>
+        <span>${escapeHtml(nombrePeriodo)}</span>
       </div>
     `;
   }
-}
 
-async function cargarPeriodos(gradoId) {
+  if (!gradoId || !periodoId) {
+    const container = $("temas-container");
+    if (container) {
+      container.innerHTML = `
+        <div class="empty-state">
+          <div class="empty-state-icon">⚠️</div>
+          <h3>Faltan datos</h3>
+          <p>No se encontró el grado o el periodo para cargar los temas.</p>
+        </div>
+      `;
+    }
+    return;
+  }
+
+  injectPeriodoCardStyles();
+  await cargarTemas(gradoId, periodoId, nombrePeriodo);
+});
+
+async function cargarTemas(gradoId, periodoId, nombrePeriodo) {
   const container = $("temas-container");
   if (!container) return;
 
   container.innerHTML = `
     <div class="loading-state">
       <div class="loading-spinner"></div>
-      <p>Cargando periodos...</p>
+      <p>Cargando temas del periodo...</p>
     </div>
   `;
 
   try {
-    const res = await fetch(`/api/periodos/${encodeURIComponent(gradoId)}`);
-    const periodos = await res.json();
+    const res = await fetch(
+      `/api/temas/grado/${encodeURIComponent(gradoId)}/periodo/${encodeURIComponent(periodoId)}`
+    );
+    const data = await res.json();
 
-    if (!Array.isArray(periodos) || periodos.length === 0) {
+    if (!Array.isArray(data) || data.length === 0) {
       container.innerHTML = `
         <div class="empty-state">
-          <div class="empty-state-icon">📁</div>
-          <h3>No hay periodos</h3>
-          <p>Este grado todavía no tiene periodos configurados.</p>
+          <div class="empty-state-icon">📚</div>
+          <h3>Aún no hay temas</h3>
+          <p>Este periodo todavía no tiene temas registrados.</p>
         </div>
       `;
       return;
     }
 
-    container.innerHTML = periodos
-      .map((periodo, index) => {
-        const href = `periodo.html?gradoId=${encodeURIComponent(gradoId)}&periodoId=${encodeURIComponent(periodo.id)}&periodo=${encodeURIComponent(periodo.nombre)}`;
+    container.innerHTML = data
+      .map((tema, index) => {
+        const href = `tema.html?gradoId=${encodeURIComponent(gradoId)}&periodoId=${encodeURIComponent(periodoId)}&periodo=${encodeURIComponent(nombrePeriodo)}&temaId=${encodeURIComponent(tema.id)}&tema=${encodeURIComponent(tema.nombre)}`;
 
         return `
-          <a class="card academic-card academic-card-periodo" href="${href}">
+          <a class="card academic-card academic-card-tema" href="${href}">
             <div class="academic-card-top">
-              <span class="academic-card-badge">Periodo ${index + 1}</span>
+              <span class="academic-card-badge">Tema ${index + 1}</span>
               <span class="academic-card-arrow">→</span>
             </div>
 
             <div class="academic-card-body">
-              <h3>${escapeHtml(periodo.nombre)}</h3>
-              <p>Abre este periodo para ver los temas disponibles y continuar tu ruta de aprendizaje.</p>
+              <h3>${escapeHtml(tema.nombre)}</h3>
+              <p>Ingresa para revisar los subtemas y seguir avanzando en este periodo.</p>
             </div>
 
             <div class="academic-card-footer">
@@ -118,8 +102,8 @@ async function cargarPeriodos(gradoId) {
     container.innerHTML = `
       <div class="empty-state">
         <div class="empty-state-icon">❌</div>
-        <h3>Error cargando periodos</h3>
-        <p>No fue posible obtener los periodos del grado.</p>
+        <h3>Error cargando temas</h3>
+        <p>No se pudieron cargar los temas del periodo.</p>
       </div>
     `;
   }
@@ -134,11 +118,11 @@ function escapeHtml(s) {
     .replaceAll("'", "&#039;");
 }
 
-function injectGradoCardStyles() {
-  if (document.getElementById("grado-academic-card-styles")) return;
+function injectPeriodoCardStyles() {
+  if (document.getElementById("periodo-academic-card-styles")) return;
 
   const style = document.createElement("style");
-  style.id = "grado-academic-card-styles";
+  style.id = "periodo-academic-card-styles";
   style.textContent = `
     .academic-card {
       min-height: 210px;
@@ -192,7 +176,7 @@ function injectGradoCardStyles() {
 
     .academic-card-body h3 {
       margin: 0;
-      font-size: clamp(1.35rem, 2vw, 1.9rem);
+      font-size: clamp(1.3rem, 1.9vw, 1.8rem);
       line-height: 1.12;
       font-weight: 900;
       color: #fff;
@@ -200,7 +184,7 @@ function injectGradoCardStyles() {
 
     .academic-card-body p {
       margin: 0;
-      font-size: 0.98rem;
+      font-size: 0.97rem;
       line-height: 1.5;
       color: rgba(255,255,255,0.80);
       max-width: 42ch;
@@ -233,11 +217,11 @@ function injectGradoCardStyles() {
       }
 
       .academic-card-body h3 {
-        font-size: 1.28rem;
+        font-size: 1.22rem;
       }
 
       .academic-card-body p {
-        font-size: 0.93rem;
+        font-size: 0.92rem;
         line-height: 1.42;
       }
 
@@ -259,11 +243,11 @@ function injectGradoCardStyles() {
       }
 
       .academic-card-body h3 {
-        font-size: 1.18rem;
+        font-size: 1.12rem;
       }
 
       .academic-card-body p {
-        font-size: 0.9rem;
+        font-size: 0.89rem;
       }
     }
   `;

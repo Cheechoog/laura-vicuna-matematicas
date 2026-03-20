@@ -1,0 +1,18 @@
+[
+  {
+    "subtema_id": 1,
+    "titulo": "Guía rápida de apoyo",
+    "tipo": "guia",
+    "descripcion": "Material breve para reforzar operaciones básicas con números naturales.",
+    "url": "/videos/numeros naturales.mp4",
+    "texto_boton": "Abrir recurso"
+  },
+  {
+    "subtema_id": 1,
+    "titulo": "Material para el docente",
+    "tipo": "docente",
+    "descripcion": "Apoyo visual para orientar la explicación en clase.",
+    "url": "https://example.com/recurso-docente",
+    "texto_boton": "Ver material"
+  }
+]

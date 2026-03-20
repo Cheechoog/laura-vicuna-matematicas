@@ -2,85 +2,249 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Subtema</title>
-
-  <!-- CSS global -->
-  <link rel="stylesheet" href="css/style.css">
-  <!-- CSS SOLO de esta pantalla -->
-  <link rel="stylesheet" href="css/subtema.css">
+  <link rel="stylesheet" href="css/style.css?v=9">
+  <link rel="stylesheet" href="css/subtema.css?v=9">
 </head>
+<body class="app-page">
+  <div class="app-page-bg"></div>
+  <div class="app-page-overlay"></div>
+  <div class="page-glow page-glow-left"></div>
+  <div class="page-glow page-glow-right"></div>
 
-<body>
-
-  <!-- HEADER -->
   <header class="header-interno">
     <div class="header-row">
       <div class="header-left">
-        <a class="btn btn-ghost" href="javascript:history.back()">← Volver</a>
+        <a id="btn-back" href="#" class="btn btn-ghost" style="display:none;">← Volver</a>
+        <a id="btn-home" href="#" class="btn btn-ghost" style="display:none;">⌂ Inicio</a>
       </div>
 
-      <div class="header-center" id="titulo-subtema">Subtema</div>
+      <div class="header-center" id="titulo-subtema">
+        <div class="page-title-stack">
+          <span class="page-kicker">Subtema activo</span>
+          <span>Subtema</span>
+        </div>
+      </div>
 
       <div class="header-right">
+        <div id="session-badge"></div>
         <button id="btn-logout" class="btn btn-danger btn-logout" style="display:none;">Cerrar sesión</button>
       </div>
     </div>
   </header>
 
-  <main class="content">
-    <div class="container">
-      <section class="panel">
+  <main class="subtema-stage">
 
-        <div class="tabs">
-          <button class="tab active" data-tab="intro">Intro</button>
-          <button class="tab" data-tab="taller">Taller</button>
-          <button class="tab" data-tab="quiz">Quiz</button>
-          <button class="tab" data-tab="practica">Práctica</button>
+    <section class="subtema-hero-panel">
+      <div class="subtema-hero-grid">
+        <div class="subtema-hero-main">
+          <div class="subtema-hero-badge">Ruta activa de aprendizaje</div>
+          <h1 class="subtema-hero-title">Aprende, practica y domina este subtema</h1>
+          <p class="subtema-hero-text">
+            Primero comprende la explicación, luego fortalece con práctica, continúa con el taller,
+            presenta el quiz y usa el juego grupal como refuerzo dinámico en clase.
+          </p>
+
+          <div class="subtema-hero-pills">
+            <span class="hero-pill">📘 Explicación</span>
+            <span class="hero-pill">⚡ Práctica</span>
+            <span class="hero-pill">🧩 Taller</span>
+            <span class="hero-pill">📝 Quiz</span>
+            <span class="hero-pill">🎮 Juego</span>
+          </div>
+        </div>
+
+        <div class="subtema-hero-side">
+          <div class="hero-side-card hero-side-card-highlight">
+            <div class="hero-side-label">Modo de estudio</div>
+            <div class="hero-side-value">Interactivo</div>
+            <p>Diseñado para trabajo en aula, tablet, portátil y pantalla grande.</p>
+          </div>
+
+          <div class="hero-side-card">
+            <div class="hero-side-label">Flujo recomendado</div>
+            <div class="hero-side-steps">
+              <span>1. Intro</span>
+              <span>2. Práctica</span>
+              <span>3. Taller</span>
+              <span>4. Quiz</span>
+              <span>5. Juego</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="subtema-workspace">
+
+      <aside class="subtema-nav-shell">
+        <div class="subtema-nav-head">
+          <div class="subtema-nav-kicker">Navegación</div>
+          <h2>Espacios del subtema</h2>
+          <p>Muévete entre teoría, actividades y juego sin salir de esta pantalla.</p>
+        </div>
+
+        <div class="tabs-wrap">
+          <div class="tabs">
+            <button class="tab active" data-tab="intro">
+              <span class="tab-icon">📘</span>
+              <span class="tab-copy">
+                <strong>Intro</strong>
+                <small>Teoría y video</small>
+              </span>
+            </button>
+
+            <button class="tab" data-tab="practica">
+              <span class="tab-icon">⚡</span>
+              <span class="tab-copy">
+                <strong>Práctica</strong>
+                <small>Entrenamiento libre</small>
+              </span>
+            </button>
+
+            <button class="tab" data-tab="taller">
+              <span class="tab-icon">🧩</span>
+              <span class="tab-copy">
+                <strong>Taller</strong>
+                <small>Aplicación del tema</small>
+              </span>
+            </button>
+
+            <button class="tab" data-tab="quiz">
+              <span class="tab-icon">📝</span>
+              <span class="tab-copy">
+                <strong>Quiz</strong>
+                <small>Evaluación rápida</small>
+              </span>
+            </button>
+
+            <button class="tab" data-tab="juego">
+              <span class="tab-icon">🎮</span>
+              <span class="tab-copy">
+                <strong>Juego</strong>
+                <small>Trabajo grupal</small>
+              </span>
+            </button>
+          </div>
+        </div>
+      </aside>
+
+      <section class="subtema-content-shell">
+        <div class="content-top-strip">
+          <div class="content-top-card">
+            <span class="content-top-icon">🎯</span>
+            <div>
+              <strong>Meta del subtema</strong>
+              <p>Comprender el concepto, practicarlo y demostrarlo en actividades guiadas.</p>
+            </div>
+          </div>
+
+          <div class="content-top-card">
+            <span class="content-top-icon">🖥️</span>
+            <div>
+              <strong>Uso en aula</strong>
+              <p>Preparado para estudiantes y también para exposición del profesor en pantalla.</p>
+            </div>
+          </div>
         </div>
 
         <div class="tabview active" id="tab-intro">
+          <div class="tab-section-head">
+            <div>
+              <span class="tab-section-kicker">Comprensión del tema</span>
+              <h2>Introducción y explicación visual</h2>
+            </div>
+          </div>
           <div id="intro-container"></div>
         </div>
 
+        <div class="tabview" id="tab-practica">
+          <div class="tab-section-head">
+            <div>
+              <span class="tab-section-kicker">Entrenamiento guiado</span>
+              <h2>Práctica libre</h2>
+            </div>
+          </div>
+
+          <div class="practica-shell">
+            <div class="practice-header">
+              <div class="practice-copy">
+                <h2>Responde y refuerza</h2>
+                <p>Practica sin nota para prepararte antes del taller y del quiz.</p>
+              </div>
+
+              <div class="practice-stats">
+                <span class="stat-pill">Puntaje: <b id="puntaje">0</b></span>
+                <span class="stat-pill">Respondidas: <b id="respondidas">0</b></span>
+                <span class="stat-pill">Intentos: <b id="intentos">0</b>/3</span>
+              </div>
+            </div>
+
+            <div class="question-card">
+              <div class="question-card-top">
+                <span class="question-kicker">Ejercicio activo</span>
+              </div>
+
+              <h3 id="pregunta"></h3>
+
+              <input type="text" id="respuesta" placeholder="Escribe tu respuesta">
+
+              <div class="practice-actions">
+                <button id="btn-validar" class="btn btn-primary">Responder</button>
+                <button id="btn-saltar" class="btn btn-ghost">Saltar</button>
+              </div>
+
+              <p id="resultado"></p>
+            </div>
+          </div>
+        </div>
+
         <div class="tabview" id="tab-taller">
+          <div class="tab-section-head">
+            <div>
+              <span class="tab-section-kicker">Aplicación</span>
+              <h2>Taller evaluable</h2>
+            </div>
+          </div>
+
+          <div class="quiz-toolbar">
+            <button id="btn-cargar-taller" class="btn btn-primary">Abrir taller</button>
+            <span id="taller-meta" class="meta"></span>
+          </div>
           <div id="taller-container"></div>
         </div>
 
         <div class="tabview" id="tab-quiz">
-          <div class="row">
-            <button id="btn-cargar-quiz" class="btn btn-primary">Cargar 10 preguntas</button>
+          <div class="tab-section-head">
+            <div>
+              <span class="tab-section-kicker">Verificación</span>
+              <h2>Quiz del subtema</h2>
+            </div>
+          </div>
+
+          <div class="quiz-toolbar">
+            <button id="btn-cargar-quiz" class="btn btn-primary">Cargar quiz de 5 preguntas</button>
             <span id="quiz-meta" class="meta"></span>
           </div>
           <div id="quiz-container"></div>
         </div>
 
-        <div class="tabview" id="tab-practica">
-          <div class="practica-box">
-            <h2 id="pregunta"></h2>
-
-            <input type="text" id="respuesta" placeholder="Escribe tu respuesta">
-
-            <div class="row">
-              <button id="btn-validar" class="btn btn-primary">Responder</button>
-              <button id="btn-saltar" class="btn btn-ghost">Saltar</button>
-
-              <span class="meta">Puntaje: <b id="puntaje">0</b></span>
-              <span class="meta">Respondidas: <b id="respondidas">0</b></span>
-              <span class="meta">Intentos: <b id="intentos">0</b>/3</span>
+        <div class="tabview" id="tab-juego">
+          <div class="tab-section-head">
+            <div>
+              <span class="tab-section-kicker">Refuerzo colaborativo</span>
+              <h2>Juego grupal del subtema</h2>
             </div>
-
-            <p id="resultado"></p>
           </div>
+          <div id="juego-container"></div>
         </div>
-
       </section>
-    </div>
+    </section>
   </main>
 
-  <!-- Orden correcto -->
-  <script src="session.js"></script>
-  <script src="subtema.js"></script>
+  <script src="session.js?v=9"></script>
 
+<script src="subtema.js?v=12"></script>
 </body>
 </html>

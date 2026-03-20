@@ -1,0 +1,485 @@
+/* =====================================
+   INDEX PREMIUM / REFINADO
+   ===================================== */
+
+.index-main-luxury {
+  width: min(1280px, 100%);
+  min-height: calc(100vh - 90px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 18px;
+  padding-bottom: 42px;
+}
+
+/* ================= HERO ================= */
+
+.index-hero-luxury {
+  margin-bottom: 30px;
+}
+
+.index-hero-shell {
+  width: min(980px, 100%);
+  margin: 0 auto;
+  padding: 34px 30px 30px;
+  border-radius: 36px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background:
+    radial-gradient(700px 260px at 0% 0%, rgba(66,215,255,0.12), transparent 60%),
+    radial-gradient(480px 220px at 100% 100%, rgba(255,211,107,0.10), transparent 60%),
+    linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.05));
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow:
+    0 28px 70px rgba(0,0,0,0.34),
+    inset 0 1px 0 rgba(255,255,255,0.05);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.index-hero-shell::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(120deg, rgba(255,255,255,0.05), transparent 35%, transparent 65%, rgba(255,255,255,0.03));
+}
+
+.index-hero-badge,
+.index-hero-logo-frame,
+.index-hero-copy,
+.index-hero-micro {
+  position: relative;
+  z-index: 1;
+}
+
+.index-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 40px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  margin-bottom: 20px;
+  font-size: 0.8rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  color: rgba(255,255,255,0.92);
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+
+.index-hero-badge-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #42d7ff, #ffd36b);
+  box-shadow: 0 0 14px rgba(66,215,255,0.45);
+}
+
+.index-hero-logo-frame {
+  width: 172px;
+  height: 172px;
+  margin: 0 auto 20px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.index-hero-logo-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255,255,255,0.24), transparent 45%),
+    linear-gradient(135deg, rgba(66,215,255,0.22), rgba(255,211,107,0.16));
+  border: 1px solid rgba(255,255,255,0.16);
+  box-shadow:
+    0 20px 40px rgba(0,0,0,0.24),
+    inset 0 1px 0 rgba(255,255,255,0.16);
+}
+
+.index-hero-logo-luxury {
+  position: relative;
+  z-index: 1;
+  width: 118px;
+  height: auto;
+  filter: drop-shadow(0 12px 28px rgba(0,0,0,0.26));
+}
+
+.index-hero-title-luxury {
+  font-size: clamp(2.2rem, 4.8vw, 4.2rem);
+  line-height: 0.98;
+  font-weight: 950;
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+  text-shadow: 0 8px 26px rgba(0,0,0,0.34);
+}
+
+.index-hero-subtitle-luxury {
+  max-width: 700px;
+  margin: 0 auto;
+  color: rgba(255,255,255,0.82);
+  font-size: clamp(1rem, 1.8vw, 1.12rem);
+  line-height: 1.65;
+}
+
+.index-hero-micro {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.index-hero-micro-pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: rgba(255,255,255,0.90);
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.10);
+}
+
+/* ================= ACCESS ================= */
+
+.index-entry-section {
+  width: min(1040px, 100%);
+  margin: 0 auto;
+}
+
+.index-entry-head {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.index-entry-kicker {
+  display: inline-block;
+  margin-bottom: 8px;
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.10em;
+  font-weight: 900;
+  color: rgba(255,255,255,0.64);
+}
+
+.index-entry-head h2 {
+  font-size: clamp(1.55rem, 2.3vw, 2.3rem);
+  font-weight: 950;
+  margin-bottom: 6px;
+  text-shadow: 0 5px 18px rgba(0,0,0,0.26);
+}
+
+.index-entry-head p {
+  color: rgba(255,255,255,0.78);
+  line-height: 1.55;
+}
+
+.index-entry-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.index-entry-card {
+  position: relative;
+  min-height: 260px;
+  padding: 22px 20px;
+  border-radius: 30px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: linear-gradient(180deg, rgba(255,255,255,0.11), rgba(255,255,255,0.05));
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow:
+    0 20px 46px rgba(0,0,0,0.28),
+    inset 0 1px 0 rgba(255,255,255,0.05);
+  text-decoration: none;
+  color: #eef6ff;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 14px;
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease, background .22s ease;
+}
+
+.index-entry-card:hover {
+  transform: translateY(-8px);
+  box-shadow:
+    0 30px 62px rgba(0,0,0,0.36),
+    inset 0 1px 0 rgba(255,255,255,0.06);
+  border-color: rgba(94,207,255,.34);
+  background: linear-gradient(180deg, rgba(255,255,255,0.14), rgba(255,255,255,0.06));
+}
+
+.index-entry-card-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(340px 160px at 0% 0%, rgba(66,215,255,0.10), transparent 60%);
+}
+
+.index-entry-card-top,
+.index-entry-icon-wrap,
+.index-entry-card-copy {
+  position: relative;
+  z-index: 1;
+}
+
+.index-entry-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.index-entry-tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  color: rgba(255,255,255,0.90);
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.10);
+}
+
+.index-entry-arrow {
+  font-size: 1.2rem;
+  font-weight: 900;
+  opacity: 0.76;
+  transition: transform .18s ease, opacity .18s ease;
+}
+
+.index-entry-card:hover .index-entry-arrow {
+  transform: translateX(4px);
+  opacity: 1;
+}
+
+.index-entry-icon-wrap {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 4px;
+}
+
+.index-entry-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  background: linear-gradient(135deg, rgba(66,215,255,0.18), rgba(255,211,107,0.14));
+  border: 1px solid rgba(255,255,255,0.14);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.14);
+}
+
+.index-entry-card-copy h3 {
+  font-size: clamp(1.35rem, 1.9vw, 1.75rem);
+  line-height: 1.08;
+  font-weight: 950;
+  margin-bottom: 8px;
+  color: #fff;
+}
+
+.index-entry-card-copy p {
+  color: rgba(255,255,255,0.80);
+  font-size: 0.96rem;
+  line-height: 1.55;
+  max-width: 280px;
+}
+
+.index-entry-card-student .index-entry-icon {
+  background: linear-gradient(135deg, rgba(66,215,255,0.18), rgba(27,127,255,0.14));
+}
+
+.index-entry-card-teacher .index-entry-icon {
+  background: linear-gradient(135deg, rgba(255,211,107,0.18), rgba(255,178,36,0.14));
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 980px) {
+  .index-entry-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .index-entry-card {
+    min-height: 210px;
+  }
+}
+
+@media (max-width: 700px) {
+  .index-main-luxury {
+    min-height: auto;
+    padding-top: 8px;
+    padding-bottom: 28px;
+  }
+
+  .index-hero-shell {
+    padding: 22px 16px 20px;
+    border-radius: 26px;
+  }
+
+  .index-hero-logo-frame {
+    width: 136px;
+    height: 136px;
+    margin-bottom: 16px;
+  }
+
+  .index-hero-logo-luxury {
+    width: 92px;
+  }
+
+  .index-hero-title-luxury {
+    font-size: 1.95rem;
+    line-height: 1.03;
+  }
+
+  .index-hero-subtitle-luxury {
+    font-size: 0.95rem;
+  }
+
+  .index-entry-head {
+    margin-bottom: 16px;
+  }
+
+  .index-entry-card {
+    min-height: 190px;
+    padding: 18px 16px;
+    border-radius: 24px;
+  }
+
+  .index-entry-icon {
+    width: 62px;
+    height: 62px;
+    border-radius: 18px;
+    font-size: 1.7rem;
+  }
+
+  .index-entry-card-copy h3 {
+    font-size: 1.18rem;
+  }
+
+  .index-entry-card-copy p {
+    font-size: 0.92rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .index-hero-badge,
+  .index-hero-micro-pill,
+  .index-entry-tag {
+    font-size: 0.72rem;
+  }
+
+  .index-hero-logo-frame {
+    width: 122px;
+    height: 122px;
+  }
+
+  .index-hero-logo-luxury {
+    width: 84px;
+  }
+  /* HERO SIN TARJETA */
+
+.index-hero-free{
+  width:100%;
+  min-height:65vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:40px 20px;
+}
+
+/* CENTRADO */
+.index-hero-center{
+  max-width:900px;
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:18px;
+}
+
+/* LOGO */
+.index-hero-logo-frame{
+  width:150px;
+  height:150px;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.index-hero-logo-ring{
+  position:absolute;
+  inset:0;
+  border-radius:50%;
+  background:linear-gradient(
+    135deg,
+    rgba(66,215,255,0.25),
+    rgba(255,211,107,0.18)
+  );
+  border:1px solid rgba(255,255,255,0.18);
+  backdrop-filter:blur(10px);
+}
+
+.index-hero-logo-luxury{
+  width:100px;
+  z-index:1;
+}
+
+/* TITULO */
+.index-hero-title-free{
+  font-size:clamp(2.2rem,5vw,4rem);
+  font-weight:950;
+  line-height:1;
+  text-shadow:0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* SUB */
+.index-hero-subtitle-free{
+  max-width:600px;
+  font-size:1.05rem;
+  color:rgba(255,255,255,0.85);
+}
+
+/* BADGE */
+.index-hero-badge{
+  backdrop-filter:blur(10px);
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.12);
+}
+
+/* MICRO */
+.index-hero-micro{
+  margin-top:10px;
+}
+
+/* RESPONSIVE */
+@media(max-width:700px){
+  .index-hero-logo-frame{
+    width:120px;
+    height:120px;
+  }
+
+  .index-hero-logo-luxury{
+    width:80px;
+  }
+}
+}

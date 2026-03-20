@@ -1,41 +1,44 @@
-// public/main.js
-// ✅ En index.html reescribe los links según el rol.
-// - Estudiante: seleccionar.html?gradoId=...
-// - Profesor (teacher=1): grado.html?gradoId=...
+  // public/main.js
 
-function isTeacher() {
-  return localStorage.getItem("teacher") === "1";
-}
+  function isTeacherSession() {
+    return localStorage.getItem("teacher") === "1";
+  }
 
-document.addEventListener("DOMContentLoaded", () => {
-  // Solo actúa en index.html
-  const path = window.location.pathname.toLowerCase();
-  if (!path.endsWith("/index.html") && !path.endsWith("/")) return;
+  function rewriteGradeLinksForRole() {
+    const teacher = isTeacherSession();
+    const cards = document.querySelectorAll(".grade-card[data-grado]");
 
-  const teacher = isTeacher();
+    cards.forEach((a) => {
+      const gradoId = a.getAttribute("data-grado");
+      if (!gradoId) return;
 
-  // Todas las cards de grado (usamos data-grado si existe)
-  const cards = document.querySelectorAll('#grados-container a.card');
+      if (teacher) {
+        a.setAttribute("href", `grado.html?gradoId=${encodeURIComponent(gradoId)}`);
+      } else {
+        a.setAttribute("href", `seleccionar.html?gradoId=${encodeURIComponent(gradoId)}`);
+      }
+    });
+  }
 
-  cards.forEach((a) => {
-    // intenta leer gradoId de data-grado o de la URL original
-    let gradoId = a.getAttribute("data-grado");
+  function setupHomeTeacherCards() {
+    const teacher = isTeacherSession();
 
-    if (!gradoId) {
-      try {
-        const u = new URL(a.getAttribute("href"), window.location.origin);
-        gradoId = u.searchParams.get("gradoId");
-      } catch {}
-    }
-
-    if (!gradoId) return;
+    const teacherLoginCard = document.getElementById("teacher-login-card");
+    const teacherAdminCard = document.getElementById("teacher-admin-card");
 
     if (teacher) {
-      // ✅ profesor entra directo al menú normal (sin seleccionar estudiante)
-      a.setAttribute("href", `grado.html?gradoId=${encodeURIComponent(gradoId)}`);
+      if (teacherLoginCard) teacherLoginCard.style.display = "none";
+      if (teacherAdminCard) teacherAdminCard.style.display = "flex";
     } else {
-      // ✅ estudiante: login normal
-      a.setAttribute("href", `seleccionar.html?gradoId=${encodeURIComponent(gradoId)}`);
+      if (teacherLoginCard) teacherLoginCard.style.display = "flex";
+      if (teacherAdminCard) teacherAdminCard.style.display = "none";
     }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const path = window.location.pathname.toLowerCase();
+    if (!path.endsWith("/index.html") && !path.endsWith("/")) return;
+
+    rewriteGradeLinksForRole();
+    setupHomeTeacherCards();
   });
-});

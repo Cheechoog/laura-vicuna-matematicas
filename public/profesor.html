@@ -3,120 +3,258 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Panel del Profesor</title>
-
-  <!-- Tu CSS real -->
-  <link rel="stylesheet" href="css/style.css">
-
-  <style>
-    /* Estilos mínimos por si tu CSS no tiene estos */
-    body { font-family: system-ui, Arial, sans-serif; margin: 0; padding: 0; }
-    .wrap { max-width: 1100px; margin: 0 auto; padding: 20px; }
-    .topbar { display:flex; gap:12px; align-items:center; justify-content:space-between; margin-bottom: 16px; }
-    .title { font-size: 28px; font-weight: 800; }
-    .panel { padding: 16px; border-radius: 18px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); }
-    .row { display:flex; gap:12px; flex-wrap: wrap; align-items: end; }
-    label { font-size: 13px; opacity: .85; display:block; margin-bottom:6px; }
-    select, input { padding: 10px 12px; border-radius: 12px; border: 1px solid #cfd5dd33; background: rgba(255,255,255,0.08); color: inherit; outline: none; }
-    .btn { padding: 10px 14px; border-radius: 12px; border: none; cursor: pointer; font-weight: 700; }
-    .btn-primary { background: #00c2a8; color: #05302a; }
-    .btn-sec { background: rgba(255,255,255,0.10); color: inherit; border: 1px solid rgba(255,255,255,0.12); }
-    .btn-danger { background: rgba(255,0,0,0.10); color: #ffb4b4; border: 1px solid rgba(255,0,0,0.18); }
-    .msg { margin-top: 10px; font-size: 14px; }
-    .grid { display:grid; grid-template-columns: repeat(1, minmax(0, 1fr)); gap: 12px; margin-top: 14px; }
-    @media (min-width: 860px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-
-    .card { padding: 14px; border-radius: 18px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); display:flex; justify-content:space-between; align-items:center; gap: 12px; }
-    .card h3 { margin: 0 0 6px; font-size: 18px; }
-    .meta { margin: 0; opacity: .8; font-size: 13px; }
-    .pill { padding: 8px 10px; border-radius: 999px; font-size: 12px; font-weight: 800; display:inline-flex; align-items:center; gap:8px; }
-    .pill-ok { background: rgba(0,194,168,0.16); border: 1px solid rgba(0,194,168,0.28); }
-    .pill-off { background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.15); opacity: .8; }
-
-    /* Switch */
-    .switch { display:flex; align-items:center; gap:10px; }
-    .toggle {
-      width: 50px; height: 28px; border-radius: 999px;
-      background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.18);
-      position: relative; cursor: pointer; transition: .2s;
-    }
-    .toggle::after {
-      content: ""; width: 22px; height: 22px; border-radius: 50%;
-      background: rgba(255,255,255,0.92);
-      position: absolute; top: 2px; left: 2px; transition: .2s;
-    }
-    .toggle.on { background: rgba(0,194,168,0.35); border-color: rgba(0,194,168,0.55); }
-    .toggle.on::after { left: 26px; background: rgba(255,255,255,0.95); }
-
-    .small { font-size: 12px; opacity: .8; }
-    .hr { height: 1px; background: rgba(255,255,255,0.10); margin: 14px 0; }
-  </style>
+  <title>Panel docente</title>
+  <link rel="stylesheet" href="css/style.css?v=11">
+  <link rel="stylesheet" href="css/profesor.css?v=11">
 </head>
 
-<body>
-  <div class="wrap">
-    <div class="topbar">
-      <div class="title">👩‍🏫 Panel del Profesor</div>
-      <div style="display:flex; gap:10px; align-items:center;">
-        <button id="btn-logout" class="btn btn-sec" style="display:none;">Cerrar sesión</button>
-        <a class="btn btn-sec" href="index.html">Volver</a>
-      </div>
-    </div>
+<body class="teacher-page">
+  <div class="teacher-bg"></div>
+  <div class="teacher-glow"></div>
 
-    <!-- LOGIN -->
-    <div id="login-box" class="panel">
-      <div class="row">
-        <div style="min-width: 240px;">
-          <label>PIN del profesor</label>
-          <input id="pin" type="password" placeholder="Ej: 9999" />
-          <div class="small">Este PIN lo defines en tu <b>.env</b> como <b>TEACHER_PIN</b>.</div>
-        </div>
-
-        <button id="btn-login" class="btn btn-primary">Entrar</button>
-      </div>
-      <div id="login-msg" class="msg"></div>
-    </div>
-
-    <!-- PANEL -->
-    <div id="panel-box" class="panel" style="display:none;">
-      <div class="row">
-        <div style="min-width: 240px;">
-          <label>Grado</label>
-          <select id="grado">
-            <option value="">Selecciona grado</option>
-          </select>
-        </div>
-
-        <div style="min-width: 340px;">
-          <label>Tema</label>
-          <select id="tema">
-            <option value="">Selecciona tema</option>
-          </select>
-        </div>
-
-        <button id="btn-cargar" class="btn btn-sec">Cargar subtemas</button>
+  <main class="teacher-shell">
+    <header class="teacher-topbar">
+      <div>
+        <a class="btn btn-ghost" href="index.html">⌂ Inicio</a>
       </div>
 
-      <div class="hr"></div>
+      <div class="teacher-title-wrap">
+        <div class="teacher-eyebrow">Gestión académica</div>
+        <h1>Panel docente</h1>
+      </div>
 
-      <div class="row">
-        <button id="btn-habilitar-todos" class="btn btn-primary">✅ Habilitar todo</button>
-        <button id="btn-bloquear-todos" class="btn btn-danger">🔒 Bloquear todo</button>
+      <div class="teacher-actions">
+        <button id="btn-logout" class="btn btn-danger" style="display:none;">Cerrar sesión</button>
+      </div>
+    </header>
 
-        <div style="min-width: 260px;">
-          <label>Disponible desde (opcional)</label>
-          <input id="disponible-desde" type="datetime-local" />
-          <div class="small">Si pones fecha, se habilita cuando llegue esa hora.</div>
+    <section class="teacher-card teacher-hero">
+      <div class="teacher-hero-icon">👩‍🏫</div>
+      <div>
+        <h2>Centro de control docente</h2>
+        <p>
+          Administra el acceso a los subtemas, controla la disponibilidad del contenido
+          y consulta el consolidado de notas por grado, periodo y grupo.
+        </p>
+      </div>
+    </section>
+
+    <section class="teacher-dashboard">
+      <article class="teacher-summary">
+        <div class="teacher-summary-kicker">Control</div>
+        <h3>Subtemas</h3>
+        <p>Habilita o bloquea el contenido según el avance real del curso.</p>
+      </article>
+
+      <article class="teacher-summary">
+        <div class="teacher-summary-kicker">Seguimiento</div>
+        <h3>Notas</h3>
+        <p>Consulta resultados por estudiante, tema y subtema desde un solo lugar.</p>
+      </article>
+
+      <article class="teacher-summary">
+        <div class="teacher-summary-kicker">Exportación</div>
+        <h3>Excel</h3>
+        <p>Descarga reportes consolidados para revisión, archivo o entrega institucional.</p>
+      </article>
+    </section>
+
+    <section id="login-box" class="teacher-card teacher-panel teacher-login-shell">
+      <div class="teacher-section-head">
+        <div>
+          <h3>Ingreso docente</h3>
+          <p class="subtext">Escribe el PIN del profesor para acceder al panel administrativo.</p>
         </div>
       </div>
 
-      <div id="panel-msg" class="msg"></div>
+      <div class="teacher-login-grid">
+        <div class="teacher-field">
+          <label for="pin">PIN del profesor</label>
+          <input id="pin" type="password" placeholder="Ej: 9999">
+        </div>
 
-      <div id="lista" class="grid"></div>
+        <div class="teacher-field">
+          <label>&nbsp;</label>
+          <button id="btn-login" class="btn btn-primary">Entrar al panel</button>
+        </div>
+      </div>
+
+      <div class="teacher-chip-list">
+        <span class="teacher-chip">🔐 Acceso restringido</span>
+        <span class="teacher-chip">📊 Gestión académica</span>
+        <span class="teacher-chip">🧩 Control de subtemas</span>
+      </div>
+
+      <div id="login-msg" class="teacher-login-msg"></div>
+    </section>
+
+    <section id="panel-box" style="display:none;">
+      <div class="teacher-layout">
+        <section class="teacher-card teacher-panel">
+          <div class="teacher-section-head">
+            <div>
+              <h3>Configuración de subtemas</h3>
+              <p class="subtext">
+                Selecciona grado, periodo y tema. Después podrás habilitar o bloquear el contenido del curso.
+              </p>
+            </div>
+          </div>
+
+          <div class="teacher-grid">
+            <div class="teacher-field">
+              <label for="grado">Grado</label>
+              <select id="grado">
+                <option value="">Selecciona grado</option>
+              </select>
+            </div>
+
+            <div class="teacher-field">
+              <label for="periodo">Periodo</label>
+              <select id="periodo">
+                <option value="">Selecciona periodo</option>
+              </select>
+            </div>
+
+            <div class="teacher-field">
+              <label>&nbsp;</label>
+              <button id="btn-cargar-periodos" class="btn btn-ghost">Cargar periodos</button>
+            </div>
+
+            <div class="teacher-field">
+              <label for="tema">Tema</label>
+              <select id="tema">
+                <option value="">Selecciona tema</option>
+              </select>
+            </div>
+
+            <div class="teacher-field">
+              <label for="disponible-desde">Disponible desde (opcional)</label>
+              <input id="disponible-desde" type="datetime-local">
+            </div>
+
+            <div class="teacher-field">
+              <label>&nbsp;</label>
+              <button id="btn-cargar" class="btn btn-primary">Cargar subtemas</button>
+            </div>
+          </div>
+
+          <div class="teacher-toolbar">
+            <div class="left">
+              <button id="btn-habilitar-seleccion" class="btn btn-primary">✅ Habilitar selección</button>
+              <button id="btn-bloquear-seleccion" class="btn btn-danger">🔒 Bloquear selección</button>
+            </div>
+
+            <div class="right">
+              <span class="teacher-note">Los cambios se aplican al tema cargado actualmente.</span>
+              <button id="btn-ver-notas" class="btn btn-ghost">📊 Ver notas</button>
+            </div>
+          </div>
+
+          <div id="panel-msg" class="teacher-msg"></div>
+
+          <div id="lista" class="teacher-subtema-grid">
+            <div class="teacher-empty">Selecciona un tema y carga sus subtemas para administrarlos aquí.</div>
+          </div>
+        </section>
+
+        <aside class="teacher-card teacher-side-panel">
+          <div class="teacher-side-block">
+            <h4>Cómo usar este panel</h4>
+            <p>
+              Primero carga el grado y el periodo. Luego selecciona el tema y administra
+              sus subtemas según el ritmo del curso.
+            </p>
+          </div>
+
+          <div class="teacher-side-block">
+            <h4>Disponibilidad programada</h4>
+            <p>
+              Puedes dejar un subtema listo para abrirse en una fecha y hora concreta,
+              útil para organizar el trabajo semanal.
+            </p>
+          </div>
+
+          <div class="teacher-side-block">
+            <h4>Notas y reportes</h4>
+            <p>
+              Desde el botón <strong>Ver notas</strong> puedes consultar resultados y descargar
+              el consolidado en Excel.
+            </p>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <div id="notas-modal" class="modal-backdrop" aria-hidden="true">
+    <div class="modal-card">
+      <div class="modal-head">
+        <div>
+          <h3>Notas y exportación</h3>
+          <p class="modal-sub">Consulta resultados y descarga el Excel consolidado.</p>
+        </div>
+
+        <div class="modal-actions">
+          <button id="btn-exportar-notas" class="btn btn-primary">📥 Exportar Excel</button>
+          <button id="btn-cerrar-modal" class="btn btn-ghost">✕ Cerrar</button>
+        </div>
+      </div>
+
+      <div class="modal-body">
+        <div class="teacher-grid teacher-grid-modal">
+          <div class="teacher-field">
+            <label for="notas-grado">Grado</label>
+            <select id="notas-grado">
+              <option value="">Selecciona grado</option>
+            </select>
+          </div>
+
+          <div class="teacher-field">
+            <label for="notas-periodo">Periodo</label>
+            <select id="notas-periodo">
+              <option value="">Todos los periodos</option>
+            </select>
+          </div>
+
+          <div class="teacher-field">
+            <label for="notas-grupo">Grupo</label>
+            <select id="notas-grupo">
+              <option value="">Todos los grupos</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="teacher-inline-actions teacher-inline-actions-modal">
+          <button id="btn-consultar-notas" class="btn btn-primary">Ver notas</button>
+        </div>
+
+        <div id="notas-msg" class="teacher-notes-msg"></div>
+
+        <div class="teacher-table-wrap">
+          <table class="teacher-table">
+            <thead>
+              <tr>
+                <th>Grupo</th>
+                <th>Estudiante</th>
+                <th>Periodo</th>
+                <th>Tema</th>
+                <th>Subtema</th>
+                <th>Taller</th>
+                <th>Quiz</th>
+                <th>Promedio</th>
+              </tr>
+            </thead>
+            <tbody id="notas-body">
+              <tr>
+                <td colspan="8">Aún no se han consultado notas.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- ✅ TU ESTRUCTURA: profesor.js está directo en /public -->
-  <script src="profesor.js"></script>
+  <script src="profesor.js?v=11"></script>
 </body>
 </html>

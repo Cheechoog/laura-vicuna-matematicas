@@ -3,47 +3,145 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Matemáticas - Laura Vicuña</title>
-  <link rel="stylesheet" href="css/style.css">
+  <title>Plataforma de Matemáticas - Laura Vicuña</title>
+  <link rel="stylesheet" href="css/style.css?v=14">
+  <link rel="stylesheet" href="css/index.css?v=14">
 </head>
+<body class="home-page">
+  <div class="home-bg"></div>
+  <div class="home-overlay"></div>
+  <div class="home-glow home-glow-1"></div>
+  <div class="home-glow home-glow-2"></div>
 
-<body>
+  <header class="home-topbar">
+    <div class="home-topbar-left"></div>
 
-  <!-- HEADER -->
-  <header class="header">
-    <img src="img/logo.png" alt="Logo Institucional" class="logo">
-
-    <!-- ✅ Botón profesor (pueden verlo, pero requiere PIN) -->
-    <div style="position:absolute; top:20px; left:20px;">
-      <a class="btn btn-ghost" href="profesor.html">👨‍🏫 Profesor</a>
-    </div>
-
-    <button id="btn-logout" class="btn-logout">Cerrar sesión</button>
-
-    <div class="header-text">
-      <h1>Plataforma de Matemáticas</h1>
-      <p class="subtitulo">Institución Educativa Laura Vicuña</p>
+    <div class="home-topbar-right" style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+      <div id="global-session-area"></div>
+      <button id="btn-logout" class="btn btn-danger" style="display:none;">Cerrar sesión</button>
     </div>
   </header>
 
-  <!-- CONTENIDO PRINCIPAL -->
-  <main class="content">
-    <h2 class="titulo-grados">Selecciona el grado</h2>
+  <main class="home-main index-main-luxury">
 
-    <div id="grados-container" class="card-container">
-      <!-- ✅ Cambiado: ahora manda a seleccionar.html con gradoId -->
-      <a href="seleccionar.html?gradoId=1" class="card">
-        <h3>Sexto</h3>
-        <p>Ejercicios interactivos</p>
-      </a>
+   <section class="index-hero-free">
 
-      <a href="seleccionar.html?gradoId=2" class="card">
-        <h3>Séptimo</h3>
-        <p>Retos matemáticos</p>
-      </a>
+  <div class="index-hero-center">
+
+    <div class="index-hero-badge">
+      <span class="index-hero-badge-dot"></span>
+      Institución Educativa Laura Vicuña
     </div>
+
+    <div class="index-hero-logo-frame">
+      <div class="index-hero-logo-ring"></div>
+      <img src="img/logo.png" class="index-hero-logo-luxury">
+    </div>
+
+    <h1 class="index-hero-title-free">
+      Plataforma de Matemáticas
+    </h1>
+
+    <p class="index-hero-subtitle-free">
+      Aprende, practica y avanza con una experiencia clara, moderna y organizada.
+    </p>
+
+    <div class="index-hero-micro">
+      <span class="index-hero-micro-pill">📘 Sexto</span>
+      <span class="index-hero-micro-pill">📗 Séptimo</span>
+      <span class="index-hero-micro-pill">👩‍🏫 Docente</span>
+    </div>
+
+  </div>
+
+</section>
+
+    <section class="index-entry-section">
+      <div class="index-entry-head">
+        <span class="index-entry-kicker">Accesos principales</span>
+        <h2>Selecciona tu ingreso</h2>
+        <p>Elige el perfil con el que deseas continuar dentro de la plataforma.</p>
+      </div>
+
+      <section class="index-entry-grid" id="home-cards">
+        <a href="seleccionar.html?gradoId=1" class="index-entry-card index-entry-card-student grade-card" data-grado="1">
+          <div class="index-entry-card-glow"></div>
+          <div class="index-entry-card-top">
+            <span class="index-entry-tag">Estudiantes</span>
+            <span class="index-entry-arrow">→</span>
+          </div>
+
+          <div class="index-entry-icon-wrap">
+            <div class="index-entry-icon">📘</div>
+          </div>
+
+          <div class="index-entry-card-copy">
+            <h3>Sexto</h3>
+            <p>Ingresa al recorrido académico del grado sexto.</p>
+          </div>
+        </a>
+
+        <a href="seleccionar.html?gradoId=2" class="index-entry-card index-entry-card-student grade-card" data-grado="2">
+          <div class="index-entry-card-glow"></div>
+          <div class="index-entry-card-top">
+            <span class="index-entry-tag">Estudiantes</span>
+            <span class="index-entry-arrow">→</span>
+          </div>
+
+          <div class="index-entry-icon-wrap">
+            <div class="index-entry-icon">📗</div>
+          </div>
+
+          <div class="index-entry-card-copy">
+            <h3>Séptimo</h3>
+            <p>Ingresa al recorrido académico del grado séptimo.</p>
+          </div>
+        </a>
+
+        <a href="profesor.html" class="index-entry-card index-entry-card-teacher" id="teacher-login-card">
+          <div class="index-entry-card-glow"></div>
+          <div class="index-entry-card-top">
+            <span class="index-entry-tag">Docente</span>
+            <span class="index-entry-arrow">→</span>
+          </div>
+
+          <div class="index-entry-icon-wrap">
+            <div class="index-entry-icon">👩‍🏫</div>
+          </div>
+
+          <div class="index-entry-card-copy">
+            <h3>Profesor</h3>
+            <p>Accede al panel de gestión académica y seguimiento.</p>
+          </div>
+        </a>
+
+        <a
+          href="profesor.html"
+          class="index-entry-card index-entry-card-teacher"
+          id="teacher-admin-card"
+          style="display:none;"
+        >
+          <div class="index-entry-card-glow"></div>
+          <div class="index-entry-card-top">
+            <span class="index-entry-tag">Configuración</span>
+            <span class="index-entry-arrow">→</span>
+          </div>
+
+          <div class="index-entry-icon-wrap">
+            <div class="index-entry-icon">⚙️</div>
+          </div>
+
+          <div class="index-entry-card-copy">
+            <h3>Ajustes</h3>
+            <p>Configuración y control del panel docente.</p>
+          </div>
+        </a>
+      </section>
+    </section>
+
   </main>
 
-  <script src="session.js"></script>
+  <script src="session.js?v=14"></script>
+  <script src="main.js?v=14"></script>
 </body>
 </html>

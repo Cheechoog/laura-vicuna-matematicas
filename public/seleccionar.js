@@ -1,5 +1,3 @@
-// seleccionar.js
-
 const grupoSel = document.getElementById("grupo");
 const estSel = document.getElementById("estudiante");
 const pinInp = document.getElementById("pin");
@@ -7,7 +5,7 @@ const msg = document.getElementById("msg");
 const btn = document.getElementById("btn");
 
 const urlParams = new URLSearchParams(window.location.search);
-let gradoId = urlParams.get("gradoId"); // ✅ viene desde index: 1 o 2
+let gradoId = urlParams.get("gradoId");
 
 function clearSession() {
   localStorage.removeItem("token");
@@ -22,7 +20,6 @@ function getNext() {
   return p.get("next");
 }
 
-// ✅ Si no hay gradoId, intentamos inferirlo del next (por si viene ...?gradoId=1)
 function inferGradoIdFromNext(next) {
   try {
     if (!next) return null;
@@ -37,24 +34,25 @@ function inferGradoIdFromNext(next) {
 function goNext() {
   const next = getNext();
 
-  // ✅ si venía rebotado a esta pantalla, vuelve a donde estaba
   if (next) {
     window.location.href = decodeURIComponent(next);
     return;
   }
 
-  // ✅ si no hay next, manda a la página de GRADO (lista de TEMAS)
-  // 🔥 CAMBIO: antes era tema.html?id=gradoId (eso estaba mal)
   if (gradoId) {
     window.location.href = `grado.html?id=${gradoId}`;
     return;
   }
 
-  // fallback
   window.location.href = "index.html";
 }
 
-// ✅ si ya hay token, validarlo en backend (caducidad REAL)
+function setMsg(text, ok = false) {
+  if (!msg) return;
+  msg.textContent = text || "";
+  msg.className = ok ? "meta login-msg ok" : "meta login-msg";
+}
+
 (async function validarSesionExistente() {
   const existingToken = localStorage.getItem("token");
   if (!existingToken) return;
@@ -66,17 +64,14 @@ function goNext() {
 
     if (!res.ok) throw new Error("Sesión inválida");
 
-    // ✅ Si no llegó gradoId, lo saco del next si se puede
     const next = getNext();
     if (!gradoId) {
       const inferred = inferGradoIdFromNext(next);
       if (inferred) gradoId = inferred;
     }
 
-    // ✅ Si hay gradoId en esta visita, lo guardo
     if (gradoId) {
       const stored = localStorage.getItem("gradoId");
-      // si la sesión tenía un grado distinto, limpiamos para evitar inconsistencias
       if (stored && String(stored) !== String(gradoId)) {
         clearSession();
         return;
@@ -91,39 +86,71 @@ function goNext() {
 })();
 
 async function cargarGrupos() {
-  const res = await fetch("/api/grupos");
-  const grupos = await res.json();
-  grupoSel.innerHTML =
-    `<option value="">Selecciona grupo</option>` +
-    grupos.map((g) => `<option value="${g.id}">${g.nombre}</option>`).join("");
+  try {
+    grupoSel.innerHTML = `<option value="">Cargando grupos...</option>`;
+
+    const gradoParam = gradoId ? `?gradoId=${encodeURIComponent(gradoId)}` : "";
+    const res = await fetch(`/api/grupos${gradoParam}`);
+    const grupos = await res.json();
+
+    if (!Array.isArray(grupos) || grupos.length === 0) {
+      grupoSel.innerHTML = `<option value="">No hay grupos disponibles</option>`;
+      estSel.innerHTML = `<option value="">Sin estudiantes</option>`;
+      return;
+    }
+
+    grupoSel.innerHTML =
+      `<option value="">Selecciona grupo</option>` +
+      grupos.map((g) => `<option value="${g.id}">${g.nombre}</option>`).join("");
+  } catch (e) {
+    console.error(e);
+    grupoSel.innerHTML = `<option value="">Error cargando grupos</option>`;
+    estSel.innerHTML = `<option value="">Sin estudiantes</option>`;
+  }
 }
 
 async function cargarEstudiantes(grupoId) {
-  estSel.innerHTML = `<option value="">Cargando...</option>`;
-  const res = await fetch(`/api/estudiantes/${grupoId}`);
-  const ests = await res.json();
-  estSel.innerHTML =
-    `<option value="">Selecciona estudiante</option>` +
-    ests.map((e) => `<option value="${e.id}">${e.nombre}</option>`).join("");
+  try {
+    estSel.innerHTML = `<option value="">Cargando estudiantes...</option>`;
+
+    const gradoParam = gradoId ? `?gradoId=${encodeURIComponent(gradoId)}` : "";
+    const res = await fetch(`/api/estudiantes/${encodeURIComponent(grupoId)}${gradoParam}`);
+    const ests = await res.json();
+
+    if (!Array.isArray(ests) || ests.length === 0) {
+      estSel.innerHTML = `<option value="">No hay estudiantes en este grupo</option>`;
+      return;
+    }
+
+    estSel.innerHTML =
+      `<option value="">Selecciona estudiante</option>` +
+      ests.map((e) => `<option value="${e.id}">${e.nombre}</option>`).join("");
+  } catch (e) {
+    console.error(e);
+    estSel.innerHTML = `<option value="">Error cargando estudiantes</option>`;
+  }
 }
 
 grupoSel.addEventListener("change", () => {
   const id = grupoSel.value;
-  if (!id) return;
+  setMsg("");
+  if (!id) {
+    estSel.innerHTML = `<option value="">Selecciona un grupo primero</option>`;
+    return;
+  }
   cargarEstudiantes(id);
 });
 
 btn.addEventListener("click", async () => {
-  msg.textContent = "";
+  setMsg("");
 
-  // ✅ Si no llegó gradoId, intenta inferirlo del next
   if (!gradoId) {
     const inferred = inferGradoIdFromNext(getNext());
     if (inferred) gradoId = inferred;
   }
 
   if (!gradoId) {
-    msg.textContent = "❌ Falta gradoId. Entra desde el index y elige Sexto o Séptimo.";
+    setMsg("❌ Falta gradoId. Entra desde el inicio y elige Sexto o Séptimo.");
     return;
   }
 
@@ -131,34 +158,42 @@ btn.addEventListener("click", async () => {
   const pin = pinInp.value.trim();
 
   if (!estudiante_id || pin.length < 4) {
-    msg.textContent = "Selecciona estudiante y escribe el PIN.";
+    setMsg("Selecciona estudiante y escribe el PIN.");
     return;
   }
 
-  const res = await fetch("/api/sesion", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ estudiante_id, pin }),
-  });
+  try {
+    btn.disabled = true;
+    btn.textContent = "Entrando...";
 
-  const data = await res.json();
-  if (!res.ok) {
-    msg.textContent = data.error || "No se pudo iniciar.";
-    return;
+    const res = await fetch("/api/sesion", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ estudiante_id, pin }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      setMsg(data.error || "No se pudo iniciar sesión.");
+      return;
+    }
+
+    localStorage.setItem("token", data.token);
+    localStorage.setItem("estudianteId", String(data.estudiante_id));
+    localStorage.setItem("grupoId", String(data.grupo_id));
+    localStorage.setItem("estudianteNombre", data.nombre);
+    localStorage.setItem("gradoId", String(gradoId));
+
+    setMsg("✅ Ingreso correcto. Entrando...", true);
+    setTimeout(goNext, 500);
+  } catch (e) {
+    console.error(e);
+    setMsg("❌ Ocurrió un error al iniciar sesión.");
+  } finally {
+    btn.disabled = false;
+    btn.textContent = "Entrar";
   }
-
-  // ✅ Guardamos sesión
-  localStorage.setItem("token", data.token);
-  localStorage.setItem("estudianteId", String(data.estudiante_id));
-  localStorage.setItem("grupoId", String(data.grupo_id));
-  localStorage.setItem("estudianteNombre", data.nombre);
-
-  // ✅ Guardamos el grado elegido (bloquea entrar al otro)
-  localStorage.setItem("gradoId", String(gradoId));
-
-  msg.textContent = "✅ Listo. Entrando...";
-
-  goNext();
 });
 
 cargarGrupos();

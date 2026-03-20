@@ -1,16 +1,32 @@
 [
-  { "subtema_id": 1, "tipo": "aritmetica", "config": { "op": "add", "min": 1, "max": 50 }, "peso": 4 },
-  { "subtema_id": 1, "tipo": "aritmetica", "config": { "op": "sub", "min": 1, "max": 50, "noNegativos": true }, "peso": 4 },
-  { "subtema_id": 1, "tipo": "aritmetica", "config": { "op": "mul", "min": 2, "max": 12 }, "peso": 3 },
-  { "subtema_id": 1, "tipo": "aritmetica", "config": { "op": "div", "min": 2, "max": 12 }, "peso": 2 },
-
   { "subtema_id": 2, "tipo": "potencia", "config": { "baseMin": 2, "baseMax": 12, "expMin": 2, "expMax": 4 }, "peso": 3 },
   { "subtema_id": 2, "tipo": "potencia", "config": { "baseMin": 2, "baseMax": 6, "expMin": 2, "expMax": 5 }, "peso": 2 },
 
   { "subtema_id": 3, "tipo": "raiz", "config": { "nMin": 2, "nMax": 25 }, "peso": 3 },
-  { "subtema_id": 3, "tipo": "raiz", "config": { "nMin": 2, "nMax": 15 }, "peso": 1 },
+  { "subtema_id": 3, "tipo": "raiz", "config": { "nMin": 2, "nMax": 15 }, "peso": 2 },
 
   { "subtema_id": 4, "tipo": "log", "config": { "base": 10, "expMin": 0, "expMax": 5 }, "peso": 3 },
   { "subtema_id": 4, "tipo": "log", "config": { "base": 2, "expMin": 1, "expMax": 6 }, "peso": 2 },
-  { "subtema_id": 4, "tipo": "log", "config": { "base": 3, "expMin": 1, "expMax": 5 }, "peso": 2 }
+  { "subtema_id": 4, "tipo": "log", "config": { "base": 3, "expMin": 1, "expMax": 5 }, "peso": 2 },
+
+  { "subtema_id": 5, "tipo": "potencia", "config": { "baseMin": 2, "baseMax": 10, "expMin": 2, "expMax": 3 }, "peso": 2 },
+  { "subtema_id": 5, "tipo": "raiz", "config": { "nMin": 2, "nMax": 20 }, "peso": 2 },
+  { "subtema_id": 5, "tipo": "log", "config": { "base": 10, "expMin": 1, "expMax": 3 }, "peso": 1 },
+  { "subtema_id": 5, "tipo": "log", "config": { "base": 2, "expMin": 1, "expMax": 5 }, "peso": 1 },
+  { "subtema_id": 5, "tipo": "log", "config": { "base": 3, "expMin": 1, "expMax": 4 }, "peso": 1 },
+
+  { "subtema_id": 18, "tipo": "aritmetica", "config": { "op": "mul", "min": 2, "max": 12 }, "peso": 3 },
+  { "subtema_id": 19, "tipo": "aritmetica", "config": { "op": "div", "min": 2, "max": 12 }, "peso": 3 },
+  
+  { "subtema_id": 32, "tipo": "estadistica_recoleccion", "config": { "modo": "conteo" }, "peso": 3 },
+  { "subtema_id": 33, "tipo": "estadistica_tabla_frecuencia", "config": { "modo": "tabla" }, "peso": 3 },
+  { "subtema_id": 34, "tipo": "estadistica_frecuencia_relativa", "config": { "modo": "relativa" }, "peso": 3 },
+  { "subtema_id": 35, "tipo": "estadistica_grafico_barras", "config": { "modo": "barras" }, "peso": 3 },
+
+{ "subtema_id": 32, "tipo": "estadistica_base", "config": { "modo": "frecuencia_absoluta" }, "peso": 1 },
+  { "subtema_id": 33, "tipo": "estadistica_base", "config": { "modo": "tabla_frecuencia" }, "peso": 1 },
+  { "subtema_id": 34, "tipo": "estadistica_base", "config": { "modo": "frecuencia_relativa_acumulada" }, "peso": 1 },
+  { "subtema_id": 35, "tipo": "estadistica_base", "config": { "modo": "grafico_barras" }, "peso": 1 }
+
+   
 ]

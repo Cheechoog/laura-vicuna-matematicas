@@ -4,9 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Seleccionar estudiante</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=11">
+  <link rel="stylesheet" href="css/seleccionar.css?v=11">
 </head>
-<body>
+<body class="app-page">
+
+  <div class="app-page-bg"></div>
+  <div class="app-page-overlay"></div>
+  <div class="page-glow page-glow-left"></div>
+  <div class="page-glow page-glow-right"></div>
 
   <header class="header header-interno">
     <div class="header-row">
@@ -14,35 +20,126 @@
         <a href="index.html" class="btn btn-ghost">← Volver</a>
       </div>
 
-      <div class="header-center">Seleccionar estudiante</div>
-
-      <div class="header-right">
-        <!-- intencionalmente vacío -->
+      <div class="header-center">
+        <div class="page-title-stack">
+          <span class="page-kicker">Ingreso de estudiante</span>
+          <span>Seleccionar estudiante</span>
+        </div>
       </div>
+
+      <div class="header-right"></div>
     </div>
   </header>
 
   <main class="content">
-    <div class="container">
-      <section class="ejercicio-box">
-        <select id="grupo">
-          <option value="">Cargando grupos...</option>
-        </select>
+    <div class="select-page-shell">
 
-        <select id="estudiante">
-          <option value="">Selecciona un grupo primero</option>
-        </select>
+      <section class="select-hero">
+        <div class="select-hero-inner">
 
-        <input id="pin" type="password" inputmode="numeric" maxlength="4"
-          placeholder="PIN (4 dígitos)" style="text-align:center"/>
+          <article class="select-hero-panel">
+            <div class="select-hero-copy-wrap">
+              <div class="select-hero-kicker">Acceso académico</div>
 
-        <button id="btn" class="btn btn-primary">Entrar</button>
-        <p id="msg" class="meta"></p>
+              <div class="select-hero-top">
+                <div class="select-hero-icon">👨‍🎓</div>
+
+                <div>
+                  <h1 class="select-hero-title">Entra a tu espacio de aprendizaje</h1>
+                  <p class="select-hero-subtitle">
+                    Accede a la plataforma seleccionando tu grupo, tu nombre y tu PIN personal.
+                    Desde aquí podrás continuar con prácticas, talleres, quiz y actividades del curso.
+                  </p>
+                </div>
+              </div>
+
+              <div class="select-hero-pills">
+                <span class="select-hero-pill">📘 Matemáticas por subtemas</span>
+                <span class="select-hero-pill">🔐 Acceso seguro</span>
+                <span class="select-hero-pill">📱 Diseño adaptable</span>
+              </div>
+
+              <div class="select-hero-stats">
+                <div class="select-stat-card">
+                  <strong>1</strong>
+                  <span>Selecciona tu grupo</span>
+                </div>
+
+                <div class="select-stat-card">
+                  <strong>2</strong>
+                  <span>Elige tu nombre</span>
+                </div>
+
+                <div class="select-stat-card">
+                  <strong>3</strong>
+                  <span>Ingresa tu PIN</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="select-hero-footer">
+              <span class="select-hero-note">✨ Entorno claro y ordenado</span>
+              <span class="select-hero-note">🧠 Pensado para estudiantes</span>
+              <span class="select-hero-note">🏫 Uso en aula y colegio</span>
+            </div>
+          </article>
+
+          <article class="select-login-panel">
+            <div class="select-login-head">
+              <div class="select-login-badge">Ingreso seguro</div>
+              <h2 class="select-login-title">Identifícate para continuar</h2>
+              <p class="select-login-subtitle">
+                Usa tus datos tal como fueron registrados por el profesor.
+              </p>
+            </div>
+
+            <div class="select-form">
+              <div class="select-field">
+                <label for="grupo">Grupo</label>
+                <select id="grupo">
+                  <option value="">Cargando grupos...</option>
+                </select>
+              </div>
+
+              <div class="select-field">
+                <label for="estudiante">Estudiante</label>
+                <select id="estudiante">
+                  <option value="">Selecciona un grupo primero</option>
+                </select>
+              </div>
+
+              <div class="select-field">
+                <label for="pin">PIN</label>
+                <input
+                  id="pin"
+                  type="password"
+                  inputmode="numeric"
+                  maxlength="4"
+                  placeholder="PIN de 4 dígitos"
+                />
+                <p class="select-pin-help">Escribe tu PIN personal para ingresar.</p>
+              </div>
+
+              <div class="select-login-actions">
+                <button id="btn" class="btn btn-primary select-login-btn">Entrar a la plataforma</button>
+                <p id="msg" class="meta select-login-msg"></p>
+              </div>
+            </div>
+
+            <div class="select-support-row">
+              <span class="select-support-chip">🔒 Sesión protegida</span>
+              <span class="select-support-chip">📚 Acceso por grado</span>
+              <span class="select-support-chip">✅ Flujo simple</span>
+            </div>
+          </article>
+
+        </div>
       </section>
+
     </div>
   </main>
 
-  <script src="session.js"></script>
-  <script src="seleccionar.js"></script>
+  <script src="session.js?v=11"></script>
+  <script src="seleccionar.js?v=11"></script>
 </body>
 </html>

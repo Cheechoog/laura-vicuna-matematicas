@@ -1,65 +1,219 @@
 [
   {
-    "subtema_id": 1,
-    "titulo": "Operaciones básicas: suma, resta, multiplicación y división",
-    "html": "<h3>✅ Operaciones básicas</h3><p>Las <b>operaciones básicas</b> nos ayudan a resolver problemas con números naturales:</p><ul><li><b>Suma (+):</b> juntar cantidades.</li><li><b>Resta (−):</b> quitar o comparar.</li><li><b>Multiplicación (×):</b> suma repetida.</li><li><b>División (÷):</b> repartir en partes iguales.</li></ul><p><b>Ejemplo:</b> 3×4 significa 3+3+3+3 = 12.</p>"
-  },
-  {
-    "subtema_id": 1,
-    "titulo": "Jerarquía de operaciones",
-    "html": "<h3>🧠 Jerarquía (orden) de operaciones</h3><p>Cuando hay varias operaciones en un mismo ejercicio, se resuelve en este orden:</p><ol><li><b>Paréntesis</b></li><li><b>Potencias y raíces</b></li><li><b>Multiplicación y división</b> (de izquierda a derecha)</li><li><b>Suma y resta</b> (de izquierda a derecha)</li></ol><p><b>Ejemplo:</b> 8 + 2×5 = 8 + 10 = 18 (primero la multiplicación).</p>"
-  },
-  {
-    "subtema_id": 1,
-    "titulo": "Errores comunes en operaciones",
-    "html": "<h3>⚠️ Errores comunes</h3><ul><li>Hacer 8+2×5 como (8+2)×5 ❌</li><li>Dividir sin repartir exacto (si no es exacto, en naturales se dice “no exacta”).</li><li>Confundir 6−9 con resultado natural (en naturales no hay negativos).</li></ul>"
-  },
-
-  {
     "subtema_id": 2,
     "titulo": "Potenciación: qué es y cómo funciona",
-    "html": "<h3>✅ Potenciación</h3><p>Una <b>potencia</b> es una multiplicación repetida.</p><p><b>base</b><sup><b>exponente</b></sup></p><p><b>Ejemplo:</b> 2<sup>4</sup> = 2×2×2×2 = 16</p><ul><li><b>Base:</b> número que se repite.</li><li><b>Exponente:</b> cuántas veces se multiplica.</li></ul>"
+    "html": "<h3>✅ Potenciación</h3><p>La <b>potenciación</b> es una forma corta de escribir una multiplicación repetida.</p><p>Por ejemplo, 2<sup>3</sup> significa 2×2×2 = 8.</p><ul><li><b>Base:</b> número que se repite.</li><li><b>Exponente:</b> número de veces que se multiplica la base.</li></ul><p><b>Ejemplo:</b> 5<sup>2</sup> = 5×5 = 25.</p>"
   },
   {
     "subtema_id": 2,
-    "titulo": "Propiedades básicas de las potencias",
-    "html": "<h3>🧠 Propiedades básicas</h3><ul><li>a<sup>1</sup> = a</li><li>a<sup>0</sup> = 1 (si a ≠ 0)</li><li>a<sup>m</sup> × a<sup>n</sup> = a<sup>m+n</sup></li><li>(a<sup>m</sup>)<sup>n</sup> = a<sup>m·n</sup></li></ul><p><b>Ejemplo:</b> 3<sup>2</sup>×3<sup>3</sup>=3<sup>5</sup></p>"
+    "titulo": "Propiedades básicas de la potenciación",
+    "html": "<h3>🧠 Propiedades básicas</h3><ul><li>a<sup>1</sup> = a</li><li>a<sup>0</sup> = 1, si a ≠ 0</li><li>a<sup>m</sup> × a<sup>n</sup> = a<sup>m+n</sup></li><li>(a<sup>m</sup>)<sup>n</sup> = a<sup>m·n</sup></li></ul><p><b>Ejemplo:</b> 2<sup>2</sup> × 2<sup>3</sup> = 2<sup>5</sup>.</p>"
+  },
+  {
+    "subtema_id": 2,
+    "titulo": "Potenciación en la vida diaria",
+    "html": "<h3>🌍 Potenciación en la vida diaria</h3><p>La potenciación aparece en situaciones reales como áreas, volúmenes y crecimiento repetido.</p><ul><li><b>Área de un cuadrado:</b> si el lado mide 6, el área es 6<sup>2</sup> = 36.</li><li><b>Volumen de un cubo:</b> si la arista mide 4, el volumen es 4<sup>3</sup> = 64.</li><li><b>Crecimiento:</b> si una cantidad se duplica varias veces, usamos potencias de 2.</li></ul><p>📌 La potenciación ayuda a expresar de forma rápida una multiplicación repetida.</p>"
   },
   {
     "subtema_id": 2,
     "titulo": "Errores comunes en potenciación",
-    "html": "<h3>⚠️ Errores comunes</h3><ul><li>Creer que (2+3)<sup>2</sup> = 2<sup>2</sup>+3<sup>2</sup> ❌</li><li>Confundir 2<sup>3</sup> con 3<sup>2</sup>.</li><li>Olvidar que a<sup>0</sup>=1.</li></ul>"
+    "html": "<h3>⚠️ Errores comunes</h3><ul><li>Confundir 2<sup>3</sup> con 2×3.</li><li>Creer que 3<sup>2</sup> es lo mismo que 2<sup>3</sup>.</li><li>Olvidar que a<sup>0</sup> = 1.</li><li>Pensar que 2<sup>3</sup> = 6, cuando en realidad es 8.</li></ul>"
   },
 
   {
     "subtema_id": 3,
-    "titulo": "¿Qué es una raíz?",
-    "html": "<h3>✅ ¿Qué es una raíz?</h3><p>La <b>radicación</b> es la operación inversa de la potenciación.</p><p><b>Ejemplo:</b> √25 = 5 porque 5² = 25.</p><p>📌 En números naturales usamos el resultado <b>positivo</b>.</p>"
+    "titulo": "¿Qué es la radicación?",
+    "html": "<h3>✅ Radicación</h3><p>La <b>radicación</b> es la operación inversa de la potenciación.</p><p>Sirve para encontrar el número que al multiplicarse por sí mismo da otro número.</p><p><b>Ejemplo:</b> √25 = 5 porque 5×5 = 25.</p><p>En este nivel trabajaremos principalmente con <b>raíces exactas</b>.</p>"
   },
   {
     "subtema_id": 3,
     "titulo": "Cómo resolver raíces paso a paso",
-    "html": "<h3>🧠 Paso a paso</h3><p>Para resolver una raíz cuadrada buscamos el número que multiplicado por sí mismo da el número de adentro.</p><p><b>Ejemplo:</b> √36</p><ol><li>Busco un número que al cuadrado dé 36.</li><li>6×6 = 36</li><li>Entonces √36 = 6</li></ol><p>✅ Si no existe exacta, decimos que <b>no es raíz exacta</b> (por ahora solo trabajaremos raíces exactas).</p>"
+    "html": "<h3>🧠 Paso a paso</h3><ol><li>Observa el número dentro de la raíz.</li><li>Busca qué número multiplicado por sí mismo da ese resultado.</li><li>Ese número será la raíz.</li></ol><p><b>Ejemplo:</b> √49 = 7 porque 7×7 = 49.</p>"
+  },
+  {
+    "subtema_id": 3,
+    "titulo": "Radicación en la vida diaria",
+    "html": "<h3>🌍 Radicación en la vida diaria</h3><p>La radicación aparece cuando conocemos el resultado final y queremos descubrir la medida original.</p><ul><li><b>Lado de un cuadrado:</b> si el área es 64 m², entonces cada lado mide √64 = 8 m.</li><li><b>Baldosa cuadrada:</b> si su área es 81 cm², el lado mide √81 = 9 cm.</li></ul><p>📌 La raíz cuadrada nos ayuda a pasar del área al lado.</p>"
   },
   {
     "subtema_id": 3,
     "titulo": "Errores comunes en radicación",
-    "html": "<h3>⚠️ Errores comunes</h3><ul><li><b>Confundir</b> √16 con 8. En realidad √16 = 4.</li><li>Pensar que √49 = ±7. En naturales solo es <b>7</b>.</li><li>Creer que √(a+b)=√a+√b. ❌ Eso no se puede.</li></ul>"
+    "html": "<h3>⚠️ Errores comunes</h3><ul><li>Creer que √16 = 8.</li><li>Confundir la raíz con una división.</li><li>Pensar que √36 = 18.</li><li>No verificar si el resultado multiplicado por sí mismo da el número inicial.</li></ul>"
   },
 
   {
     "subtema_id": 4,
-    "titulo": "Logaritmación: idea básica",
-    "html": "<h3>✅ Logaritmación</h3><p>El <b>logaritmo</b> responde: <b>¿a qué exponente debo elevar la base para obtener un número?</b></p><p><b>Ejemplo:</b> log<sub>10</sub>(100) = 2 porque 10<sup>2</sup> = 100</p><p>Entonces el logaritmo es la operación inversa de la potenciación.</p>"
+    "titulo": "¿Qué es la logaritmación?",
+    "html": "<h3>✅ Logaritmación</h3><p>La <b>logaritmación</b> responde a una pregunta muy importante: <b>¿a qué exponente debo elevar una base para obtener un número?</b></p><p><b>Ejemplo:</b> log<sub>10</sub>(100)=2 porque 10<sup>2</sup>=100.</p><p>El logaritmo está relacionado directamente con la potenciación.</p>"
   },
   {
     "subtema_id": 4,
-    "titulo": "Cómo resolver logaritmos sencillos",
-    "html": "<h3>🧠 Paso a paso</h3><p>Para resolver log<sub>b</sub>(n) buscas un exponente x tal que:</p><p><b>b</b><sup><b>x</b></sup> = <b>n</b></p><p><b>Ejemplo:</b> log<sub>2</sub>(8) = 3 porque 2<sup>3</sup>=8</p>"
+    "titulo": "Cómo entender un logaritmo",
+    "html": "<h3>🧠 Idea básica</h3><p>Cuando ves una expresión como log<sub>2</sub>(8), debes preguntarte:</p><p><b>¿2 elevado a qué número da 8?</b></p><p>La respuesta es 3, porque 2<sup>3</sup>=8.</p><p>Entonces: log<sub>2</sub>(8)=3.</p>"
   },
   {
     "subtema_id": 4,
-    "titulo": "Errores comunes en logaritmos",
-    "html": "<h3>⚠️ Errores comunes</h3><ul><li>Creer que log<sub>10</sub>(100)=10 ❌</li><li>Confundir base con resultado.</li><li>Olvidar la pregunta clave: <b>¿qué potencia?</b></li></ul>"
-  }
+    "titulo": "Logaritmación en la vida diaria",
+    "html": "<h3>🌍 Aplicación de logaritmos</h3><p>Los logaritmos sirven para entender crecimientos, escalas y relaciones entre cantidades.</p><p>Por ejemplo, si sabemos que una cantidad sigue una potencia, el logaritmo nos ayuda a encontrar el exponente.</p><p><b>Ejemplo:</b> si 3<sup>x</sup>=81, entonces x=4, por lo tanto log<sub>3</sub>(81)=4.</p>"
+  },
+  {
+    "subtema_id": 4,
+    "titulo": "Errores comunes en logaritmación",
+    "html": "<h3>⚠️ Errores comunes</h3><ul><li>Creer que log<sub>10</sub>(100)=10.</li><li>Confundir la base con la respuesta.</li><li>Olvidar que el logaritmo pregunta por el exponente.</li><li>Creer que log<sub>2</sub>(8)=4, cuando realmente es 3.</li></ul>"
+  },
+
+  {
+    "subtema_id": 5,
+    "titulo": "Aplicaciones de potenciación, radicación y logaritmación",
+    "html": "<h3>✅ Aplicaciones integradas</h3><p>Estas tres operaciones están conectadas:</p><ul><li><b>Potenciación:</b> multiplica una cantidad varias veces por sí misma.</li><li><b>Radicación:</b> busca el número original.</li><li><b>Logaritmación:</b> busca el exponente.</li></ul><p><b>Ejemplos:</b></p><ul><li>Si un cuadrado tiene lado 9, su área es 9<sup>2</sup>=81.</li><li>Si el área es 121, el lado es √121=11.</li><li>Si 2<sup>x</sup>=32, entonces x=5.</li></ul>"
+  },
+  {
+    "subtema_id": 5,
+    "titulo": "Aplicaciones en problemas de la vida diaria",
+    "html": "<h3>🌍 Resolver situaciones cotidianas</h3><p>Estas operaciones se usan en geometría, crecimiento y análisis de cantidades.</p><ul><li><b>Área:</b> usar potencias.</li><li><b>Lado de figuras:</b> usar raíces.</li><li><b>Exponente desconocido:</b> usar logaritmos.</li></ul><p>📌 Saber elegir la operación correcta ayuda a resolver mejor los problemas.</p>"
+  },
+  {
+    "subtema_id": 5,
+    "titulo": "Cómo reconocer qué operación usar",
+    "html": "<h3>🧠 ¿Cuál operación necesito?</h3><ul><li>Si repites una multiplicación: <b>potenciación</b>.</li><li>Si buscas el número que al cuadrado da otro: <b>radicación</b>.</li><li>Si buscas el exponente: <b>logaritmación</b>.</li></ul><p><b>Ejemplo:</b> si 10<sup>x</sup>=1000, debes hallar el exponente, por eso usas logaritmo.</p>"
+  },
+  {
+    "subtema_id": 5,
+    "titulo": "Errores comunes en aplicaciones",
+    "html": "<h3>⚠️ Errores comunes</h3><ul><li>Usar raíz cuando en realidad se necesita potencia.</li><li>Confundir el área de un cuadrado con la medida del lado.</li><li>No identificar cuándo se pide el exponente.</li></ul>"
+  },
+
+  {
+    "subtema_id": 18,
+    "titulo": "Multiplicación de números enteros",
+    "html": "<h3>✅ Multiplicación de enteros</h3><p>Para multiplicar números enteros primero observamos los signos.</p><ul><li>(+) × (+) = (+)</li><li>(+) × (-) = (-)</li><li>(-) × (+) = (-)</li><li>(-) × (-) = (+)</li></ul><p><b>Ejemplo:</b> (-3)×4 = -12 y (-3)×(-4)=12.</p>"
+  },
+  {
+    "subtema_id": 18,
+    "titulo": "Multiplicación de enteros en la vida diaria",
+    "html": "<h3>🌍 Aplicaciones cotidianas</h3><p>La multiplicación de enteros representa cambios repetidos.</p><ul><li>Perder 2 puntos por ronda durante 5 rondas: (-2)×5=-10.</li><li>Bajar 3°C por hora durante 4 horas: (-3)×4=-12.</li><li>Ganar 4 puntos por ronda durante 3 rondas: (+4)×3=+12.</li></ul>"
+  },
+  {
+    "subtema_id": 18,
+    "titulo": "Cómo entender la regla de signos",
+    "html": "<h3>🧠 Regla de signos</h3><p>Primero decides el signo del resultado y luego multiplicas los valores absolutos.</p><p><b>Ejemplo:</b> (-5)×(-2): el signo es positivo y 5×2=10, entonces el resultado es 10.</p>"
+  },
+  {
+    "subtema_id": 18,
+    "titulo": "Errores comunes en multiplicación de enteros",
+    "html": "<h3>⚠️ Errores comunes</h3><ul><li>Creer que negativo por negativo da negativo.</li><li>Olvidar revisar el signo antes de multiplicar.</li><li>Confundir suma de enteros con multiplicación de enteros.</li></ul>"
+  },
+
+  {
+    "subtema_id": 19,
+    "titulo": "División de números enteros",
+    "html": "<h3>✅ División de enteros</h3><p>La división de enteros sigue la misma regla de signos de la multiplicación.</p><ul><li>(+) ÷ (+) = (+)</li><li>(+) ÷ (-) = (-)</li><li>(-) ÷ (+) = (-)</li><li>(-) ÷ (-) = (+)</li></ul><p><b>Ejemplo:</b> (-12)÷3=-4 y (-12)÷(-3)=4.</p>"
+  },
+  {
+    "subtema_id": 19,
+    "titulo": "División de enteros en la vida diaria",
+    "html": "<h3>🌍 Aplicaciones cotidianas</h3><p>La división de enteros sirve para repartir cambios totales en partes iguales.</p><ul><li>Una pérdida total de 20 puntos en 5 rondas: (-20)÷5=-4.</li><li>Una variación total de -18 en 3 etapas: (-18)÷3=-6.</li></ul>"
+  },
+  {
+    "subtema_id": 19,
+    "titulo": "Cómo verificar una división",
+    "html": "<h3>🧠 Comprobar con multiplicación</h3><p>Para revisar una división multiplicamos el cociente por el divisor.</p><p><b>Ejemplo:</b> si (-24)÷(-6)=4, comprobamos que 4×(-6)=-24.</p>"
+  },
+  {
+    "subtema_id": 19,
+    "titulo": "Errores comunes en división de enteros",
+    "html": "<h3>⚠️ Errores comunes</h3><ul><li>Creer que negativo entre negativo da negativo.</li><li>No revisar si la división es exacta.</li><li>No comprobar con una multiplicación.</li></ul>"
+  },
+
+  {
+    "subtema_id": 11,
+    "titulo": "Población y muestra: idea central de la estadística",
+    "html": "<h3>✅ Población y muestra</h3><p>En estadística, no siempre estudiamos a todas las personas, objetos o situaciones. Por eso diferenciamos entre <b>población</b> y <b>muestra</b>.</p><ul><li><b>Población:</b> el conjunto completo que queremos estudiar.</li><li><b>Muestra:</b> una parte de la población que observamos o encuestamos.</li></ul><p><b>Ejemplo:</b> si queremos saber cuál es la merienda favorita del colegio, la <b>población</b> son todos los estudiantes del colegio. Si preguntamos solo a 40 estudiantes, esa es la <b>muestra</b>.</p><div style='margin-top:14px;padding:14px;border-radius:16px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12)'><b>Idea clave:</b> la muestra se usa para obtener información de la población cuando estudiar a todos sería difícil, costoso o tardado.</div>"
+  },
+  {
+    "subtema_id": 11,
+    "titulo": "¿Cuándo una muestra representa bien a la población?",
+    "html": "<h3>🧠 Una buena muestra</h3><p>No cualquier grupo pequeño sirve como muestra. Una muestra debe parecerse a la población que representa.</p><p><b>Por ejemplo:</b> si quieres conocer la opinión de todo el colegio, no sería justo preguntar solo a un único salón. Lo correcto es elegir estudiantes de diferentes cursos o grupos.</p><table border='1' cellpadding='6' style='border-collapse:collapse;width:100%;max-width:560px'><tr><th>Situación</th><th>¿Es buena muestra?</th><th>¿Por qué?</th></tr><tr><td>Preguntar a 5 amigos del mismo salón</td><td>No siempre</td><td>Puede no representar al resto del colegio</td></tr><tr><td>Preguntar a estudiantes de varios cursos</td><td>Sí</td><td>Se parece más a la población completa</td></tr></table><details style='margin-top:14px'><summary><b>Ver ejemplo guiado</b></summary><p style='margin-top:10px'>Si en un colegio hay primaria y bachillerato, una muestra solo de bachillerato no representa a todo el colegio. Una mejor muestra incluye estudiantes de ambos niveles.</p></details>"
+  },
+  {
+    "subtema_id": 11,
+    "titulo": "Ejemplo aplicado: población y muestra en el aula",
+    "html": "<h3>📘 Ejemplo aplicado</h3><p>Supongamos que quieres saber cuántos estudiantes practican deporte después de clase.</p><ul><li><b>Población:</b> todos los estudiantes del grado séptimo.</li><li><b>Muestra:</b> 12 estudiantes elegidos al azar.</li></ul><p>Si 9 de esos 12 responden que sí practican deporte, esa información no describe a toda la población con total seguridad, pero sí da una <b>idea inicial</b>.</p><div style='margin-top:12px;display:grid;gap:8px'><div style='padding:10px 12px;border-radius:12px;background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.22)'>Población = todos</div><div style='padding:10px 12px;border-radius:12px;background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.22)'>Muestra = una parte</div></div><p style='margin-top:12px'>📌 La estadística usa las muestras para tomar decisiones y entender mejor lo que ocurre en un grupo grande.</p>"
+  },
+
+  {
+    "subtema_id": 12,
+    "titulo": "Variables: qué se estudia o se mide",
+    "html": "<h3>✅ Variables</h3><p>Una <b>variable</b> es una característica que puede observarse, registrarse o medirse en una persona, objeto o situación.</p><p>Cuando hacemos estadística, siempre estamos estudiando alguna variable.</p><ul><li>Edad</li><li>Color favorito</li><li>Número de hermanos</li><li>Altura</li><li>Medio de transporte</li></ul><p><b>Ejemplo:</b> si encuestas a un grupo sobre su fruta favorita, la variable es <b>fruta favorita</b>.</p><div style='margin-top:14px;padding:14px;border-radius:16px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12)'><b>Pregunta clave:</b> cuando leas un problema de estadística, pregúntate primero: <i>¿qué se quiere conocer o registrar?</i> Eso casi siempre te lleva a la variable.</div>"
+  },
+  {
+    "subtema_id": 12,
+    "titulo": "Variables cualitativas y cuantitativas",
+    "html": "<h3>🧠 Tipos de variables</h3><p>Las variables pueden clasificarse de forma simple en dos grandes grupos:</p><ul><li><b>Cualitativas:</b> describen cualidades o categorías. Ejemplo: color favorito, deporte preferido, medio de transporte.</li><li><b>Cuantitativas:</b> se expresan con números. Ejemplo: edad, peso, estatura, número de mascotas.</li></ul><table border='1' cellpadding='6' style='border-collapse:collapse;width:100%;max-width:560px'><tr><th>Variable</th><th>Tipo</th></tr><tr><td>Color de ojos</td><td>Cualitativa</td></tr><tr><td>Edad</td><td>Cuantitativa</td></tr><tr><td>Número de hermanos</td><td>Cuantitativa</td></tr><tr><td>Asignatura favorita</td><td>Cualitativa</td></tr></table><p style='margin-top:12px'>📌 Si la respuesta es una <b>categoría</b>, suele ser cualitativa. Si la respuesta es una <b>cantidad o número</b>, suele ser cuantitativa.</p>"
+  },
+  {
+    "subtema_id": 12,
+    "titulo": "Cómo identificar la variable en un problema",
+    "html": "<h3>📘 Leer un problema estadístico</h3><p>Para identificar la variable, sigue este proceso:</p><ol><li>Lee la pregunta principal.</li><li>Descubre qué se quiere conocer.</li><li>Decide si la respuesta es categoría o número.</li></ol><p><b>Ejemplo 1:</b> “¿Qué red social usan más los estudiantes?” → variable: <b>red social más usada</b> → <b>cualitativa</b>.</p><p><b>Ejemplo 2:</b> “¿Cuántas horas estudia cada estudiante al día?” → variable: <b>horas de estudio</b> → <b>cuantitativa</b>.</p><details style='margin-top:14px'><summary><b>Ver error común</b></summary><p style='margin-top:10px'>Un error frecuente es confundir la población con la variable. La población es <b>quiénes</b> se estudian; la variable es <b>qué</b> se estudia de ellos.</p></details>"
+  },
+
+  {
+    "subtema_id": 13,
+    "titulo": "Recolección y representación de datos",
+    "html": "<h3>✅ Recolección y representación de datos</h3><p>La estadística empieza cuando reunimos información. Ese proceso se llama <b>recolección de datos</b>.</p><p>Podemos recolectar datos de varias maneras:</p><ul><li><b>Encuesta:</b> preguntamos y registramos respuestas.</li><li><b>Observación:</b> miramos y anotamos lo que ocurre.</li><li><b>Medición:</b> usamos instrumentos, por ejemplo una balanza o una regla.</li></ul><p>Después de recolectar los datos, no se dejan desordenados: se <b>organizan en tablas</b> y luego pueden representarse con <b>gráficos</b>.</p><div style='margin-top:12px;display:grid;gap:8px'><div style='padding:10px 12px;border-radius:12px;background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.22)'>1. Recolectar</div><div style='padding:10px 12px;border-radius:12px;background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.22)'>2. Organizar en tabla</div><div style='padding:10px 12px;border-radius:12px;background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.22)'>3. Representar en gráfico</div></div>"
+  },
+  {
+    "subtema_id": 13,
+    "titulo": "De los datos crudos a la tabla",
+    "html": "<h3>📊 Organizar la información</h3><p>Observa estos datos recolectados sobre fruta favorita:</p><p><b>Manzana, Banano, Manzana, Naranja, Banano, Manzana, Uva, Banano, Manzana, Naranja</b></p><p>Si dejamos la información así, cuesta analizarla. Por eso la convertimos en tabla:</p><table border='1' cellpadding='6' style='border-collapse:collapse;width:100%;max-width:420px'><tr><th>Fruta</th><th>Cantidad</th></tr><tr><td>Manzana</td><td>4</td></tr><tr><td>Banano</td><td>3</td></tr><tr><td>Naranja</td><td>2</td></tr><tr><td>Uva</td><td>1</td></tr></table><p style='margin-top:12px'>📌 La tabla nos permite ver rápidamente cuál categoría aparece más y cuál aparece menos.</p>"
+  },
+  {
+    "subtema_id": 13,
+    "titulo": "De la tabla al gráfico",
+    "html": "<h3>📈 Visualizar con un gráfico</h3><p>Con la tabla anterior también podemos construir un gráfico de barras.</p><div style='margin-top:12px;display:grid;gap:10px;max-width:520px'><div style='display:flex;align-items:center;gap:10px'><span style='width:90px'>Manzana</span><div style='flex:1;background:rgba(255,255,255,.08);border-radius:999px;overflow:hidden'><div style='width:80%;height:16px;background:linear-gradient(90deg,#4ade80,#22c55e)'></div></div><b>4</b></div><div style='display:flex;align-items:center;gap:10px'><span style='width:90px'>Banano</span><div style='flex:1;background:rgba(255,255,255,.08);border-radius:999px;overflow:hidden'><div style='width:60%;height:16px;background:linear-gradient(90deg,#60a5fa,#3b82f6)'></div></div><b>3</b></div><div style='display:flex;align-items:center;gap:10px'><span style='width:90px'>Naranja</span><div style='flex:1;background:rgba(255,255,255,.08);border-radius:999px;overflow:hidden'><div style='width:40%;height:16px;background:linear-gradient(90deg,#f59e0b,#f97316)'></div></div><b>2</b></div><div style='display:flex;align-items:center;gap:10px'><span style='width:90px'>Uva</span><div style='flex:1;background:rgba(255,255,255,.08);border-radius:999px;overflow:hidden'><div style='width:20%;height:16px;background:linear-gradient(90deg,#a78bfa,#8b5cf6)'></div></div><b>1</b></div></div><p style='margin-top:12px'>Aquí se ve de forma visual que <b>Manzana</b> es la categoría más frecuente.</p>"
+  },
+
+  {
+    "subtema_id": 32,
+    "titulo": "Frecuencia absoluta: contar correctamente los datos",
+    "html": "<h3>✅ Frecuencia absoluta</h3><p>La <b>frecuencia absoluta</b> indica cuántas veces aparece un dato o una categoría.</p><p>Por ejemplo, si en una encuesta sobre fruta favorita aparece <b>manzana</b> 6 veces, entonces su frecuencia absoluta es <b>6</b>.</p><p>Este concepto es la base de toda la estadística escolar, porque primero se cuenta y luego se organiza.</p>"
+  },
+  {
+    "subtema_id": 32,
+    "titulo": "Ejemplo guiado de frecuencia absoluta",
+    "html": "<h3>🧠 Del listado al conteo</h3><p>Observa los datos y descubre cuántas veces aparece cada categoría.</p><div data-widget=\"frecuencias\" data-default=\"fútbol, baloncesto, fútbol, natación, fútbol, voleibol, baloncesto, fútbol\"></div><p style='margin-top:12px'>La categoría que más se repite tiene mayor frecuencia absoluta.</p>"
+  },
+
+  {
+    "subtema_id": 33,
+    "titulo": "Tablas de frecuencia: organizar para comprender",
+    "html": "<h3>✅ Tablas de frecuencia</h3><p>Una <b>tabla de frecuencia</b> organiza los datos y muestra cuántas veces aparece cada valor.</p><p>Sirve para pasar de una lista desordenada a una representación clara que luego puede llevarse al tablero o a un gráfico.</p>"
+  },
+  {
+    "subtema_id": 33,
+    "titulo": "Construir la tabla paso a paso",
+    "html": "<h3>📋 Organización de datos</h3><p>Primero identifica las categorías, luego cuenta cuántas veces aparece cada una y finalmente escríbelas en una tabla.</p><div data-widget=\"frecuencias\" data-default=\"azul, rojo, azul, verde, azul, rojo, amarillo, azul, verde\"></div><p style='margin-top:12px'>Este ejercicio sirve muy bien para que el estudiante haga el conteo en el cuaderno y después complete la tabla en el tablero.</p>"
+  },
+
+  {
+    "subtema_id": 34,
+    "titulo": "Frecuencia relativa y frecuencia absoluta acumulada",
+    "html": "<h3>✅ Frecuencia relativa y acumulada</h3><p>La <b>frecuencia relativa</b> compara la frecuencia de un dato con el total. La <b>frecuencia absoluta acumulada</b> va sumando frecuencias fila por fila.</p><ul><li><b>Frecuencia relativa:</b> ayuda a comparar en porcentaje.</li><li><b>Frecuencia acumulada:</b> ayuda a ver cuánto se ha sumado hasta cierto valor.</li></ul><p>Ambas son fundamentales en séptimo porque obligan a interpretar, no solo a copiar.</p>"
+  },
+  {
+    "subtema_id": 34,
+    "titulo": "Tabla completa: frecuencia, acumulada y porcentaje",
+    "html": "<h3>📊 Lectura completa de una tabla</h3><p>Usa este recurso para ver cómo cambian la frecuencia acumulada y el porcentaje a medida que los datos se organizan.</p><div data-widget=\"tabla-acumulada\" data-default=\"0,1,1,2,2,2,3,3,4,4,4,5\"></div><p style='margin-top:12px'>Aquí el estudiante puede interpretar cantidades, porcentajes y acumulación en una sola tabla.</p>"
+  },
+
+  {
+    "subtema_id": 35,
+    "titulo": "Gráfico de barras en un plano cartesiano simple",
+    "html": "<h3>✅ Diagrama de barras</h3><p>El <b>diagrama de barras</b> representa visualmente la frecuencia de cada categoría.</p><p>En matemáticas es importante que el estudiante entienda qué va en cada eje:</p><ul><li><b>Eje horizontal:</b> categorías o valores.</li><li><b>Eje vertical:</b> frecuencias o cantidades.</li></ul><p>La barra más alta representa la categoría más frecuente.</p>"
+  },
+  {
+  "subtema_id": 35,
+  "titulo": "Construcción dinámica del gráfico",
+  "html": "<h3>📈 De la tabla al gráfico</h3><p>Modifica los datos y observa cómo cambia la gráfica. Así el estudiante no solo la mira: entiende cómo se construye.</p><p style='margin-top:12px'>Esto ya se acerca más a lo que pidió el profesor: una experiencia visual, matemática y activa.</p>"
+}
 ]

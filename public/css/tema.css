@@ -1,0 +1,418 @@
+/* =========================================
+   TEMA / LISTA DE TEMAS
+   REDISEÑO LIMPIO Y CONSISTENTE
+   ========================================= */
+
+.tema-page-shell {
+  width: min(1340px, calc(100% - 32px));
+  margin: 0 auto;
+  padding-bottom: 34px;
+}
+
+.tema-hero-wrap {
+  width: 100%;
+  margin: 0 auto 24px;
+}
+
+.glass-hero-card {
+  border-radius: 30px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background:
+    radial-gradient(720px 280px at 0% 0%, rgba(66,215,255,0.10), transparent 60%),
+    radial-gradient(520px 260px at 100% 100%, rgba(255,211,107,0.10), transparent 60%),
+    linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.05));
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.34);
+}
+
+.glass-main-card {
+  width: 100%;
+  margin: 0 auto;
+  padding: 26px;
+  border-radius: 30px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.06));
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.34);
+}
+
+.tema-hero-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(240px, 0.85fr);
+  gap: 20px;
+  padding: 28px;
+  position: relative;
+  overflow: hidden;
+}
+
+.tema-hero-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(120deg, rgba(255,255,255,0.04), transparent 35%, transparent 65%, rgba(255,255,255,0.03));
+}
+
+.tema-hero-left {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  position: relative;
+  z-index: 1;
+}
+
+.tema-hero-icon {
+  width: 82px;
+  height: 82px;
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, rgba(66,215,255,0.18), rgba(255,184,43,0.16));
+  border: 1px solid rgba(255,255,255,0.14);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.16);
+}
+
+.tema-hero-copy {
+  min-width: 0;
+}
+
+.tema-hero-kicker {
+  display: inline-block;
+  margin-bottom: 8px;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.10em;
+  font-weight: 900;
+  color: rgba(255,255,255,0.66);
+}
+
+.tema-hero-title {
+  font-size: clamp(1.9rem, 3vw, 3rem);
+  line-height: 1.02;
+  font-weight: 950;
+  margin-bottom: 10px;
+  text-shadow: 0 6px 20px rgba(0,0,0,0.28);
+}
+
+.tema-hero-subtitle {
+  max-width: 760px;
+  color: rgba(255,255,255,0.82);
+  font-size: 1rem;
+  line-height: 1.65;
+  margin-bottom: 18px;
+}
+
+.tema-hero-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tema-hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 9px 14px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: rgba(255,255,255,0.92);
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.06);
+}
+
+.tema-hero-right {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+.tema-hero-stat {
+  padding: 18px;
+  border-radius: 24px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+}
+
+.tema-hero-stat strong {
+  display: block;
+  font-size: 1.18rem;
+  line-height: 1.1;
+  font-weight: 950;
+  margin-bottom: 6px;
+}
+
+.tema-hero-stat span {
+  display: block;
+  color: rgba(255,255,255,0.74);
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.tema-main-panel {
+  min-width: 0;
+}
+
+.tema-section-head {
+  margin-bottom: 20px;
+}
+
+.tema-section-kicker {
+  display: inline-block;
+  margin-bottom: 6px;
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.10em;
+  font-weight: 900;
+  color: rgba(255,255,255,0.64);
+}
+
+.tema-section-title {
+  font-size: clamp(1.5rem, 2.2vw, 2.2rem);
+  font-weight: 950;
+  margin-bottom: 6px;
+}
+
+.tema-section-subtitle {
+  color: rgba(255,255,255,0.78);
+  line-height: 1.55;
+}
+
+.tema-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.tema-card {
+  position: relative;
+  min-height: 240px;
+  padding: 22px;
+  border-radius: 30px;
+  text-decoration: none;
+  color: #eef6ff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.05));
+  box-shadow: 0 18px 42px rgba(0,0,0,0.30);
+  transition: transform .20s ease, box-shadow .20s ease, border-color .20s ease;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.tema-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(460px 180px at 0% 0%, rgba(66,215,255,0.10), transparent 60%);
+}
+
+.tema-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 28px 60px rgba(0,0,0,0.42);
+  border-color: rgba(111,210,255,0.28);
+}
+
+.tema-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.tema-card-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  color: rgba(255,255,255,0.90);
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.10);
+}
+
+.tema-card-arrow {
+  font-size: 1.2rem;
+  font-weight: 900;
+  opacity: 0.75;
+  transition: transform .18s ease, opacity .18s ease;
+}
+
+.tema-card:hover .tema-card-arrow {
+  transform: translateX(3px);
+  opacity: 1;
+}
+
+.tema-card-main {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  min-height: 90px;
+}
+
+.tema-card-main h3 {
+  font-size: clamp(1.25rem, 1.7vw, 1.6rem);
+  line-height: 1.12;
+  margin: 0;
+  font-weight: 950;
+  color: #fff;
+  text-wrap: balance;
+}
+
+.tema-card-footer {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tema-mini-pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 800;
+  color: rgba(255,255,255,0.84);
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.09);
+}
+
+.tema-empty {
+  width: min(760px, 100%);
+  margin: 10px auto 0;
+  padding: 30px 22px;
+  text-align: center;
+  border-radius: 24px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 16px 34px rgba(0,0,0,0.25);
+}
+
+.tema-empty h3 {
+  margin: 10px 0 8px;
+  font-size: 1.2rem;
+  font-weight: 900;
+}
+
+.tema-empty p {
+  color: rgba(255,255,255,0.78);
+  line-height: 1.55;
+}
+
+.tema-empty-icon {
+  font-size: 2rem;
+}
+
+.tema-empty-full,
+.empty-state {
+  border-radius: 28px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.06));
+  box-shadow: 0 18px 42px rgba(0,0,0,0.28);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 24px;
+}
+
+@media (max-width: 980px) {
+  .tema-hero-panel {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .tema-page-shell {
+    width: min(1340px, calc(100% - 20px));
+  }
+
+  .tema-hero-panel,
+  .glass-main-card {
+    padding: 16px;
+    border-radius: 24px;
+  }
+
+  .tema-hero-left {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .tema-hero-icon {
+    width: 66px;
+    height: 66px;
+    border-radius: 18px;
+    font-size: 1.6rem;
+  }
+
+  .tema-hero-title {
+    font-size: 1.7rem;
+    line-height: 1.05;
+  }
+
+  .tema-hero-subtitle {
+    font-size: 0.96rem;
+  }
+
+  .tema-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .tema-card {
+    min-height: 200px;
+    padding: 18px;
+    border-radius: 22px;
+  }
+
+  .tema-card-main {
+    min-height: auto;
+  }
+
+  .tema-card-main h3 {
+    font-size: 1.08rem;
+    line-height: 1.15;
+  }
+}
+
+@media (max-width: 520px) {
+  .tema-hero-pill,
+  .tema-mini-pill,
+  .tema-card-badge {
+    font-size: 0.71rem;
+  }
+
+  .tema-hero-stat {
+    padding: 14px;
+    border-radius: 18px;
+  }
+
+  .tema-section-title {
+    font-size: 1.35rem;
+  }
+}

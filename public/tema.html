@@ -1,34 +1,90 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Subtemas</title>
-  <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Temas</title>
+  <link rel="stylesheet" href="css/style.css?v=10">
+  <link rel="stylesheet" href="css/tema.css?v=10">
 </head>
-<body>
+<body class="app-page">
+  <div class="app-page-bg"></div>
+  <div class="app-page-overlay"></div>
+  <div class="page-glow page-glow-left"></div>
+  <div class="page-glow page-glow-right"></div>
 
   <header class="header header-interno">
     <div class="header-row">
       <div class="header-left">
-        <a href="javascript:history.back()" class="btn btn-ghost">← Volver</a>
+        <a id="btn-back" href="#" class="btn btn-ghost" style="display:none;">← Volver</a>
+        <a id="btn-home" href="#" class="btn btn-ghost" style="display:none;">⌂ Inicio</a>
       </div>
 
-      <div class="header-center" id="titulo-tema">Subtemas</div>
+      <div class="header-center" id="titulo-periodo">
+        <div class="page-title-stack">
+          <span class="page-kicker">Ruta académica</span>
+          <span>Temas</span>
+        </div>
+      </div>
 
       <div class="header-right">
-        <button id="btn-logout" class="btn btn-ghost btn-logout">Cerrar sesión</button>
+        <div id="session-badge"></div>
+        <button id="btn-logout" class="btn btn-danger btn-logout" style="display:none;">Cerrar sesión</button>
       </div>
     </div>
   </header>
 
-  <main class="content">
-    <div class="container">
-      <div id="subtemas-container" class="card-container"></div>
-    </div>
+  <main class="content tema-page-shell">
+    <section class="tema-hero-wrap">
+      <div class="tema-hero-panel glass-hero-card">
+        <div class="tema-hero-left">
+          <div class="tema-hero-icon">📚</div>
+
+          <div class="tema-hero-copy">
+            <span class="tema-hero-kicker">Explora tu ruta de aprendizaje</span>
+            <h1 class="tema-hero-title">Temas del periodo</h1>
+            <p class="tema-hero-subtitle">
+              Ingresa al tema que deseas trabajar y continúa con sus subtemas, actividades y progreso.
+            </p>
+
+            <div class="tema-hero-pills">
+              <span class="tema-hero-pill">🧠 Organización por periodo</span>
+              <span class="tema-hero-pill">📘 Temas académicos</span>
+              <span class="tema-hero-pill">🎯 Ruta clara de estudio</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tema-hero-right">
+          <div class="tema-hero-stat">
+            <strong id="tema-stat-periodo">Periodo</strong>
+            <span>Se actualiza según tu selección</span>
+          </div>
+          <div class="tema-hero-stat">
+            <strong id="tema-stat-grado">Grado</strong>
+            <span>Ingreso actual</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tema-main-panel glass-main-card">
+      <div class="tema-section-head">
+        <div>
+          <span class="tema-section-kicker">Navegación académica</span>
+          <h2 class="tema-section-title">Selecciona un tema</h2>
+          <p class="tema-section-subtitle">
+            Cada tarjeta te lleva a los subtemas disponibles dentro del periodo actual.
+          </p>
+        </div>
+      </div>
+
+      <div id="temas-container" class="tema-grid"></div>
+    </section>
   </main>
 
-  <script src="session.js"></script>
-  <script src="tema.js"></script>
+  <script src="session.js?v=10"></script>
+  <script src="tema-lista.js?v=14"></script>
+  
 </body>
 </html>

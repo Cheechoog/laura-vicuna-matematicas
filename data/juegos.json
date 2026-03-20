@@ -1,0 +1,19 @@
+[
+  {
+    "subtema_id": 1,
+    "tipo": "parejas",
+    "titulo": "Parejas matemáticas",
+    "descripcion": "Relaciona cada operación con su resultado. Ideal para trabajo grupal en clase.",
+    "items": [
+      { "a": "8 + 7", "b": "15" },
+      { "a": "9 × 6", "b": "54" },
+      { "a": "72 ÷ 9", "b": "8" },
+      { "a": "15 - 7", "b": "8" },
+      { "a": "12 × 4", "b": "48" },
+      { "a": "36 ÷ 6", "b": "6" },
+      { "a": "25 + 13", "b": "38" },
+      { "a": "50 - 18", "b": "32" }
+    ]
+  }
+]
+

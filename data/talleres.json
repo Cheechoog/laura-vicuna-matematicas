@@ -1,59 +1,52 @@
 [
   {
-    "subtema_id": 1,
-    "titulo": "Taller 1 - Suma y resta",
-    "enunciado": "<p>Resuelve:</p><ol><li>35 + 27</li><li>90 - 48</li><li>120 + 85</li><li>70 - 33</li></ol>",
-    "solucion": "<ol><li>62</li><li>42</li><li>205</li><li>37</li></ol>"
-  },
-  {
-    "subtema_id": 1,
-    "titulo": "Taller 2 - Multiplicación y división",
-    "enunciado": "<p>Resuelve:</p><ol><li>12 × 7</li><li>9 × 8</li><li>72 ÷ 9</li><li>96 ÷ 12</li></ol>",
-    "solucion": "<ol><li>84</li><li>72</li><li>8</li><li>8</li></ol>"
-  },
-  {
-    "subtema_id": 1,
-    "titulo": "Taller 3 - Jerarquía de operaciones",
-    "enunciado": "<p>Resuelve respetando el orden:</p><ol><li>8 + 2×5</li><li>(10 + 6) ÷ 4</li><li>30 - 3×6</li><li>5 + 12 ÷ 3</li></ol>",
-    "solucion": "<ol><li>18</li><li>4</li><li>12</li><li>9</li></ol>"
-  },
-
-  {
     "subtema_id": 2,
     "titulo": "Taller 1 - Potencias básicas",
-    "enunciado": "<p>Calcula:</p><ol><li>2<sup>3</sup></li><li>3<sup>2</sup></li><li>5<sup>2</sup></li><li>10<sup>3</sup></li></ol>",
-    "solucion": "<ol><li>8</li><li>9</li><li>25</li><li>1000</li></ol>"
+    "enunciado": "<p>Calcula:</p><ol><li>2<sup>3</sup></li><li>3<sup>2</sup></li><li>4<sup>2</sup></li><li>5<sup>3</sup></li></ol>",
+    "solucion": "<ol><li>8</li><li>9</li><li>16</li><li>125</li></ol>"
   },
   {
     "subtema_id": 2,
     "titulo": "Taller 2 - Propiedades de potencias",
-    "enunciado": "<p>Resuelve:</p><ol><li>2<sup>2</sup>×2<sup>3</sup></li><li>3<sup>4</sup> ÷ 3<sup>2</sup></li><li>(2<sup>3</sup>)<sup>2</sup></li><li>5<sup>0</sup></li></ol>",
+    "enunciado": "<p>Resuelve:</p><ol><li>2<sup>2</sup>×2<sup>3</sup></li><li>3<sup>4</sup>÷3<sup>2</sup></li><li>(2<sup>3</sup>)<sup>2</sup></li><li>7<sup>0</sup></li></ol>",
     "solucion": "<ol><li>2<sup>5</sup>=32</li><li>3<sup>2</sup>=9</li><li>2<sup>6</sup>=64</li><li>1</li></ol>"
   },
   {
     "subtema_id": 2,
-    "titulo": "Taller 3 - Potencias en problemas",
-    "enunciado": "<p>Resuelve:</p><ol><li>Un cuadrado tiene lado 7. ¿Cuál es su área? (usa potencia)</li><li>¿Cuántos cubos pequeños hay en un cubo de 3×3×3?</li></ol>",
-    "solucion": "<ol><li>7<sup>2</sup>=49</li><li>3<sup>3</sup>=27</li></ol>"
+    "titulo": "Taller 3 - Potenciación en problemas",
+    "enunciado": "<p>Resuelve:</p><ol><li>Un cuadrado tiene lado 7 cm. ¿Cuál es su área?</li><li>Un cubo tiene arista 3 cm. ¿Cuál es su volumen?</li><li>Una cantidad se duplica 4 veces. ¿Qué potencia representa esto?</li></ol>",
+    "solucion": "<ol><li>7<sup>2</sup>=49 cm²</li><li>3<sup>3</sup>=27 cm³</li><li>2<sup>4</sup></li></ol>"
+  },
+  {
+    "subtema_id": 2,
+    "titulo": "Taller 4 - Aplicaciones de potenciación",
+    "enunciado": "<p>Resuelve:</p><ol><li>Si el lado de un cuadrado es 9 m, ¿cuál es su área?</li><li>Si una caja cúbica tiene arista 4 cm, ¿cuál es su volumen?</li><li>Escribe como potencia: 6×6×6</li></ol>",
+    "solucion": "<ol><li>9<sup>2</sup>=81 m²</li><li>4<sup>3</sup>=64 cm³</li><li>6<sup>3</sup></li></ol>"
   },
 
   {
     "subtema_id": 3,
-    "titulo": "Taller 1 - Raíces",
-    "enunciado": "<p>Calcula: √36, √49, √64</p>",
-    "solucion": "<p>√36=6, √49=7, √64=8</p>"
+    "titulo": "Taller 1 - Raíces exactas",
+    "enunciado": "<p>Calcula:</p><ol><li>√25</li><li>√36</li><li>√49</li><li>√64</li></ol>",
+    "solucion": "<ol><li>5</li><li>6</li><li>7</li><li>8</li></ol>"
   },
   {
     "subtema_id": 3,
-    "titulo": "Taller 2 - Raíces exactas (nivel 1)",
-    "enunciado": "<p>Calcula:</p><ol><li>√9</li><li>√16</li><li>√25</li><li>√81</li><li>√100</li></ol>",
-    "solucion": "<ol><li>3</li><li>4</li><li>5</li><li>9</li><li>10</li></ol>"
+    "titulo": "Taller 2 - Encuentra el número",
+    "enunciado": "<p>Completa:</p><ol><li>√__ = 9</li><li>√__ = 10</li><li>√__ = 12</li><li>√__ = 15</li></ol>",
+    "solucion": "<ol><li>81</li><li>100</li><li>144</li><li>225</li></ol>"
   },
   {
     "subtema_id": 3,
-    "titulo": "Taller 3 - Encuentra el número (nivel 2)",
-    "enunciado": "<p>Encuentra el número que falta:</p><ol><li>√__ = 6</li><li>√__ = 12</li><li>√__ = 15</li><li>√__ = 8</li></ol>",
-    "solucion": "<ol><li>36</li><li>144</li><li>225</li><li>64</li></ol>"
+    "titulo": "Taller 3 - Radicación en contexto",
+    "enunciado": "<p>Resuelve:</p><ol><li>Un terreno cuadrado tiene área 49 m². ¿Cuánto mide el lado?</li><li>Una baldosa cuadrada tiene área 100 cm². ¿Cuánto mide cada lado?</li><li>Un patio cuadrado tiene área 144 m². ¿Cuál es la longitud de un lado?</li></ol>",
+    "solucion": "<ol><li>√49 = 7 m</li><li>√100 = 10 cm</li><li>√144 = 12 m</li></ol>"
+  },
+  {
+    "subtema_id": 3,
+    "titulo": "Taller 4 - Relación entre potencia y raíz",
+    "enunciado": "<p>Relaciona cada potencia con su raíz:</p><ol><li>8×8 =</li><li>11×11 =</li><li>13×13 =</li></ol>",
+    "solucion": "<ol><li>64 y √64=8</li><li>121 y √121=11</li><li>169 y √169=13</li></ol>"
   },
 
   {
@@ -70,8 +63,154 @@
   },
   {
     "subtema_id": 4,
-    "titulo": "Taller 3 - Convierte a potencia",
-    "enunciado": "<p>Convierte a forma de potencia:</p><ol><li>log<sub>10</sub>(100)=2</li><li>log<sub>2</sub>(32)=5</li><li>log<sub>3</sub>(9)=2</li></ol>",
-    "solucion": "<ol><li>10<sup>2</sup>=100</li><li>2<sup>5</sup>=32</li><li>3<sup>2</sup>=9</li></ol>"
+    "titulo": "Taller 3 - Convierte entre potencia y logaritmo",
+    "enunciado": "<p>Convierte:</p><ol><li>10<sup>2</sup>=100</li><li>2<sup>5</sup>=32</li><li>3<sup>4</sup>=81</li></ol>",
+    "solucion": "<ol><li>log<sub>10</sub>(100)=2</li><li>log<sub>2</sub>(32)=5</li><li>log<sub>3</sub>(81)=4</li></ol>"
+  },
+  {
+    "subtema_id": 4,
+    "titulo": "Taller 4 - Hallar el exponente",
+    "enunciado": "<p>Resuelve:</p><ol><li>Si 2<sup>x</sup>=16, ¿cuánto vale x?</li><li>Si 5<sup>x</sup>=25, ¿cuánto vale x?</li><li>Si 10<sup>x</sup>=1000, ¿cuánto vale x?</li></ol>",
+    "solucion": "<ol><li>x=4</li><li>x=2</li><li>x=3</li></ol>"
+  },
+
+  {
+    "subtema_id": 5,
+    "titulo": "Taller 1 - Aplicaciones integradas",
+    "enunciado": "<p>Resuelve:</p><ol><li>Un cuadrado tiene lado 12 cm. Calcula su área.</li><li>Un terreno cuadrado tiene área 144 m². Halla la medida de un lado.</li><li>Si 2<sup>x</sup>=32, encuentra x.</li><li>Si 10<sup>x</sup>=1000, encuentra x.</li></ol>",
+    "solucion": "<ol><li>12<sup>2</sup>=144 cm²</li><li>√144=12 m</li><li>x=5</li><li>x=3</li></ol>"
+  },
+  {
+    "subtema_id": 5,
+    "titulo": "Taller 2 - Problemas de la vida diaria",
+    "enunciado": "<p>Resuelve:</p><ol><li>Una caja cúbica mide 5 cm de arista. ¿Cuál es su volumen?</li><li>Una baldosa cuadrada tiene área 169 cm². ¿Cuánto mide un lado?</li><li>Si 3<sup>x</sup>=81, ¿cuánto vale x?</li></ol>",
+    "solucion": "<ol><li>5<sup>3</sup>=125 cm³</li><li>√169=13 cm</li><li>x=4</li></ol>"
+  },
+  {
+    "subtema_id": 5,
+    "titulo": "Taller 3 - Escoge la operación correcta",
+    "enunciado": "<p>Indica qué operación usarías y resuelve:</p><ol><li>Conoces el lado de un cuadrado y buscas el área.</li><li>Conoces el área de un cuadrado y buscas el lado.</li><li>Sabes que 2<sup>x</sup>=64 y buscas x.</li></ol>",
+    "solucion": "<ol><li>Potenciación: si el lado es 8, el área es 8<sup>2</sup>=64.</li><li>Radicación: si el área es 64, el lado es √64=8.</li><li>Logaritmación: x=6.</li></ol>"
+  },
+  {
+    "subtema_id": 5,
+    "titulo": "Taller 4 - Comparar conceptos",
+    "enunciado": "<p>Completa:</p><ol><li>La operación que multiplica repetidamente es ______.</li><li>La operación inversa de la potencia es ______.</li><li>La operación que busca el exponente es ______.</li></ol>",
+    "solucion": "<ol><li>potenciación</li><li>radicación</li><li>logaritmación</li></ol>"
+  },
+
+  {
+    "subtema_id": 18,
+    "titulo": "Taller 1 - Multiplicación de enteros",
+    "enunciado": "<p>Resuelve:</p><ol><li>3×(-4)</li><li>(-5)×2</li><li>(-6)×(-3)</li><li>4×7</li></ol>",
+    "solucion": "<ol><li>-12</li><li>-10</li><li>18</li><li>28</li></ol>"
+  },
+  {
+    "subtema_id": 18,
+    "titulo": "Taller 2 - Regla de signos",
+    "enunciado": "<p>Indica el signo del resultado y luego resuelve:</p><ol><li>(+)×(-)</li><li>(-)×(-)</li><li>(-)×(+)</li><li>(+)×(+)</li></ol>",
+    "solucion": "<ol><li>Negativo</li><li>Positivo</li><li>Negativo</li><li>Positivo</li></ol>"
+  },
+  {
+    "subtema_id": 18,
+    "titulo": "Taller 3 - Multiplicación en contexto",
+    "enunciado": "<p>Resuelve:</p><ol><li>Un jugador pierde 4 puntos por ronda durante 6 rondas. ¿Cuál es el cambio total?</li><li>La temperatura baja 2°C por hora durante 7 horas. ¿Cuál es el cambio total?</li><li>Una cuenta gana 5 unidades por día durante 3 días. ¿Cuál es el cambio total?</li></ol>",
+    "solucion": "<ol><li>(-4)×6=-24</li><li>(-2)×7=-14</li><li>(+5)×3=+15</li></ol>"
+  },
+  {
+    "subtema_id": 18,
+    "titulo": "Taller 4 - Interpretar resultados",
+    "enunciado": "<p>Explica el significado del resultado:</p><ol><li>(-3)×4=-12</li><li>(-3)×(-4)=12</li></ol>",
+    "solucion": "<ol><li>Representa una pérdida o descenso repetido.</li><li>Representa una doble negación en el modelo matemático, dando resultado positivo.</li></ol>"
+  },
+
+  {
+    "subtema_id": 19,
+    "titulo": "Taller 1 - División de enteros",
+    "enunciado": "<p>Resuelve:</p><ol><li>(-20)÷5</li><li>(-24)÷(-6)</li><li>18÷(-3)</li><li>24÷6</li></ol>",
+    "solucion": "<ol><li>-4</li><li>4</li><li>-6</li><li>4</li></ol>"
+  },
+  {
+    "subtema_id": 19,
+    "titulo": "Taller 2 - Verificar con multiplicación",
+    "enunciado": "<p>Resuelve y verifica:</p><ol><li>(-18)÷3</li><li>20÷(-5)</li><li>(-24)÷(-6)</li></ol>",
+    "solucion": "<ol><li>-6, porque -6×3=-18</li><li>-4, porque -4×(-5)=20</li><li>4, porque 4×(-6)=-24</li></ol>"
+  },
+  {
+    "subtema_id": 19,
+    "titulo": "Taller 3 - División en contexto",
+    "enunciado": "<p>Resuelve:</p><ol><li>Una pérdida total de 24 puntos se repartió en 6 rondas iguales. ¿Cuánto se perdió por ronda?</li><li>Una variación total de -18°C ocurrió en 3 horas. ¿Cuál fue el cambio por hora?</li><li>Un cambio total de 20 se repartió en 5 partes iguales. ¿Cuánto corresponde a cada parte?</li></ol>",
+    "solucion": "<ol><li>(-24)÷6=-4</li><li>(-18)÷3=-6</li><li>20÷5=4</li></ol>"
+  },
+  {
+    "subtema_id": 19,
+    "titulo": "Taller 4 - Regla de signos en división",
+    "enunciado": "<p>Completa:</p><ol><li>(+)÷(-)=</li><li>(-)÷(-)=</li><li>(-)÷(+)=</li><li>(+)÷(+)=</li></ol>",
+    "solucion": "<ol><li>Negativo</li><li>Positivo</li><li>Negativo</li><li>Positivo</li></ol>"
+  },
+
+   
+  {
+    "subtema_id": 11,
+    "titulo": "Taller 1 - Identificar población y muestra",
+    "enunciado": "<p>Lee cada situación e identifica la <b>población</b> y la <b>muestra</b>:</p><ol><li>Se quiere saber cuál es la fruta favorita de todos los estudiantes del colegio. Para ello se encuesta a 40 estudiantes de sexto.</li><li>Un hospital desea conocer la edad promedio de sus pacientes. Revisa 25 historias clínicas.</li><li>En un barrio quieren saber cuántas personas usan bicicleta. Entrevistan a 15 vecinos.</li></ol>",
+    "solucion": "<ol><li><b>Población:</b> todos los estudiantes del colegio. <b>Muestra:</b> 40 estudiantes de sexto.</li><li><b>Población:</b> todos los pacientes del hospital. <b>Muestra:</b> 25 historias clínicas.</li><li><b>Población:</b> todos los habitantes del barrio. <b>Muestra:</b> 15 vecinos.</li></ol>"
+  },
+  {
+    "subtema_id": 11,
+    "titulo": "Taller 2 - Población o muestra",
+    "enunciado": "<p>Escribe si cada caso corresponde a <b>población</b> o <b>muestra</b>:</p><ol><li>Todos los estudiantes de séptimo.</li><li>20 estudiantes elegidos al azar.</li><li>Todos los libros de una biblioteca.</li><li>10 libros revisados por el bibliotecario.</li><li>Todos los habitantes de una ciudad.</li><li>100 personas encuestadas en un parque.</li></ol>",
+    "solucion": "<ol><li>Población</li><li>Muestra</li><li>Población</li><li>Muestra</li><li>Población</li><li>Muestra</li></ol>"
+  },
+  {
+    "subtema_id": 11,
+    "titulo": "Taller 3 - Explica con tus palabras",
+    "enunciado": "<p>Responde:</p><ol><li>¿Por qué en estadística no siempre se estudia toda la población?</li><li>¿Por qué la muestra debe representar bien a la población?</li><li>Escribe un ejemplo propio de población y muestra relacionado con tu salón.</li></ol>",
+    "solucion": "<ol><li>Porque estudiar toda la población puede tomar mucho tiempo, esfuerzo y recursos.</li><li>Porque si la muestra no representa bien a la población, los resultados pueden ser engañosos.</li><li>Respuesta abierta. Ejemplo: población = todos los estudiantes del salón; muestra = 8 estudiantes elegidos al azar.</li></ol>"
+  },
+
+  {
+    "subtema_id": 12,
+    "titulo": "Taller 1 - Reconocer variables",
+    "enunciado": "<p>Observa cada caso y escribe cuál es la <b>variable</b> que se está estudiando:</p><ol><li>Se pregunta a los estudiantes cuál es su color favorito.</li><li>Se registra la edad de los estudiantes de sexto.</li><li>Se cuenta el número de hermanos de cada estudiante.</li><li>Se mide la estatura de varios jugadores.</li></ol>",
+    "solucion": "<ol><li>Color favorito</li><li>Edad</li><li>Número de hermanos</li><li>Estatura</li></ol>"
+  },
+  {
+    "subtema_id": 12,
+    "titulo": "Taller 2 - Clasificar variables",
+    "enunciado": "<p>Clasifica cada variable como <b>cualitativa</b> o <b>cuantitativa</b>:</p><ol><li>Color de ojos</li><li>Edad</li><li>Número de mascotas</li><li>Deporte favorito</li><li>Peso</li><li>Mes de cumpleaños</li></ol>",
+    "solucion": "<ol><li>Cualitativa</li><li>Cuantitativa</li><li>Cuantitativa</li><li>Cualitativa</li><li>Cuantitativa</li><li>Cualitativa</li></ol>"
+  },
+  {
+    "subtema_id": 12,
+    "titulo": "Taller 3 - Variables en contexto",
+    "enunciado": "<p>Lee cada situación y responde:</p><ol><li>En una encuesta se pregunta: “¿Qué red social usas más?”. ¿Cuál es la variable? ¿Es cualitativa o cuantitativa?</li><li>Se registra cuántas horas estudia cada estudiante al día. ¿Cuál es la variable? ¿Es cualitativa o cuantitativa?</li><li>Se pregunta cuál es la asignatura favorita. ¿Cuál es la variable? ¿Es cualitativa o cuantitativa?</li></ol>",
+    "solucion": "<ol><li>Variable: red social más usada. Tipo: cualitativa.</li><li>Variable: horas de estudio al día. Tipo: cuantitativa.</li><li>Variable: asignatura favorita. Tipo: cualitativa.</li></ol>"
+  },
+
+  {
+    "subtema_id": 13,
+    "titulo": "Taller 1 - Recolectar y organizar datos",
+    "enunciado": "<p>Se preguntó a 10 estudiantes cuál es su fruta favorita y estas fueron las respuestas:</p><p><b>Manzana, Banano, Manzana, Naranja, Banano, Manzana, Uva, Banano, Manzana, Naranja</b></p><p>Completa una tabla de frecuencias con las frutas y su cantidad.</p>",
+    "solucion": "<table border='1'><tr><th>Fruta</th><th>Cantidad</th></tr><tr><td>Manzana</td><td>4</td></tr><tr><td>Banano</td><td>3</td></tr><tr><td>Naranja</td><td>2</td></tr><tr><td>Uva</td><td>1</td></tr></table>"
+  },
+  {
+    "subtema_id": 13,
+    "titulo": "Taller 2 - Leer una tabla",
+    "enunciado": "<p>Observa esta tabla:</p><table border='1'><tr><th>Deporte</th><th>Cantidad</th></tr><tr><td>Fútbol</td><td>8</td></tr><tr><td>Baloncesto</td><td>5</td></tr><tr><td>Natación</td><td>3</td></tr></table><p>Responde:</p><ol><li>¿Cuál es el deporte más elegido?</li><li>¿Cuál es el deporte menos elegido?</li><li>¿Cuántos estudiantes prefieren baloncesto?</li><li>¿Cuántos estudiantes participaron en total?</li></ol>",
+    "solucion": "<ol><li>Fútbol</li><li>Natación</li><li>5 estudiantes</li><li>16 estudiantes</li></ol>"
+  },
+  {
+    "subtema_id": 13,
+    "titulo": "Taller 3 - De tabla a gráfico",
+    "enunciado": "<p>Con la siguiente información, imagina un <b>gráfico de barras</b> y responde:</p><table border='1'><tr><th>Color</th><th>Cantidad</th></tr><tr><td>Azul</td><td>6</td></tr><tr><td>Rojo</td><td>4</td></tr><tr><td>Verde</td><td>2</td></tr></table><ol><li>¿Qué barra sería la más alta?</li><li>¿Qué barra sería la más baja?</li><li>¿Cuántas personas prefieren azul y rojo en total?</li></ol>",
+    "solucion": "<ol><li>La barra de azul</li><li>La barra de verde</li><li>10 personas</li></ol>"
+  },
+  {
+    "subtema_id": 13,
+    "titulo": "Taller 4 - Recolección de datos en contexto",
+    "enunciado": "<p>En un salón se preguntó a los estudiantes cuántos hermanos tienen. Las respuestas fueron:</p><p><b>1, 2, 1, 3, 2, 1, 0, 2, 1, 4</b></p><p>Responde:</p><ol><li>¿Qué dato aparece más veces?</li><li>Organiza la información en una tabla.</li><li>¿Qué tipo de gráfico sería útil para representarla?</li></ol>",
+    "solucion": "<ol><li>El dato que más aparece es 1.</li></ol><table border='1'><tr><th>Número de hermanos</th><th>Cantidad</th></tr><tr><td>0</td><td>1</td></tr><tr><td>1</td><td>4</td></tr><tr><td>2</td><td>3</td></tr><tr><td>3</td><td>1</td></tr><tr><td>4</td><td>1</td></tr></table><p>Un gráfico de barras sería útil para representarla.</p>"
   }
+
 ]

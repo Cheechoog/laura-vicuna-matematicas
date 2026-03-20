@@ -27,42 +27,8 @@ async function authFetch(url, gradoId) {
   return fetch(url, { cache: "no-store" });
 }
 
-function getTemaContainer() {
-  return $("subtemas-container") || $("temas-container");
-}
-
-function setTemaTitulo(nombreTema, teacherMode) {
-  const html = `
-    <div class="page-title-stack">
-      <span class="page-kicker">${teacherMode ? "Tema académico · Profesor" : "Tema académico"}</span>
-      <span>${escapeHtml(nombreTema)}</span>
-    </div>
-  `;
-
-  const tituloTema = $("titulo-tema");
-  if (tituloTema) tituloTema.innerHTML = html;
-
-  const tituloPeriodo = $("titulo-periodo");
-  if (tituloPeriodo) tituloPeriodo.innerHTML = html;
-
-  const mainTitle = document.querySelector(".tema-title");
-  if (mainTitle) mainTitle.textContent = nombreTema;
-}
-
-function setTemaStats(gradoId, periodo) {
-  const statPeriodo = $("tema-stat-periodo");
-  if (statPeriodo) statPeriodo.textContent = periodo || "Periodo";
-
-  const statGrado = $("tema-stat-grado");
-  if (statGrado) {
-    if (String(gradoId) === "1") statGrado.textContent = "Sexto";
-    else if (String(gradoId) === "2") statGrado.textContent = "Séptimo";
-    else statGrado.textContent = "Grado";
-  }
-}
-
 function renderTemaEmpty(icono, titulo, texto) {
-  const container = getTemaContainer();
+  const container = $("temas-container");
   if (!container) return;
 
   container.innerHTML = `
@@ -74,33 +40,7 @@ function renderTemaEmpty(icono, titulo, texto) {
   `;
 }
 
-function dedupeResumen(rows) {
-  if (!Array.isArray(rows)) return [];
-
-  const mapa = new Map();
-
-  rows.forEach((row) => {
-    const key = Number(row.subtema_id);
-    if (!mapa.has(key)) {
-      mapa.set(key, row);
-    }
-  });
-
-  return Array.from(mapa.values()).sort((a, b) => {
-    const oa = Number(a.subtema_orden || 0);
-    const ob = Number(b.subtema_orden || 0);
-    if (oa !== ob) return oa - ob;
-    return Number(a.subtema_id || 0) - Number(b.subtema_id || 0);
-  });
-}
-
 document.addEventListener("DOMContentLoaded", async () => {
-  if (window.__TEMA_PAGE_INIT__) {
-    console.warn("tema.js ya fue inicializado una vez. Se evita doble render.");
-    return;
-  }
-  window.__TEMA_PAGE_INIT__ = true;
-
   const params = new URLSearchParams(window.location.search);
 
   const gradoId = params.get("gradoId") || params.get("grado") || params.get("id");
@@ -119,8 +59,34 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (!ok) return;
   }
 
-  setTemaTitulo(nombreTema, teacherMode);
-  setTemaStats(gradoId, periodo);
+  const titulo = $("titulo-periodo");
+  if (titulo) {
+    titulo.innerHTML = `
+      <div class="page-title-stack">
+        <span class="page-kicker">${teacherMode ? "Tema académico · Profesor" : "Tema académico"}</span>
+        <span>${escapeHtml(nombreTema)}</span>
+      </div>
+    `;
+  }
+
+  const statPeriodo = $("tema-stat-periodo");
+  if (statPeriodo) statPeriodo.textContent = periodo || "Periodo";
+
+  const statGrado = $("tema-stat-grado");
+  if (statGrado) {
+    if (String(gradoId) === "1") statGrado.textContent = "Sexto";
+    else if (String(gradoId) === "2") statGrado.textContent = "Séptimo";
+    else statGrado.textContent = "Grado";
+  }
+
+  const sectionTitle = document.querySelector(".tema-section-title");
+  if (sectionTitle) sectionTitle.textContent = "Selecciona un subtema";
+
+  const sectionSubtitle = document.querySelector(".tema-section-subtitle");
+  if (sectionSubtitle) {
+    sectionSubtitle.textContent =
+      "Cada tarjeta te lleva al subtema y a sus actividades disponibles dentro del tema actual.";
+  }
 
   if (!gradoId) {
     renderTemaEmpty("⚠️", "Falta el grado", "No se encontró el grado para cargar los subtemas.");
@@ -137,7 +103,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 async function cargarSubtemasConResumen(temaId, gradoId, periodoId, periodo, nombreTema, teacherMode) {
-  const container = getTemaContainer();
+  const container = $("temas-container");
   if (!container) return;
 
   container.innerHTML = `
@@ -167,16 +133,76 @@ async function cargarSubtemasConResumen(temaId, gradoId, periodoId, periodo, nom
       return;
     }
 
-    const resumenBruto = await resResumen.json();
-    const resumen = dedupeResumen(resumenBruto);
+    const resumen = await resResumen.json();
+    const resumenArray = Array.isArray(resumen) ? resumen : [];
 
-    console.log("Resumen bruto:", Array.isArray(resumenBruto) ? resumenBruto.length : 0);
-    console.log("Resumen único:", resumen.length);
-    console.log(
-      "IDs subtemas únicos:",
-      resumen.map((x) => ({ id: x.subtema_id, nombre: x.subtema_nombre }))
-    );
+    // 1) unir filas repetidas por subtema_id
+    const porId = new Map();
 
+    for (const row of resumenArray) {
+      const id = row.subtema_id;
+      if (!id) continue;
+
+      if (!porId.has(id)) {
+        porId.set(id, {
+          ...row,
+          intro_count: Number(row.intro_count || 0),
+          talleres_count: Number(row.talleres_count || 0),
+          quiz_count: Number(row.quiz_count || 0),
+          plantillas_count: Number(row.plantillas_count || 0),
+          disponible: Number(row.disponible || 0),
+        });
+        continue;
+      }
+
+      const actual = porId.get(id);
+
+      actual.intro_count = Math.max(actual.intro_count, Number(row.intro_count || 0));
+      actual.talleres_count = Math.max(actual.talleres_count, Number(row.talleres_count || 0));
+      actual.quiz_count = Math.max(actual.quiz_count, Number(row.quiz_count || 0));
+      actual.plantillas_count = Math.max(actual.plantillas_count, Number(row.plantillas_count || 0));
+      actual.disponible =
+        actual.disponible === 1 || Number(row.disponible || 0) === 1 ? 1 : 0;
+
+      if (!actual.subtema_nombre && row.subtema_nombre) {
+        actual.subtema_nombre = row.subtema_nombre;
+      }
+    }
+
+    const resumenPorId = Array.from(porId.values());
+
+    // 2) unir duplicados por nombre (porque a veces vienen ids distintos con el mismo nombre)
+    function claveNombre(nombre) {
+      return String(nombre || "")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .trim()
+        .toLowerCase();
+    }
+
+    const porNombre = new Map();
+
+    for (const row of resumenPorId) {
+      const key = claveNombre(row.subtema_nombre) || `subtema-${row.subtema_id}`;
+
+      if (!porNombre.has(key)) {
+        porNombre.set(key, { ...row });
+        continue;
+      }
+
+      const actual = porNombre.get(key);
+
+      actual.intro_count = Math.max(Number(actual.intro_count || 0), Number(row.intro_count || 0));
+      actual.talleres_count = Math.max(Number(actual.talleres_count || 0), Number(row.talleres_count || 0));
+      actual.quiz_count = Math.max(Number(actual.quiz_count || 0), Number(row.quiz_count || 0));
+      actual.plantillas_count = Math.max(Number(actual.plantillas_count || 0), Number(row.plantillas_count || 0));
+      actual.disponible =
+        Number(actual.disponible || 0) === 1 || Number(row.disponible || 0) === 1 ? 1 : 0;
+    }
+
+    const resumenFinal = Array.from(porNombre.values());
+
+    // 3) cargar progreso sin romper si falla
     let progreso = [];
     if (!teacherMode) {
       try {
@@ -190,7 +216,6 @@ async function cargarSubtemasConResumen(temaId, gradoId, periodoId, periodo, nom
         }
       } catch (e) {
         console.warn("No se pudo cargar progreso:", e);
-        progreso = [];
       }
     }
 
@@ -201,7 +226,7 @@ async function cargarSubtemasConResumen(temaId, gradoId, periodoId, periodo, nom
       });
     }
 
-    if (!Array.isArray(resumen) || resumen.length === 0) {
+    if (!resumenFinal.length) {
       container.innerHTML = `
         <div class="empty-state tema-empty-full">
           <div class="empty-state-icon">📘</div>
@@ -212,7 +237,7 @@ async function cargarSubtemasConResumen(temaId, gradoId, periodoId, periodo, nom
       return;
     }
 
-    const html = resumen
+    container.innerHTML = resumenFinal
       .map((row, index) => {
         const introCount = Number(row.intro_count || 0);
         const talleresCount = Number(row.talleres_count || 0);
@@ -241,14 +266,12 @@ async function cargarSubtemasConResumen(temaId, gradoId, periodoId, periodo, nom
         }
 
         const disponibilidadBadge = hasContent
-          ? (
-              disponible
-                ? `<span class="badge badge-ok">● Disponible</span>`
-                : `<span class="badge badge-block">🔒 Bloqueado</span>`
-            )
+          ? (disponible
+              ? `<span class="badge badge-ok">● Disponible</span>`
+              : `<span class="badge badge-block">🔒 Bloqueado</span>`)
           : `<span class="badge badge-block">— Sin contenido</span>`;
 
-        const href = `subtema.html?gradoId=${encodeURIComponent(gradoId)}&periodoId=${encodeURIComponent(periodoId || "")}&periodo=${encodeURIComponent(periodo || "")}&temaId=${encodeURIComponent(temaId)}&tema=${encodeURIComponent(nombreTema)}&subtemaId=${encodeURIComponent(row.subtema_id)}&subtema=${encodeURIComponent(row.subtema_nombre)}`;
+        const href = `subtema.html?gradoId=${encodeURIComponent(gradoId)}&periodoId=${encodeURIComponent(periodoId || "")}&periodo=${encodeURIComponent(periodo || "")}&temaId=${encodeURIComponent(temaId)}&tema=${encodeURIComponent(nombreTema || "")}&subtemaId=${encodeURIComponent(row.subtema_id)}&subtema=${encodeURIComponent(row.subtema_nombre)}`;
 
         const contentChips = `
           <div class="subtema-content-row">
@@ -300,8 +323,6 @@ async function cargarSubtemasConResumen(temaId, gradoId, periodoId, periodo, nom
       })
       .join("");
 
-    container.innerHTML = html;
-
     container.querySelectorAll('[data-locked="nocontent"]').forEach((card) => {
       card.addEventListener("click", (e) => {
         e.preventDefault();
@@ -317,7 +338,6 @@ async function cargarSubtemasConResumen(temaId, gradoId, periodoId, periodo, nom
     });
   } catch (e) {
     console.error("Error cargando subtemas:", e);
-
     container.innerHTML = `
       <div class="empty-state tema-empty-full">
         <div class="empty-state-icon">❌</div>
@@ -340,10 +360,9 @@ function injectTemaCardStyles() {
     }
 
     .subtema-card{
-      background:
-        linear-gradient(180deg, rgba(14, 30, 43, 0.94), rgba(9, 24, 35, 0.92));
-      border: 1px solid rgba(255,255,255,.10);
-      border-radius: 28px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.05));
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 30px;
       padding: 22px;
       transition: .25s ease;
       display: flex;
@@ -355,6 +374,8 @@ function injectTemaCardStyles() {
       color: #eef6ff;
       box-shadow: 0 18px 42px rgba(0,0,0,.28);
       overflow: hidden;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
     }
 
     .subtema-card::before{
@@ -393,9 +414,9 @@ function injectTemaCardStyles() {
       font-size:.76rem;
       font-weight:900;
       letter-spacing:.03em;
-      background:rgba(94, 207, 255, .12);
-      border:1px solid rgba(94, 207, 255, .22);
-      color:rgba(246,251,255,.96);
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.10);
+      color: rgba(246,251,255,.96);
     }
 
     .subtema-arrow{
@@ -443,6 +464,7 @@ function injectTemaCardStyles() {
       font-weight:800;
       border:1px solid rgba(255,255,255,.10);
       white-space:nowrap;
+      background: rgba(255,255,255,0.07);
     }
 
     .subtema-chip-on{
@@ -479,6 +501,7 @@ function injectTemaCardStyles() {
       font-weight:900;
       border:1px solid rgba(255,255,255,.12);
       white-space:nowrap;
+      background: rgba(255,255,255,0.07);
     }
 
     .badge-ok{

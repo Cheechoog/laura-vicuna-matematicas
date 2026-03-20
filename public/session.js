@@ -1,23 +1,11 @@
 // public/session.js
-// Sesión unificada: estudiante (token) + profesor (teacherToken)
-// ✅ Profesor NO debe ir a seleccionar.html
-// ✅ fetchAuth usa teacherToken si teacher=1
-
-// -------------------------
-// Storage helpers
-// -------------------------
-function clearSession() {
-  // estudiante
-  localStorage.removeItem("token");
-  localStorage.removeItem("estudianteId");
-  localStorage.removeItem("grupoId");
-  localStorage.removeItem("estudianteNombre");
-  localStorage.removeItem("gradoId");
-
-  // profesor
-  localStorage.removeItem("teacherToken");
-  localStorage.removeItem("teacher");
-}
+// Sesión unificada: estudiante + profesor
+// ✅ token SIEMPRE en localStorage.token
+// ✅ profesor marcado con localStorage.teacher="1"
+// ✅ navegación inteligente
+// ✅ home para profesor = index
+// ✅ home para estudiante = grado actual
+// ✅ volver inteligente sin caer en seleccionar/login
 
 function clearStudentSession() {
   localStorage.removeItem("token");
@@ -28,27 +16,42 @@ function clearStudentSession() {
 }
 
 function clearTeacherSession() {
-  localStorage.removeItem("teacherToken");
+  localStorage.removeItem("token");
+  localStorage.removeItem("teacher");
+}
+
+function clearSession() {
+  clearStudentSession();
   localStorage.removeItem("teacher");
 }
 
 function isTeacher() {
-  return localStorage.getItem("teacher") === "1" && !!localStorage.getItem("teacherToken");
+  return localStorage.getItem("teacher") === "1";
 }
 
 function getAuthToken() {
-  // ✅ si es profesor, usa su token
-  if (isTeacher()) return localStorage.getItem("teacherToken");
-  // ✅ si no, token estudiante
   return localStorage.getItem("token");
+}
+
+function getStoredGradeId() {
+  return localStorage.getItem("gradoId");
 }
 
 function getNextUrl() {
   return window.location.pathname + window.location.search;
 }
 
+function buildUrl(pathname, params = {}) {
+  const url = new URL(pathname, window.location.origin);
+  Object.entries(params).forEach(([k, v]) => {
+    if (v !== undefined && v !== null && String(v) !== "") {
+      url.searchParams.set(k, String(v));
+    }
+  });
+  return url.pathname + url.search;
+}
+
 function redirectToSeleccionar(gradoId) {
-  // ✅ IMPORTANTE: profesor NUNCA va a seleccionar
   if (isTeacher()) return;
 
   const next = encodeURIComponent(getNextUrl());
@@ -56,11 +59,7 @@ function redirectToSeleccionar(gradoId) {
   window.location.href = `seleccionar.html?next=${next}${g}`;
 }
 
-// -------------------------
-// Guards
-// -------------------------
 function requireSession(gradoIdOpcional) {
-  // ✅ profesor pasa sin pedir login alumno
   if (isTeacher()) return true;
 
   const token = localStorage.getItem("token");
@@ -72,7 +71,6 @@ function requireSession(gradoIdOpcional) {
 }
 
 function requireGrade(expectedGradoId) {
-  // ✅ profesor puede ver TODOS los grados
   if (isTeacher()) return true;
 
   const stored = localStorage.getItem("gradoId");
@@ -85,12 +83,10 @@ function requireGrade(expectedGradoId) {
     window.location.href = "index.html";
     return false;
   }
+
   return true;
 }
 
-// -------------------------
-// Toast UI
-// -------------------------
 function ensureToastWrap() {
   let wrap = document.querySelector(".toast-wrap");
   if (!wrap) {
@@ -128,14 +124,16 @@ function escapeHtml(s) {
     .replaceAll("'", "&#039;");
 }
 
-// -------------------------
-// fetchAuth global (ÚNICO)
-// -------------------------
-// ✅ usa teacherToken si teacher=1
+function getInitials(nombre) {
+  const partes = String(nombre || "").trim().split(/\s+/).filter(Boolean);
+  if (partes.length === 0) return "US";
+  if (partes.length === 1) return partes[0].slice(0, 2).toUpperCase();
+  return (partes[0][0] + partes[1][0]).toUpperCase();
+}
+
 async function fetchAuth(url, options = {}, gradoIdForRedirect = null) {
   const token = getAuthToken();
 
-  // si NO hay token, solo redirige si es alumno
   if (!token) {
     redirectToSeleccionar(gradoIdForRedirect);
     throw new Error("Sin token");
@@ -150,47 +148,224 @@ async function fetchAuth(url, options = {}, gradoIdForRedirect = null) {
   });
 
   if (res.status === 401) {
-    // ✅ si era profesor, lo mandamos a profesor.html
     if (isTeacher()) {
       clearTeacherSession();
       window.location.href = "profesor.html";
       throw new Error("Sesión profesor vencida");
+    } else {
+      clearStudentSession();
+      redirectToSeleccionar(gradoIdForRedirect);
+      throw new Error("No autorizado / token vencido");
     }
-
-    // ✅ alumno -> seleccionar
-    clearStudentSession();
-    redirectToSeleccionar(gradoIdForRedirect);
-    throw new Error("No autorizado / token vencido");
   }
 
   return res;
 }
 
-// -------------------------
-// Logout button global
-// -------------------------
+function getStudentAcademicHomeUrl() {
+  const gradoId = getStoredGradeId();
+  if (!gradoId) return "index.html";
+  return buildUrl("grado.html", { gradoId });
+}
+
+function getTeacherHomeUrl() {
+  return "index.html";
+}
+
+function getHomeUrl() {
+  return isTeacher() ? getTeacherHomeUrl() : getStudentAcademicHomeUrl();
+}
+
+function getSmartBackUrl() {
+  const pathname = window.location.pathname.toLowerCase();
+  const params = new URLSearchParams(window.location.search);
+
+  const gradoId = params.get("gradoId") || getStoredGradeId();
+  const periodoId = params.get("periodoId");
+  const periodo = params.get("periodo");
+  const temaId = params.get("temaId");
+  const tema = params.get("tema");
+
+  if (isTeacher()) {
+    if (pathname.endsWith("/grado.html")) {
+      return "index.html";
+    }
+
+    if (pathname.endsWith("/periodo.html")) {
+      return buildUrl("grado.html", { gradoId });
+    }
+
+    if (pathname.endsWith("/tema.html")) {
+      if (gradoId && periodoId) {
+        return buildUrl("periodo.html", { gradoId, periodoId, periodo });
+      }
+      return buildUrl("grado.html", { gradoId });
+    }
+
+    if (pathname.endsWith("/subtema.html")) {
+      if (gradoId && temaId) {
+        return buildUrl("tema.html", { gradoId, periodoId, periodo, temaId, tema });
+      }
+      if (gradoId && periodoId) {
+        return buildUrl("periodo.html", { gradoId, periodoId, periodo });
+      }
+      return buildUrl("grado.html", { gradoId });
+    }
+
+    return "index.html";
+  }
+
+  if (pathname.endsWith("/grado.html")) {
+    return getStudentAcademicHomeUrl();
+  }
+
+  if (pathname.endsWith("/periodo.html")) {
+    return buildUrl("grado.html", { gradoId });
+  }
+
+  if (pathname.endsWith("/tema.html")) {
+    return buildUrl("periodo.html", { gradoId, periodoId, periodo });
+  }
+
+  if (pathname.endsWith("/subtema.html")) {
+    if (temaId) {
+      return buildUrl("tema.html", { gradoId, periodoId, periodo, temaId, tema });
+    }
+    return buildUrl("periodo.html", { gradoId, periodoId, periodo });
+  }
+
+  return getStudentAcademicHomeUrl();
+}
+
+function isSamePageUrl(targetUrl) {
+  try {
+    const a = new URL(targetUrl, window.location.origin);
+    const b = new URL(window.location.href);
+    return a.pathname === b.pathname && a.search === b.search;
+  } catch {
+    return false;
+  }
+}
+
+function setupNavigationButtons() {
+  const btnBack = document.getElementById("btn-back");
+  const btnHome = document.getElementById("btn-home");
+
+  const token = getAuthToken();
+
+  if (btnHome) {
+    if (!token) {
+      btnHome.style.display = "none";
+    } else {
+      const homeUrl = getHomeUrl();
+
+      if (isSamePageUrl(homeUrl)) {
+        btnHome.style.display = "none";
+      } else {
+        btnHome.style.display = "inline-flex";
+        btnHome.setAttribute("href", homeUrl);
+        btnHome.onclick = null;
+      }
+    }
+  }
+
+  if (btnBack) {
+    if (!token) {
+      if (window.location.pathname.toLowerCase().includes("seleccionar.html")) {
+        btnBack.setAttribute("href", "index.html");
+      }
+      return;
+    }
+
+    const backUrl = getSmartBackUrl();
+
+    if (isSamePageUrl(backUrl)) {
+      btnBack.style.display = "none";
+    } else {
+      btnBack.style.display = "inline-flex";
+      btnBack.setAttribute("href", backUrl);
+      btnBack.onclick = null;
+    }
+  }
+}
+
+async function renderGlobalSessionArea() {
+  const area =
+    document.getElementById("global-session-area") ||
+    document.getElementById("session-badge");
+
+  if (!area) return;
+
+  const token = getAuthToken();
+  if (!token) {
+    area.innerHTML = "";
+    return;
+  }
+
+  if (isTeacher()) {
+    area.innerHTML = `
+      <div class="user-pill teacher-pill">
+        <div class="user-pill-avatar">👩‍🏫</div>
+        <div class="user-pill-text">
+          <strong>Profesor</strong>
+          <span>Acceso total</span>
+        </div>
+      </div>
+    `;
+    return;
+  }
+
+  try {
+    const res = await fetch("/api/me", {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    if (!res.ok) {
+      area.innerHTML = "";
+      return;
+    }
+
+    const me = await res.json();
+    const initials = getInitials(me?.nombre || "Estudiante");
+
+    area.innerHTML = `
+      <div class="user-pill student-pill">
+        <div class="user-pill-avatar">${escapeHtml(initials)}</div>
+        <div class="user-pill-text">
+          <strong>${escapeHtml(me?.nombre || "Estudiante")}</strong>
+          <span>${escapeHtml(me?.grado_nombre || "Sesión activa")}</span>
+        </div>
+      </div>
+    `;
+  } catch {
+    area.innerHTML = "";
+  }
+}
+
 function setupLogoutButton() {
   const btn = document.getElementById("btn-logout");
   if (!btn) return;
 
-  // En seleccionar.html lo escondemos siempre
-  if (window.location.pathname.includes("seleccionar.html")) {
+  const token = getAuthToken();
+
+  if (!token) {
     btn.style.display = "none";
     return;
   }
 
-  // ✅ Si es profesor, NO mostramos el logout de alumno (opcional)
-  // (si quieres logout para profesor, lo manejas en profesor.html)
-  if (isTeacher()) {
-    btn.style.display = "none";
-    return;
-  }
-
-  const token = localStorage.getItem("token");
-  btn.style.display = token ? "inline-flex" : "none";
+  btn.style.display = "inline-flex";
+  btn.textContent = "Cerrar sesión";
 
   if (btn.dataset.bound === "1") return;
   btn.dataset.bound = "1";
+
+  if (isTeacher()) {
+    btn.addEventListener("click", () => {
+      clearTeacherSession();
+      window.location.href = "index.html";
+    });
+    return;
+  }
 
   btn.addEventListener("click", () => {
     clearStudentSession();
@@ -198,11 +373,12 @@ function setupLogoutButton() {
   });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+  setupNavigationButtons();
   setupLogoutButton();
+  await renderGlobalSessionArea();
 });
 
-// Exporta a window
 window.clearSession = clearSession;
 window.clearStudentSession = clearStudentSession;
 window.clearTeacherSession = clearTeacherSession;
@@ -211,3 +387,6 @@ window.requireSession = requireSession;
 window.requireGrade = requireGrade;
 window.fetchAuth = fetchAuth;
 window.toast = toast;
+window.getStudentAcademicHomeUrl = getStudentAcademicHomeUrl;
+window.getHomeUrl = getHomeUrl;
+window.getSmartBackUrl = getSmartBackUrl;
