@@ -1,0 +1,500 @@
+[
+  {
+    "subtemaId": 1,
+    "tipo": "aritmetica",
+    "config": {
+      "op": "add",
+      "min": 1,
+      "max": 30
+    },
+    "peso": 4
+  },
+  {
+    "subtemaId": 1,
+    "tipo": "aritmetica",
+    "config": {
+      "op": "sub",
+      "min": 1,
+      "max": 30,
+      "noNegativos": true
+    },
+    "peso": 3
+  },
+  {
+    "subtemaId": 1,
+    "tipo": "aritmetica",
+    "config": {
+      "op": "mul",
+      "min": 2,
+      "max": 12
+    },
+    "peso": 3
+  },
+  {
+    "subtemaId": 1,
+    "tipo": "aritmetica",
+    "config": {
+      "op": "add",
+      "min": 1,
+      "max": 50
+    },
+    "peso": 4
+  },
+  {
+    "subtemaId": 1,
+    "tipo": "aritmetica",
+    "config": {
+      "op": "sub",
+      "min": 1,
+      "max": 50,
+      "noNegativos": true
+    },
+    "peso": 4
+  },
+  {
+    "subtemaId": 1,
+    "tipo": "aritmetica",
+    "config": {
+      "op": "div",
+      "min": 2,
+      "max": 12
+    },
+    "peso": 2
+  },
+  {
+    "subtemaId": 2,
+    "tipo": "potencia",
+    "config": {
+      "baseMin": 2,
+      "baseMax": 12,
+      "expMin": 2,
+      "expMax": 3
+    },
+    "peso": 1
+  },
+  {
+    "subtemaId": 2,
+    "tipo": "potencia",
+    "config": {
+      "baseMin": 2,
+      "baseMax": 12,
+      "expMin": 2,
+      "expMax": 4
+    },
+    "peso": 3
+  },
+  {
+    "subtemaId": 2,
+    "tipo": "potencia",
+    "config": {
+      "baseMin": 2,
+      "baseMax": 6,
+      "expMin": 2,
+      "expMax": 5
+    },
+    "peso": 2
+  },
+  {
+    "subtemaId": 3,
+    "tipo": "raiz",
+    "config": {
+      "nMin": 2,
+      "nMax": 15
+    },
+    "peso": 2
+  },
+  {
+    "subtemaId": 3,
+    "tipo": "raiz",
+    "config": {
+      "nMin": 2,
+      "nMax": 25
+    },
+    "peso": 3
+  },
+  {
+    "subtemaId": 4,
+    "tipo": "log",
+    "config": {
+      "base": 10,
+      "expMin": 1,
+      "expMax": 4
+    },
+    "peso": 1
+  },
+  {
+    "subtemaId": 4,
+    "tipo": "log",
+    "config": {
+      "base": 10,
+      "expMin": 0,
+      "expMax": 5
+    },
+    "peso": 3
+  },
+  {
+    "subtemaId": 4,
+    "tipo": "log",
+    "config": {
+      "base": 2,
+      "expMin": 1,
+      "expMax": 6
+    },
+    "peso": 2
+  },
+  {
+    "subtemaId": 4,
+    "tipo": "log",
+    "config": {
+      "base": 3,
+      "expMin": 1,
+      "expMax": 5
+    },
+    "peso": 2
+  },
+  {
+    "subtemaId": 5,
+    "tipo": "potencia",
+    "config": {
+      "baseMin": 2,
+      "baseMax": 10,
+      "expMin": 2,
+      "expMax": 3
+    },
+    "peso": 2
+  },
+  {
+    "subtemaId": 5,
+    "tipo": "raiz",
+    "config": {
+      "nMin": 2,
+      "nMax": 20
+    },
+    "peso": 2
+  },
+  {
+    "subtemaId": 5,
+    "tipo": "log",
+    "config": {
+      "base": 10,
+      "expMin": 1,
+      "expMax": 3
+    },
+    "peso": 1
+  },
+  {
+    "subtemaId": 5,
+    "tipo": "log",
+    "config": {
+      "base": 2,
+      "expMin": 1,
+      "expMax": 5
+    },
+    "peso": 1
+  },
+  {
+    "subtemaId": 5,
+    "tipo": "log",
+    "config": {
+      "base": 3,
+      "expMin": 1,
+      "expMax": 4
+    },
+    "peso": 1
+  },
+  {
+    "subtemaId": 14,
+    "tipo": "aritmetica",
+    "config": {},
+    "peso": 1
+  },
+  {
+    "subtemaId": 14,
+    "tipo": "enteros_identificar_signo",
+    "config": {
+      "min": -20,
+      "max": 20
+    },
+    "peso": 2
+  },
+  {
+    "subtemaId": 14,
+    "tipo": "enteros_contexto",
+    "config": {
+      "min": -15,
+      "max": 15
+    },
+    "peso": 2
+  },
+  {
+    "subtemaId": 15,
+    "tipo": "aritmetica",
+    "config": {},
+    "peso": 1
+  },
+  {
+    "subtemaId": 15,
+    "tipo": "enteros_comparar",
+    "config": {
+      "min": -20,
+      "max": 20
+    },
+    "peso": 3
+  },
+  {
+    "subtemaId": 15,
+    "tipo": "enteros_ordenar",
+    "config": {
+      "min": -10,
+      "max": 10,
+      "cantidad": 3
+    },
+    "peso": 2
+  },
+  {
+    "subtemaId": 16,
+    "tipo": "aritmetica",
+    "config": {},
+    "peso": 1
+  },
+  {
+    "subtemaId": 16,
+    "tipo": "enteros_suma",
+    "config": {
+      "min": -20,
+      "max": 20
+    },
+    "peso": 4
+  },
+  {
+    "subtemaId": 16,
+    "tipo": "enteros_suma_contexto",
+    "config": {
+      "min": -15,
+      "max": 15
+    },
+    "peso": 2
+  },
+  {
+    "subtemaId": 17,
+    "tipo": "aritmetica",
+    "config": {},
+    "peso": 1
+  },
+  {
+    "subtemaId": 17,
+    "tipo": "enteros_resta",
+    "config": {
+      "min": -20,
+      "max": 20
+    },
+    "peso": 4
+  },
+  {
+    "subtemaId": 17,
+    "tipo": "enteros_resta_contexto",
+    "config": {
+      "min": -15,
+      "max": 15
+    },
+    "peso": 2
+  },
+  {
+    "subtemaId": 18,
+    "tipo": "aritmetica",
+    "config": {},
+    "peso": 1
+  },
+  {
+    "subtemaId": 18,
+    "tipo": "enteros_multiplicacion",
+    "config": {
+      "min": -12,
+      "max": 12
+    },
+    "peso": 4
+  },
+  {
+    "subtemaId": 18,
+    "tipo": "enteros_regla_signos",
+    "config": {
+      "min": -12,
+      "max": 12
+    },
+    "peso": 2
+  },
+  {
+    "subtemaId": 18,
+    "tipo": "aritmetica",
+    "config": {
+      "op": "mul",
+      "min": 2,
+      "max": 12
+    },
+    "peso": 3
+  },
+  {
+    "subtemaId": 19,
+    "tipo": "aritmetica",
+    "config": {},
+    "peso": 1
+  },
+  {
+    "subtemaId": 19,
+    "tipo": "enteros_division",
+    "config": {
+      "min": -12,
+      "max": 12,
+      "exacta": true
+    },
+    "peso": 4
+  },
+  {
+    "subtemaId": 19,
+    "tipo": "enteros_verificar_division",
+    "config": {
+      "min": -12,
+      "max": 12,
+      "exacta": true
+    },
+    "peso": 2
+  },
+  {
+    "subtemaId": 19,
+    "tipo": "aritmetica",
+    "config": {
+      "op": "div",
+      "min": 2,
+      "max": 12
+    },
+    "peso": 3
+  },
+  {
+    "subtemaId": 20,
+    "tipo": "aritmetica",
+    "config": {},
+    "peso": 1
+  },
+  {
+    "subtemaId": 21,
+    "tipo": "aritmetica",
+    "config": {},
+    "peso": 1
+  },
+  {
+    "subtemaId": 22,
+    "tipo": "aritmetica",
+    "config": {},
+    "peso": 1
+  },
+  {
+    "subtemaId": 32,
+    "tipo": "aritmetica",
+    "config": {},
+    "peso": 1
+  },
+  {
+    "subtemaId": 32,
+    "tipo": "estadistica_recoleccion",
+    "config": {
+      "modo": "conteo"
+    },
+    "peso": 3
+  },
+  {
+    "subtemaId": 32,
+    "tipo": "estadistica_base",
+    "config": {
+      "modo": "conteo"
+    },
+    "peso": 1
+  },
+  {
+    "subtemaId": 32,
+    "tipo": "estadistica_base",
+    "config": {
+      "modo": "frecuencia_absoluta"
+    },
+    "peso": 1
+  },
+  {
+    "subtemaId": 33,
+    "tipo": "aritmetica",
+    "config": {},
+    "peso": 1
+  },
+  {
+    "subtemaId": 33,
+    "tipo": "estadistica_tabla_frecuencia",
+    "config": {
+      "modo": "tabla"
+    },
+    "peso": 3
+  },
+  {
+    "subtemaId": 33,
+    "tipo": "estadistica_base",
+    "config": {
+      "modo": "tabla_frecuencia"
+    },
+    "peso": 1
+  },
+  {
+    "subtemaId": 34,
+    "tipo": "aritmetica",
+    "config": {},
+    "peso": 1
+  },
+  {
+    "subtemaId": 34,
+    "tipo": "estadistica_frecuencia_relativa",
+    "config": {
+      "modo": "relativa"
+    },
+    "peso": 3
+  },
+  {
+    "subtemaId": 34,
+    "tipo": "estadistica_base",
+    "config": {
+      "modo": "frecuencia_relativa"
+    },
+    "peso": 1
+  },
+  {
+    "subtemaId": 34,
+    "tipo": "estadistica_base",
+    "config": {
+      "modo": "frecuencia_relativa_acumulada"
+    },
+    "peso": 1
+  },
+  {
+    "subtemaId": 35,
+    "tipo": "aritmetica",
+    "config": {},
+    "peso": 1
+  },
+  {
+    "subtemaId": 35,
+    "tipo": "estadistica_grafico_barras",
+    "config": {
+      "modo": "barras"
+    },
+    "peso": 3
+  },
+  {
+    "subtemaId": 35,
+    "tipo": "estadistica_base",
+    "config": {
+      "modo": "grafico_barras"
+    },
+    "peso": 1
+  },
+  {
+    "subtemaId": 1,
+    "tipo": "operaciones_contexto",
+    "config": {},
+    "peso": 4
+  }
+]

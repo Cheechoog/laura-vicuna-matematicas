@@ -1,0 +1,1043 @@
+{
+  "version": "6",
+  "dialect": "sqlite",
+  "id": "37b4a196-03f2-49ca-9b32-26c912b906c7",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "tables": {
+    "areas": {
+      "name": "areas",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "nombre": {
+          "name": "nombre",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "orden": {
+          "name": "orden",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 1
+        }
+      },
+      "indexes": {
+        "areas_nombre_unique": {
+          "name": "areas_nombre_unique",
+          "columns": [
+            "nombre"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "docentes": {
+      "name": "docentes",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "nombre": {
+          "name": "nombre",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "usuario": {
+          "name": "usuario",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "pin_hash": {
+          "name": "pin_hash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "activo": {
+          "name": "activo",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": true
+        },
+        "creado_en": {
+          "name": "creado_en",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(datetime('now'))"
+        }
+      },
+      "indexes": {
+        "docentes_usuario_unique": {
+          "name": "docentes_usuario_unique",
+          "columns": [
+            "usuario"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "estudiantes": {
+      "name": "estudiantes",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "grupo_id": {
+          "name": "grupo_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "nombre": {
+          "name": "nombre",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "usuario": {
+          "name": "usuario",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "pin_hash": {
+          "name": "pin_hash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "activo": {
+          "name": "activo",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": true
+        },
+        "creado_en": {
+          "name": "creado_en",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(datetime('now'))"
+        }
+      },
+      "indexes": {
+        "estudiantes_usuario_unique": {
+          "name": "estudiantes_usuario_unique",
+          "columns": [
+            "usuario"
+          ],
+          "isUnique": true
+        },
+        "idx_estudiantes_grupo": {
+          "name": "idx_estudiantes_grupo",
+          "columns": [
+            "grupo_id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "estudiantes_grupo_id_grupos_id_fk": {
+          "name": "estudiantes_grupo_id_grupos_id_fk",
+          "tableFrom": "estudiantes",
+          "tableTo": "grupos",
+          "columnsFrom": [
+            "grupo_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "generadores": {
+      "name": "generadores",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "subtema_id": {
+          "name": "subtema_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "tipo": {
+          "name": "tipo",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "config": {
+          "name": "config",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "peso": {
+          "name": "peso",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 1
+        }
+      },
+      "indexes": {
+        "uq_generadores": {
+          "name": "uq_generadores",
+          "columns": [
+            "subtema_id",
+            "tipo",
+            "config"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {
+        "generadores_subtema_id_subtemas_id_fk": {
+          "name": "generadores_subtema_id_subtemas_id_fk",
+          "tableFrom": "generadores",
+          "tableTo": "subtemas",
+          "columnsFrom": [
+            "subtema_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "grados": {
+      "name": "grados",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "nombre": {
+          "name": "nombre",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "orden": {
+          "name": "orden",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 1
+        }
+      },
+      "indexes": {
+        "grados_nombre_unique": {
+          "name": "grados_nombre_unique",
+          "columns": [
+            "nombre"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "grupos": {
+      "name": "grupos",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "grado_id": {
+          "name": "grado_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "nombre": {
+          "name": "nombre",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "uq_grupos": {
+          "name": "uq_grupos",
+          "columns": [
+            "grado_id",
+            "nombre"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {
+        "grupos_grado_id_grados_id_fk": {
+          "name": "grupos_grado_id_grados_id_fk",
+          "tableFrom": "grupos",
+          "tableTo": "grados",
+          "columnsFrom": [
+            "grado_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "guias_taller": {
+      "name": "guias_taller",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "subtema_id": {
+          "name": "subtema_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "titulo": {
+          "name": "titulo",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "enunciado_html": {
+          "name": "enunciado_html",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "solucion_html": {
+          "name": "solucion_html",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "orden": {
+          "name": "orden",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 1
+        }
+      },
+      "indexes": {
+        "uq_guias": {
+          "name": "uq_guias",
+          "columns": [
+            "subtema_id",
+            "titulo"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {
+        "guias_taller_subtema_id_subtemas_id_fk": {
+          "name": "guias_taller_subtema_id_subtemas_id_fk",
+          "tableFrom": "guias_taller",
+          "tableTo": "subtemas",
+          "columnsFrom": [
+            "subtema_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "intentos": {
+      "name": "intentos",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "estudiante_id": {
+          "name": "estudiante_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "subtema_id": {
+          "name": "subtema_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "tipo": {
+          "name": "tipo",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "preguntas": {
+          "name": "preguntas",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "respuestas": {
+          "name": "respuestas",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "estado": {
+          "name": "estado",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'abierto'"
+        },
+        "correctas": {
+          "name": "correctas",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "total": {
+          "name": "total",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "nota": {
+          "name": "nota",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "iniciado_en": {
+          "name": "iniciado_en",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(datetime('now'))"
+        },
+        "entregado_en": {
+          "name": "entregado_en",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "idx_intentos_estudiante": {
+          "name": "idx_intentos_estudiante",
+          "columns": [
+            "estudiante_id",
+            "subtema_id",
+            "tipo"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "intentos_estudiante_id_estudiantes_id_fk": {
+          "name": "intentos_estudiante_id_estudiantes_id_fk",
+          "tableFrom": "intentos",
+          "tableTo": "estudiantes",
+          "columnsFrom": [
+            "estudiante_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "intentos_subtema_id_subtemas_id_fk": {
+          "name": "intentos_subtema_id_subtemas_id_fk",
+          "tableFrom": "intentos",
+          "tableTo": "subtemas",
+          "columnsFrom": [
+            "subtema_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "lecciones": {
+      "name": "lecciones",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "subtema_id": {
+          "name": "subtema_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "titulo": {
+          "name": "titulo",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "html": {
+          "name": "html",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "orden": {
+          "name": "orden",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 1
+        }
+      },
+      "indexes": {
+        "uq_lecciones": {
+          "name": "uq_lecciones",
+          "columns": [
+            "subtema_id",
+            "titulo"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {
+        "lecciones_subtema_id_subtemas_id_fk": {
+          "name": "lecciones_subtema_id_subtemas_id_fk",
+          "tableFrom": "lecciones",
+          "tableTo": "subtemas",
+          "columnsFrom": [
+            "subtema_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "periodos": {
+      "name": "periodos",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "nombre": {
+          "name": "nombre",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "orden": {
+          "name": "orden",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "periodos_nombre_unique": {
+          "name": "periodos_nombre_unique",
+          "columns": [
+            "nombre"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "preguntas": {
+      "name": "preguntas",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "subtema_id": {
+          "name": "subtema_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "tipo": {
+          "name": "tipo",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "enunciado": {
+          "name": "enunciado",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "opciones": {
+          "name": "opciones",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "respuesta": {
+          "name": "respuesta",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "explicacion": {
+          "name": "explicacion",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "uq_preguntas": {
+          "name": "uq_preguntas",
+          "columns": [
+            "subtema_id",
+            "tipo",
+            "enunciado"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {
+        "preguntas_subtema_id_subtemas_id_fk": {
+          "name": "preguntas_subtema_id_subtemas_id_fk",
+          "tableFrom": "preguntas",
+          "tableTo": "subtemas",
+          "columnsFrom": [
+            "subtema_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "recursos": {
+      "name": "recursos",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "subtema_id": {
+          "name": "subtema_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "tipo": {
+          "name": "tipo",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "titulo": {
+          "name": "titulo",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "descripcion": {
+          "name": "descripcion",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "url": {
+          "name": "url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "datos": {
+          "name": "datos",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "orden": {
+          "name": "orden",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 1
+        }
+      },
+      "indexes": {
+        "uq_recursos": {
+          "name": "uq_recursos",
+          "columns": [
+            "subtema_id",
+            "titulo"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {
+        "recursos_subtema_id_subtemas_id_fk": {
+          "name": "recursos_subtema_id_subtemas_id_fk",
+          "tableFrom": "recursos",
+          "tableTo": "subtemas",
+          "columnsFrom": [
+            "subtema_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "subtemas": {
+      "name": "subtemas",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "tema_id": {
+          "name": "tema_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "nombre": {
+          "name": "nombre",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "orden": {
+          "name": "orden",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 1
+        },
+        "habilitado": {
+          "name": "habilitado",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": false
+        },
+        "disponible_desde": {
+          "name": "disponible_desde",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "idx_subtemas_tema": {
+          "name": "idx_subtemas_tema",
+          "columns": [
+            "tema_id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "subtemas_tema_id_temas_id_fk": {
+          "name": "subtemas_tema_id_temas_id_fk",
+          "tableFrom": "subtemas",
+          "tableTo": "temas",
+          "columnsFrom": [
+            "tema_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "temas": {
+      "name": "temas",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "area_id": {
+          "name": "area_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "grado_id": {
+          "name": "grado_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "periodo_id": {
+          "name": "periodo_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "nombre": {
+          "name": "nombre",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "orden": {
+          "name": "orden",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 1
+        }
+      },
+      "indexes": {
+        "idx_temas_ubicacion": {
+          "name": "idx_temas_ubicacion",
+          "columns": [
+            "area_id",
+            "grado_id",
+            "periodo_id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "temas_area_id_areas_id_fk": {
+          "name": "temas_area_id_areas_id_fk",
+          "tableFrom": "temas",
+          "tableTo": "areas",
+          "columnsFrom": [
+            "area_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "temas_grado_id_grados_id_fk": {
+          "name": "temas_grado_id_grados_id_fk",
+          "tableFrom": "temas",
+          "tableTo": "grados",
+          "columnsFrom": [
+            "grado_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "temas_periodo_id_periodos_id_fk": {
+          "name": "temas_periodo_id_periodos_id_fk",
+          "tableFrom": "temas",
+          "tableTo": "periodos",
+          "columnsFrom": [
+            "periodo_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    }
+  },
+  "views": {},
+  "enums": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  },
+  "internal": {
+    "indexes": {}
+  }
+}

@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+/* =====================================================================
+   Tokens de diseño — tomados del logo de la I.E. Laura Vicuña
+   ===================================================================== */
+@theme {
+  --font-titulo: "Fredoka", ui-rounded, "Segoe UI", system-ui, sans-serif;
+  --font-texto: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+
+  --color-tinta: #1b3a6b;        /* texto principal */
+  --color-tinta-suave: #4a5f82;  /* texto secundario */
+  --color-papel: #fbfcfe;        /* fondo */
+  --color-cuadricula: #e3ebf6;   /* líneas del cuaderno */
+  --color-margen: #f0a8a8;       /* línea roja del margen */
+
+  --color-azul: #2c6bc2;
+  --color-azul-claro: #e6effa;
+  --color-verde: #2f9e44;
+  --color-verde-claro: #e4f4e6;
+  --color-rojo: #c93c3c;
+  --color-rojo-claro: #fbeaea;
+  --color-ambar: #b7791f;
+  --color-ambar-claro: #fdf3e1;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-texto);
+    color: var(--color-tinta);
+    background: var(--color-papel);
+    font-size: 17px; /* base generosa: muchos estudiantes leen mejor con letra grande */
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    min-height: 100dvh;
+    line-height: 1.55;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-titulo);
+    line-height: 1.15;
+    font-weight: 600;
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-azul);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+}
+
+/* =====================================================================
+   El cuaderno: cuadrícula de fondo y hoja con margen
+   ===================================================================== */
+@layer components {
+  .fondo-cuaderno {
+    background-color: var(--color-papel);
+    background-image:
+      linear-gradient(var(--color-cuadricula) 1px, transparent 1px),
+      linear-gradient(90deg, var(--color-cuadricula) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  .hoja {
+    position: relative;
+    background: #fff;
+    border: 1px solid #d6e0ee;
+    border-radius: 4px 4px 12px 12px;
+    box-shadow: 0 1px 0 #d6e0ee, 0 10px 30px -18px rgb(27 58 107 / 0.35);
+    padding: 1.75rem 1.25rem 1.75rem 2.75rem;
+  }
+  .hoja::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 1.6rem;
+    width: 2px;
+    background: var(--color-margen);
+  }
+  @media (min-width: 768px) {
+    .hoja { padding: 2.25rem 2.5rem 2.25rem 4rem; }
+    .hoja::before { left: 2.4rem; }
+  }
+
+  /* Contenido HTML de las lecciones y guías (viene de la base de datos) */
+  .contenido-leccion { max-width: 68ch; }
+  .contenido-leccion h3 { font-size: 1.35rem; margin: 1.5rem 0 0.6rem; color: var(--color-azul); }
+  .contenido-leccion h3:first-child { margin-top: 0; }
+  .contenido-leccion p { margin: 0.6rem 0; }
+  .contenido-leccion ul, .contenido-leccion ol { margin: 0.6rem 0 0.6rem 1.4rem; }
+  .contenido-leccion ul { list-style: disc; }
+  .contenido-leccion ol { list-style: decimal; }
+  .contenido-leccion li { margin: 0.3rem 0; }
+  .contenido-leccion b, .contenido-leccion strong { color: var(--color-tinta); font-weight: 700; }
+  .contenido-leccion table { border-collapse: collapse; margin: 1rem 0; display: block; overflow-x: auto; }
+  .contenido-leccion th, .contenido-leccion td { border: 1.5px solid #c9d6e8; padding: 0.45rem 0.8rem; text-align: center; }
+  .contenido-leccion th { background: var(--color-azul-claro); }
+  .contenido-leccion details { margin: 0.8rem 0; padding: 0.6rem 0.9rem; border: 1.5px dashed #c9d6e8; border-radius: 10px; }
+  .contenido-leccion summary { cursor: pointer; font-weight: 700; color: var(--color-azul); }
+  .contenido-leccion input { border: 1.5px solid #b8c7dd; border-radius: 8px; padding: 0.3rem 0.5rem; }
+}

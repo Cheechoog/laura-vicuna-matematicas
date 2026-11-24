@@ -1,0 +1,720 @@
+{
+  "_nota": "Estructura académica. Los id son FIJOS: el contenido se enlaza por subtemaId. Para agregar, usa ids nuevos; no cambies los existentes.",
+  "areas": [
+    {
+      "id": 1,
+      "nombre": "Matemáticas",
+      "orden": 1
+    }
+  ],
+  "grados": [
+    {
+      "id": 1,
+      "nombre": "Sexto",
+      "orden": 1
+    },
+    {
+      "id": 2,
+      "nombre": "Séptimo",
+      "orden": 2
+    }
+  ],
+  "periodos": [
+    {
+      "id": 1,
+      "nombre": "Primer periodo",
+      "orden": 1
+    },
+    {
+      "id": 2,
+      "nombre": "Segundo periodo",
+      "orden": 2
+    },
+    {
+      "id": 3,
+      "nombre": "Tercer periodo",
+      "orden": 3
+    }
+  ],
+  "temas": [
+    {
+      "id": 1,
+      "areaId": 1,
+      "gradoId": 1,
+      "periodoId": 1,
+      "nombre": "Sistema de Números Naturales",
+      "orden": 1
+    },
+    {
+      "id": 2,
+      "areaId": 1,
+      "gradoId": 1,
+      "periodoId": 1,
+      "nombre": "Sistema de Números Racionales",
+      "orden": 2
+    },
+    {
+      "id": 3,
+      "areaId": 1,
+      "gradoId": 1,
+      "periodoId": 1,
+      "nombre": "Ángulos y Polígonos",
+      "orden": 3
+    },
+    {
+      "id": 4,
+      "areaId": 1,
+      "gradoId": 1,
+      "periodoId": 1,
+      "nombre": "Estadística",
+      "orden": 4
+    },
+    {
+      "id": 5,
+      "areaId": 1,
+      "gradoId": 2,
+      "periodoId": 1,
+      "nombre": "Sistema Numérico de los Enteros",
+      "orden": 1
+    },
+    {
+      "id": 6,
+      "areaId": 1,
+      "gradoId": 2,
+      "periodoId": 1,
+      "nombre": "Ecuaciones",
+      "orden": 2
+    },
+    {
+      "id": 7,
+      "areaId": 1,
+      "gradoId": 2,
+      "periodoId": 1,
+      "nombre": "Polígonos",
+      "orden": 3
+    },
+    {
+      "id": 8,
+      "areaId": 1,
+      "gradoId": 2,
+      "periodoId": 1,
+      "nombre": "Congruencia y Semejanza",
+      "orden": 4
+    },
+    {
+      "id": 9,
+      "areaId": 1,
+      "gradoId": 2,
+      "periodoId": 1,
+      "nombre": "Distribución de Frecuencias",
+      "orden": 5
+    },
+    {
+      "id": 15,
+      "areaId": 1,
+      "gradoId": 2,
+      "periodoId": 2,
+      "nombre": "Números racionales",
+      "orden": 1
+    },
+    {
+      "id": 16,
+      "areaId": 1,
+      "gradoId": 2,
+      "periodoId": 2,
+      "nombre": "Ecuaciones",
+      "orden": 2
+    },
+    {
+      "id": 17,
+      "areaId": 1,
+      "gradoId": 2,
+      "periodoId": 2,
+      "nombre": "Poliedros",
+      "orden": 3
+    },
+    {
+      "id": 18,
+      "areaId": 1,
+      "gradoId": 2,
+      "periodoId": 2,
+      "nombre": "Cuerpos redondos",
+      "orden": 4
+    },
+    {
+      "id": 19,
+      "areaId": 1,
+      "gradoId": 2,
+      "periodoId": 2,
+      "nombre": "Volumen",
+      "orden": 5
+    },
+    {
+      "id": 20,
+      "areaId": 1,
+      "gradoId": 2,
+      "periodoId": 2,
+      "nombre": "Conceptos básicos de probabilidad",
+      "orden": 6
+    },
+    {
+      "id": 21,
+      "areaId": 1,
+      "gradoId": 2,
+      "periodoId": 3,
+      "nombre": "Razones y proporciones",
+      "orden": 1
+    },
+    {
+      "id": 22,
+      "areaId": 1,
+      "gradoId": 2,
+      "periodoId": 3,
+      "nombre": "Circunferencia",
+      "orden": 2
+    },
+    {
+      "id": 23,
+      "areaId": 1,
+      "gradoId": 2,
+      "periodoId": 3,
+      "nombre": "Unidades de capacidad",
+      "orden": 3
+    },
+    {
+      "id": 24,
+      "areaId": 1,
+      "gradoId": 2,
+      "periodoId": 3,
+      "nombre": "Técnicas de conteo",
+      "orden": 4
+    }
+  ],
+  "subtemas": [
+    {
+      "id": 1,
+      "temaId": 1,
+      "nombre": "Operaciones básicas",
+      "orden": 1,
+      "habilitado": true
+    },
+    {
+      "id": 2,
+      "temaId": 1,
+      "nombre": "Potenciación",
+      "orden": 2,
+      "habilitado": true
+    },
+    {
+      "id": 3,
+      "temaId": 1,
+      "nombre": "Radicación",
+      "orden": 3,
+      "habilitado": true
+    },
+    {
+      "id": 4,
+      "temaId": 1,
+      "nombre": "Logaritmación",
+      "orden": 4,
+      "habilitado": true
+    },
+    {
+      "id": 5,
+      "temaId": 2,
+      "nombre": "Suma y resta de fracciones",
+      "orden": 1,
+      "habilitado": true
+    },
+    {
+      "id": 6,
+      "temaId": 2,
+      "nombre": "Multiplicación y división de fracciones",
+      "orden": 2,
+      "habilitado": true
+    },
+    {
+      "id": 7,
+      "temaId": 2,
+      "nombre": "Potencia y raíz de fracción",
+      "orden": 3,
+      "habilitado": true
+    },
+    {
+      "id": 8,
+      "temaId": 3,
+      "nombre": "Construcción de ángulos",
+      "orden": 1,
+      "habilitado": true
+    },
+    {
+      "id": 9,
+      "temaId": 3,
+      "nombre": "Polígonos regulares",
+      "orden": 2,
+      "habilitado": true
+    },
+    {
+      "id": 10,
+      "temaId": 3,
+      "nombre": "Triángulos",
+      "orden": 3,
+      "habilitado": true
+    },
+    {
+      "id": 11,
+      "temaId": 4,
+      "nombre": "Población y muestra",
+      "orden": 1,
+      "habilitado": true
+    },
+    {
+      "id": 12,
+      "temaId": 4,
+      "nombre": "Variables",
+      "orden": 2,
+      "habilitado": true
+    },
+    {
+      "id": 13,
+      "temaId": 4,
+      "nombre": "Recolección de datos",
+      "orden": 3,
+      "habilitado": true
+    },
+    {
+      "id": 14,
+      "temaId": 5,
+      "nombre": "Números enteros positivos y negativos",
+      "orden": 1,
+      "habilitado": true
+    },
+    {
+      "id": 15,
+      "temaId": 5,
+      "nombre": "Recta numérica de enteros",
+      "orden": 2,
+      "habilitado": true
+    },
+    {
+      "id": 16,
+      "temaId": 5,
+      "nombre": "Suma de números enteros",
+      "orden": 3,
+      "habilitado": true
+    },
+    {
+      "id": 17,
+      "temaId": 5,
+      "nombre": "Resta de números enteros",
+      "orden": 4,
+      "habilitado": true
+    },
+    {
+      "id": 18,
+      "temaId": 5,
+      "nombre": "Multiplicación de enteros",
+      "orden": 5,
+      "habilitado": true
+    },
+    {
+      "id": 19,
+      "temaId": 5,
+      "nombre": "División de enteros",
+      "orden": 6,
+      "habilitado": true
+    },
+    {
+      "id": 20,
+      "temaId": 6,
+      "nombre": "Igualdades y ecuaciones",
+      "orden": 1,
+      "habilitado": false
+    },
+    {
+      "id": 21,
+      "temaId": 6,
+      "nombre": "Resolución de ecuaciones simples",
+      "orden": 2,
+      "habilitado": false
+    },
+    {
+      "id": 22,
+      "temaId": 6,
+      "nombre": "Ecuaciones con suma y resta",
+      "orden": 3,
+      "habilitado": false
+    },
+    {
+      "id": 23,
+      "temaId": 6,
+      "nombre": "Ecuaciones con multiplicación y división",
+      "orden": 4,
+      "habilitado": false
+    },
+    {
+      "id": 24,
+      "temaId": 7,
+      "nombre": "Concepto de polígono",
+      "orden": 1,
+      "habilitado": false
+    },
+    {
+      "id": 25,
+      "temaId": 7,
+      "nombre": "Clasificación de polígonos",
+      "orden": 2,
+      "habilitado": false
+    },
+    {
+      "id": 26,
+      "temaId": 7,
+      "nombre": "Perímetro de polígonos",
+      "orden": 3,
+      "habilitado": false
+    },
+    {
+      "id": 27,
+      "temaId": 7,
+      "nombre": "Área de polígonos",
+      "orden": 4,
+      "habilitado": false
+    },
+    {
+      "id": 28,
+      "temaId": 8,
+      "nombre": "Concepto de congruencia",
+      "orden": 1,
+      "habilitado": false
+    },
+    {
+      "id": 29,
+      "temaId": 8,
+      "nombre": "Figuras congruentes",
+      "orden": 2,
+      "habilitado": false
+    },
+    {
+      "id": 30,
+      "temaId": 8,
+      "nombre": "Concepto de semejanza",
+      "orden": 3,
+      "habilitado": false
+    },
+    {
+      "id": 31,
+      "temaId": 8,
+      "nombre": "Figuras semejantes",
+      "orden": 4,
+      "habilitado": false
+    },
+    {
+      "id": 32,
+      "temaId": 9,
+      "nombre": "Frecuencia absoluta",
+      "orden": 1,
+      "habilitado": true
+    },
+    {
+      "id": 33,
+      "temaId": 9,
+      "nombre": "Tablas de frecuencia",
+      "orden": 2,
+      "habilitado": true
+    },
+    {
+      "id": 34,
+      "temaId": 9,
+      "nombre": "Frecuencia relativa y frecuencia acumulada",
+      "orden": 3,
+      "habilitado": true
+    },
+    {
+      "id": 35,
+      "temaId": 9,
+      "nombre": "Gráfico de barras en un plano cartesiano simple",
+      "orden": 4,
+      "habilitado": true
+    },
+    {
+      "id": 36,
+      "temaId": 15,
+      "nombre": "Representación de números racionales",
+      "orden": 1,
+      "habilitado": false
+    },
+    {
+      "id": 37,
+      "temaId": 15,
+      "nombre": "Orden de números racionales",
+      "orden": 2,
+      "habilitado": false
+    },
+    {
+      "id": 38,
+      "temaId": 15,
+      "nombre": "Suma y resta de números racionales",
+      "orden": 3,
+      "habilitado": false
+    },
+    {
+      "id": 39,
+      "temaId": 15,
+      "nombre": "Multiplicación de números racionales",
+      "orden": 4,
+      "habilitado": false
+    },
+    {
+      "id": 40,
+      "temaId": 15,
+      "nombre": "División de números racionales",
+      "orden": 5,
+      "habilitado": false
+    },
+    {
+      "id": 41,
+      "temaId": 16,
+      "nombre": "Ecuaciones con números racionales",
+      "orden": 1,
+      "habilitado": false
+    },
+    {
+      "id": 42,
+      "temaId": 16,
+      "nombre": "Resolución de ecuaciones con suma y resta",
+      "orden": 2,
+      "habilitado": false
+    },
+    {
+      "id": 43,
+      "temaId": 16,
+      "nombre": "Resolución de ecuaciones con multiplicación y división",
+      "orden": 3,
+      "habilitado": false
+    },
+    {
+      "id": 44,
+      "temaId": 17,
+      "nombre": "Concepto de poliedro",
+      "orden": 1,
+      "habilitado": false
+    },
+    {
+      "id": 45,
+      "temaId": 17,
+      "nombre": "Poliedros convexos y cóncavos",
+      "orden": 2,
+      "habilitado": false
+    },
+    {
+      "id": 46,
+      "temaId": 17,
+      "nombre": "Prismas",
+      "orden": 3,
+      "habilitado": false
+    },
+    {
+      "id": 47,
+      "temaId": 17,
+      "nombre": "Pirámides",
+      "orden": 4,
+      "habilitado": false
+    },
+    {
+      "id": 48,
+      "temaId": 18,
+      "nombre": "Cilindro",
+      "orden": 1,
+      "habilitado": false
+    },
+    {
+      "id": 49,
+      "temaId": 18,
+      "nombre": "Cono",
+      "orden": 2,
+      "habilitado": false
+    },
+    {
+      "id": 50,
+      "temaId": 18,
+      "nombre": "Tronco de cono",
+      "orden": 3,
+      "habilitado": false
+    },
+    {
+      "id": 51,
+      "temaId": 18,
+      "nombre": "Esfera",
+      "orden": 4,
+      "habilitado": false
+    },
+    {
+      "id": 52,
+      "temaId": 18,
+      "nombre": "Casquete esférico",
+      "orden": 5,
+      "habilitado": false
+    },
+    {
+      "id": 53,
+      "temaId": 19,
+      "nombre": "Unidades de volumen",
+      "orden": 1,
+      "habilitado": false
+    },
+    {
+      "id": 54,
+      "temaId": 19,
+      "nombre": "Conversión de unidades de volumen",
+      "orden": 2,
+      "habilitado": false
+    },
+    {
+      "id": 55,
+      "temaId": 19,
+      "nombre": "Volumen de prismas",
+      "orden": 3,
+      "habilitado": false
+    },
+    {
+      "id": 56,
+      "temaId": 19,
+      "nombre": "Volumen de cilindros",
+      "orden": 4,
+      "habilitado": false
+    },
+    {
+      "id": 57,
+      "temaId": 20,
+      "nombre": "Experimento aleatorio",
+      "orden": 1,
+      "habilitado": false
+    },
+    {
+      "id": 58,
+      "temaId": 20,
+      "nombre": "Espacio muestral",
+      "orden": 2,
+      "habilitado": false
+    },
+    {
+      "id": 59,
+      "temaId": 20,
+      "nombre": "Suceso o evento",
+      "orden": 3,
+      "habilitado": false
+    },
+    {
+      "id": 60,
+      "temaId": 20,
+      "nombre": "Probabilidad simple",
+      "orden": 4,
+      "habilitado": false
+    },
+    {
+      "id": 61,
+      "temaId": 21,
+      "nombre": "Razones",
+      "orden": 1,
+      "habilitado": false
+    },
+    {
+      "id": 62,
+      "temaId": 21,
+      "nombre": "Proporciones",
+      "orden": 2,
+      "habilitado": false
+    },
+    {
+      "id": 63,
+      "temaId": 21,
+      "nombre": "Magnitudes correlacionadas",
+      "orden": 3,
+      "habilitado": false
+    },
+    {
+      "id": 64,
+      "temaId": 21,
+      "nombre": "Proporcionalidad directa",
+      "orden": 4,
+      "habilitado": false
+    },
+    {
+      "id": 65,
+      "temaId": 21,
+      "nombre": "Proporcionalidad inversa",
+      "orden": 5,
+      "habilitado": false
+    },
+    {
+      "id": 66,
+      "temaId": 21,
+      "nombre": "Regla de tres simple",
+      "orden": 6,
+      "habilitado": false
+    },
+    {
+      "id": 67,
+      "temaId": 22,
+      "nombre": "Elementos de la circunferencia",
+      "orden": 1,
+      "habilitado": false
+    },
+    {
+      "id": 68,
+      "temaId": 22,
+      "nombre": "Longitud de la circunferencia",
+      "orden": 2,
+      "habilitado": false
+    },
+    {
+      "id": 69,
+      "temaId": 22,
+      "nombre": "Perímetro de la circunferencia",
+      "orden": 3,
+      "habilitado": false
+    },
+    {
+      "id": 70,
+      "temaId": 23,
+      "nombre": "Unidades de capacidad",
+      "orden": 1,
+      "habilitado": false
+    },
+    {
+      "id": 71,
+      "temaId": 23,
+      "nombre": "Conversión de unidades de capacidad",
+      "orden": 2,
+      "habilitado": false
+    },
+    {
+      "id": 72,
+      "temaId": 23,
+      "nombre": "Aplicaciones de capacidad",
+      "orden": 3,
+      "habilitado": false
+    },
+    {
+      "id": 73,
+      "temaId": 24,
+      "nombre": "Diagrama de árbol",
+      "orden": 1,
+      "habilitado": false
+    },
+    {
+      "id": 74,
+      "temaId": 24,
+      "nombre": "Principio de multiplicación",
+      "orden": 2,
+      "habilitado": false
+    },
+    {
+      "id": 75,
+      "temaId": 24,
+      "nombre": "Conteo de posibilidades",
+      "orden": 3,
+      "habilitado": false
+    }
+  ]
+}

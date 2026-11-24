@@ -1,0 +1,54 @@
+[
+  {
+    "subtemaId": 1,
+    "tipo": "video",
+    "titulo": "Explicación en video: Operaciones básicas",
+    "descripcion": "Video de apoyo para comprender suma, resta, multiplicación y división.",
+    "url": "/videos/subtema-1.mp4",
+    "datos": null
+  },
+  {
+    "subtemaId": 1,
+    "tipo": "juego",
+    "titulo": "Parejas matemáticas",
+    "descripcion": "Relaciona cada operación con su resultado. Ideal para trabajo grupal en clase.",
+    "url": null,
+    "datos": {
+      "modo": "parejas",
+      "items": [
+        {
+          "a": "8 + 7",
+          "b": "15"
+        },
+        {
+          "a": "9 × 6",
+          "b": "54"
+        },
+        {
+          "a": "72 ÷ 9",
+          "b": "8"
+        },
+        {
+          "a": "15 - 7",
+          "b": "8"
+        },
+        {
+          "a": "12 × 4",
+          "b": "48"
+        },
+        {
+          "a": "36 ÷ 6",
+          "b": "6"
+        },
+        {
+          "a": "25 + 13",
+          "b": "38"
+        },
+        {
+          "a": "50 - 18",
+          "b": "32"
+        }
+      ]
+    }
+  }
+]

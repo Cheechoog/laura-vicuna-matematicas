@@ -1,18 +1,16 @@
-# Node
 node_modules/
-
-# Database
-*.sqlite
-*.sqlite-journal
-
-# Env
+dist/
+*.log
 .env
+.env.*
+!.env.example
 
-# Logs
-npm-debug.log*
+# Base de datos local y backups (contienen datos de estudiantes)
+*.sqlite
+*.sqlite-*
+apps/api/data/
 
-# Editor
-.vscode/
-.idea/
-.DS_Store
-Thumbs.db
+# Archivos con datos personales: NUNCA al repo
+*.xlsx
+*.xls
+*.csv

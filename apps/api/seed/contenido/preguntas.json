@@ -1,0 +1,1593 @@
+[
+  {
+    "subtemaId": 1,
+    "tipo": "mcq",
+    "enunciado": "¿Cuánto es 18 + 27?",
+    "opciones": [
+      "35",
+      "45",
+      "55",
+      "46"
+    ],
+    "respuesta": "45",
+    "explicacion": "18+27=45."
+  },
+  {
+    "subtemaId": 1,
+    "tipo": "mcq",
+    "enunciado": "¿Cuánto es 90 - 33?",
+    "opciones": [
+      "57",
+      "63",
+      "47",
+      "60"
+    ],
+    "respuesta": "57",
+    "explicacion": "90-33=57."
+  },
+  {
+    "subtemaId": 1,
+    "tipo": "mcq",
+    "enunciado": "¿Cuánto es 7 × 8?",
+    "opciones": [
+      "54",
+      "56",
+      "64",
+      "48"
+    ],
+    "respuesta": "56",
+    "explicacion": "7×8=56."
+  },
+  {
+    "subtemaId": 1,
+    "tipo": "mcq",
+    "enunciado": "¿Cuánto es 72 ÷ 9?",
+    "opciones": [
+      "7",
+      "8",
+      "9",
+      "6"
+    ],
+    "respuesta": "8",
+    "explicacion": "72/9=8."
+  },
+  {
+    "subtemaId": 1,
+    "tipo": "vf",
+    "enunciado": "En 8 + 2×5 se hace primero la suma.",
+    "opciones": null,
+    "respuesta": "F",
+    "explicacion": "Primero multiplicación: 2×5=10."
+  },
+  {
+    "subtemaId": 1,
+    "tipo": "mcq",
+    "enunciado": "Resuelve: 8 + 2×5",
+    "opciones": [
+      "50",
+      "18",
+      "20",
+      "16"
+    ],
+    "respuesta": "18",
+    "explicacion": "2×5=10, luego 8+10=18."
+  },
+  {
+    "subtemaId": 1,
+    "tipo": "mcq",
+    "enunciado": "Resuelve: (10+6) ÷ 4",
+    "opciones": [
+      "4",
+      "3",
+      "6",
+      "8"
+    ],
+    "respuesta": "4",
+    "explicacion": "10+6=16, 16/4=4."
+  },
+  {
+    "subtemaId": 1,
+    "tipo": "vf",
+    "enunciado": "La multiplicación es suma repetida.",
+    "opciones": null,
+    "respuesta": "V",
+    "explicacion": "3×4 es 3+3+3+3."
+  },
+  {
+    "subtemaId": 1,
+    "tipo": "mcq",
+    "enunciado": "¿Cuánto es 120 - 85?",
+    "opciones": [
+      "45",
+      "35",
+      "25",
+      "40"
+    ],
+    "respuesta": "35",
+    "explicacion": "120-85=35."
+  },
+  {
+    "subtemaId": 1,
+    "tipo": "mcq",
+    "enunciado": "¿Cuánto es 9×6?",
+    "opciones": [
+      "45",
+      "54",
+      "56",
+      "60"
+    ],
+    "respuesta": "54",
+    "explicacion": "9×6=54."
+  },
+  {
+    "subtemaId": 2,
+    "tipo": "mcq",
+    "enunciado": "¿Cuánto es 2^3?",
+    "opciones": [
+      "6",
+      "8",
+      "9",
+      "12"
+    ],
+    "respuesta": "8",
+    "explicacion": "2×2×2=8."
+  },
+  {
+    "subtemaId": 2,
+    "tipo": "mcq",
+    "enunciado": "¿Cuánto es 5^2?",
+    "opciones": [
+      "10",
+      "20",
+      "25",
+      "15"
+    ],
+    "respuesta": "25",
+    "explicacion": "5×5=25."
+  },
+  {
+    "subtemaId": 2,
+    "tipo": "vf",
+    "enunciado": "a^0 = 1 (si a ≠ 0).",
+    "opciones": null,
+    "respuesta": "V",
+    "explicacion": "Propiedad de potencias."
+  },
+  {
+    "subtemaId": 2,
+    "tipo": "mcq",
+    "enunciado": "2^2 × 2^3 es igual a:",
+    "opciones": [
+      "2^4",
+      "2^5",
+      "2^6",
+      "4^3"
+    ],
+    "respuesta": "2^5",
+    "explicacion": "Se suman exponentes."
+  },
+  {
+    "subtemaId": 2,
+    "tipo": "mcq",
+    "enunciado": "¿Cuánto es 3^4 ÷ 3^2?",
+    "opciones": [
+      "3^6",
+      "3^2",
+      "3^8",
+      "9^2"
+    ],
+    "respuesta": "3^2",
+    "explicacion": "Se restan exponentes: 3^(4-2)=3^2."
+  },
+  {
+    "subtemaId": 2,
+    "tipo": "mcq",
+    "enunciado": "(2^3)^2 es igual a:",
+    "opciones": [
+      "2^5",
+      "2^6",
+      "2^8",
+      "6^2"
+    ],
+    "respuesta": "2^6",
+    "explicacion": "Se multiplican exponentes."
+  },
+  {
+    "subtemaId": 2,
+    "tipo": "vf",
+    "enunciado": "2^4 = 2×2×2×2",
+    "opciones": null,
+    "respuesta": "V",
+    "explicacion": "Definición de potencia."
+  },
+  {
+    "subtemaId": 2,
+    "tipo": "mcq",
+    "enunciado": "¿Cuánto es 10^3?",
+    "opciones": [
+      "30",
+      "100",
+      "1000",
+      "300"
+    ],
+    "respuesta": "1000",
+    "explicacion": "10×10×10=1000."
+  },
+  {
+    "subtemaId": 2,
+    "tipo": "mcq",
+    "enunciado": "¿Cuánto es 4^2?",
+    "opciones": [
+      "6",
+      "8",
+      "12",
+      "16"
+    ],
+    "respuesta": "16",
+    "explicacion": "4×4=16."
+  },
+  {
+    "subtemaId": 2,
+    "tipo": "mcq",
+    "enunciado": "¿Cuál es la base en 7^3?",
+    "opciones": [
+      "7",
+      "3",
+      "21",
+      "10"
+    ],
+    "respuesta": "7",
+    "explicacion": "La base es el número que se repite."
+  },
+  {
+    "subtemaId": 2,
+    "tipo": "vf",
+    "enunciado": "a^0 = 1, si a ≠ 0.",
+    "opciones": null,
+    "respuesta": "V",
+    "explicacion": "Es una propiedad básica."
+  },
+  {
+    "subtemaId": 2,
+    "tipo": "mcq",
+    "enunciado": "Si un cuadrado tiene lado 6, su área es:",
+    "opciones": [
+      "12",
+      "18",
+      "36",
+      "42"
+    ],
+    "respuesta": "36",
+    "explicacion": "6^2=36."
+  },
+  {
+    "subtemaId": 2,
+    "tipo": "vf",
+    "enunciado": "La potenciación representa una multiplicación repetida.",
+    "opciones": null,
+    "respuesta": "V",
+    "explicacion": "Esa es su idea básica."
+  },
+  {
+    "subtemaId": 3,
+    "tipo": "mcq",
+    "enunciado": "¿Cuál es √81?",
+    "opciones": [
+      "7",
+      "8",
+      "9",
+      "10"
+    ],
+    "respuesta": "9",
+    "explicacion": "9×9=81."
+  },
+  {
+    "subtemaId": 3,
+    "tipo": "vf",
+    "enunciado": "√16 = 8",
+    "opciones": null,
+    "respuesta": "F",
+    "explicacion": "√16=4."
+  },
+  {
+    "subtemaId": 3,
+    "tipo": "mcq",
+    "enunciado": "¿Cuál es √49?",
+    "opciones": [
+      "5",
+      "6",
+      "7",
+      "8"
+    ],
+    "respuesta": "7",
+    "explicacion": "7×7=49."
+  },
+  {
+    "subtemaId": 3,
+    "tipo": "mcq",
+    "enunciado": "¿Cuál es √144?",
+    "opciones": [
+      "10",
+      "11",
+      "12",
+      "13"
+    ],
+    "respuesta": "12",
+    "explicacion": "12×12=144."
+  },
+  {
+    "subtemaId": 3,
+    "tipo": "mcq",
+    "enunciado": "Si √x = 9, entonces x es:",
+    "opciones": [
+      "18",
+      "81",
+      "9",
+      "72"
+    ],
+    "respuesta": "81",
+    "explicacion": "9×9=81."
+  },
+  {
+    "subtemaId": 3,
+    "tipo": "vf",
+    "enunciado": "√100 = 10",
+    "opciones": null,
+    "respuesta": "V",
+    "explicacion": "10×10=100."
+  },
+  {
+    "subtemaId": 3,
+    "tipo": "vf",
+    "enunciado": "√25 = 6",
+    "opciones": null,
+    "respuesta": "F",
+    "explicacion": "√25=5."
+  },
+  {
+    "subtemaId": 3,
+    "tipo": "mcq",
+    "enunciado": "¿Cuál operación es inversa de la radicación?",
+    "opciones": [
+      "Suma",
+      "Potenciación",
+      "Resta",
+      "División"
+    ],
+    "respuesta": "Potenciación",
+    "explicacion": "Raíz deshace potencia."
+  },
+  {
+    "subtemaId": 3,
+    "tipo": "mcq",
+    "enunciado": "¿Cuál es √64?",
+    "opciones": [
+      "6",
+      "7",
+      "8",
+      "9"
+    ],
+    "respuesta": "8",
+    "explicacion": "8×8=64."
+  },
+  {
+    "subtemaId": 3,
+    "tipo": "mcq",
+    "enunciado": "¿Cuál es √36?",
+    "opciones": [
+      "5",
+      "6",
+      "7",
+      "8"
+    ],
+    "respuesta": "6",
+    "explicacion": "6×6=36."
+  },
+  {
+    "subtemaId": 3,
+    "tipo": "vf",
+    "enunciado": "La radicación es la operación inversa de la potenciación.",
+    "opciones": null,
+    "respuesta": "V",
+    "explicacion": "La raíz deshace la potencia."
+  },
+  {
+    "subtemaId": 3,
+    "tipo": "mcq",
+    "enunciado": "Si √x = 12, entonces x es:",
+    "opciones": [
+      "24",
+      "124",
+      "144",
+      "122"
+    ],
+    "respuesta": "144",
+    "explicacion": "12×12=144."
+  },
+  {
+    "subtemaId": 3,
+    "tipo": "mcq",
+    "enunciado": "Si un terreno cuadrado tiene área 64 m², su lado mide:",
+    "opciones": [
+      "6",
+      "7",
+      "8",
+      "9"
+    ],
+    "respuesta": "8",
+    "explicacion": "√64=8."
+  },
+  {
+    "subtemaId": 3,
+    "tipo": "mcq",
+    "enunciado": "¿Cuál es √100?",
+    "opciones": [
+      "8",
+      "9",
+      "10",
+      "11"
+    ],
+    "respuesta": "10",
+    "explicacion": "10×10=100."
+  },
+  {
+    "subtemaId": 3,
+    "tipo": "vf",
+    "enunciado": "√36 = 6",
+    "opciones": null,
+    "respuesta": "V",
+    "explicacion": "Porque 6×6=36."
+  },
+  {
+    "subtemaId": 4,
+    "tipo": "mcq",
+    "enunciado": "log10(100) es:",
+    "opciones": [
+      "1",
+      "2",
+      "10",
+      "100"
+    ],
+    "respuesta": "2",
+    "explicacion": "10^2=100."
+  },
+  {
+    "subtemaId": 4,
+    "tipo": "mcq",
+    "enunciado": "log10(1000) es:",
+    "opciones": [
+      "2",
+      "3",
+      "10",
+      "100"
+    ],
+    "respuesta": "3",
+    "explicacion": "10^3=1000."
+  },
+  {
+    "subtemaId": 4,
+    "tipo": "vf",
+    "enunciado": "log10(1)=0",
+    "opciones": null,
+    "respuesta": "V",
+    "explicacion": "10^0=1."
+  },
+  {
+    "subtemaId": 4,
+    "tipo": "mcq",
+    "enunciado": "log2(8) es:",
+    "opciones": [
+      "2",
+      "3",
+      "4",
+      "8"
+    ],
+    "respuesta": "3",
+    "explicacion": "2^3=8."
+  },
+  {
+    "subtemaId": 4,
+    "tipo": "mcq",
+    "enunciado": "log2(16) es:",
+    "opciones": [
+      "2",
+      "3",
+      "4",
+      "5"
+    ],
+    "respuesta": "4",
+    "explicacion": "2^4=16."
+  },
+  {
+    "subtemaId": 4,
+    "tipo": "mcq",
+    "enunciado": "log3(81) es:",
+    "opciones": [
+      "2",
+      "3",
+      "4",
+      "5"
+    ],
+    "respuesta": "4",
+    "explicacion": "3^4=81."
+  },
+  {
+    "subtemaId": 4,
+    "tipo": "vf",
+    "enunciado": "El logaritmo pregunta: ¿qué exponente?",
+    "opciones": null,
+    "respuesta": "V",
+    "explicacion": "Busca el exponente que produce el número."
+  },
+  {
+    "subtemaId": 4,
+    "tipo": "mcq",
+    "enunciado": "log10(10) es:",
+    "opciones": [
+      "0",
+      "1",
+      "2",
+      "10"
+    ],
+    "respuesta": "1",
+    "explicacion": "10^1=10."
+  },
+  {
+    "subtemaId": 4,
+    "tipo": "mcq",
+    "enunciado": "Si log5(x)=2, entonces x es:",
+    "opciones": [
+      "7",
+      "10",
+      "25",
+      "5"
+    ],
+    "respuesta": "25",
+    "explicacion": "5^2=25."
+  },
+  {
+    "subtemaId": 4,
+    "tipo": "mcq",
+    "enunciado": "log3(9) es:",
+    "opciones": [
+      "1",
+      "2",
+      "3",
+      "9"
+    ],
+    "respuesta": "2",
+    "explicacion": "3^2=9."
+  },
+  {
+    "subtemaId": 4,
+    "tipo": "vf",
+    "enunciado": "El logaritmo busca el exponente.",
+    "opciones": null,
+    "respuesta": "V",
+    "explicacion": "Esa es su función principal."
+  },
+  {
+    "subtemaId": 4,
+    "tipo": "mcq",
+    "enunciado": "Si 3^4=81, entonces log3(81) es:",
+    "opciones": [
+      "2",
+      "3",
+      "4",
+      "5"
+    ],
+    "respuesta": "4",
+    "explicacion": "El exponente es 4."
+  },
+  {
+    "subtemaId": 4,
+    "tipo": "vf",
+    "enunciado": "log10(1000)=3",
+    "opciones": null,
+    "respuesta": "V",
+    "explicacion": "Porque 10^3=1000."
+  },
+  {
+    "subtemaId": 4,
+    "tipo": "mcq",
+    "enunciado": "Si 5^2=25, entonces log5(25) es:",
+    "opciones": [
+      "2",
+      "5",
+      "10",
+      "25"
+    ],
+    "respuesta": "2",
+    "explicacion": "El exponente es 2."
+  },
+  {
+    "subtemaId": 4,
+    "tipo": "mcq",
+    "enunciado": "Si 2^x=16, x vale:",
+    "opciones": [
+      "2",
+      "3",
+      "4",
+      "5"
+    ],
+    "respuesta": "4",
+    "explicacion": "2^4=16."
+  },
+  {
+    "subtemaId": 4,
+    "tipo": "vf",
+    "enunciado": "log2(8)=4",
+    "opciones": null,
+    "respuesta": "F",
+    "explicacion": "log2(8)=3."
+  },
+  {
+    "subtemaId": 5,
+    "tipo": "mcq",
+    "enunciado": "Un cubo tiene arista 4. ¿Cuál es su volumen?",
+    "opciones": [
+      "16",
+      "32",
+      "64",
+      "48"
+    ],
+    "respuesta": "64",
+    "explicacion": "4^3=64."
+  },
+  {
+    "subtemaId": 5,
+    "tipo": "mcq",
+    "enunciado": "Si un terreno cuadrado tiene área 81 m², su lado mide:",
+    "opciones": [
+      "7 m",
+      "8 m",
+      "9 m",
+      "10 m"
+    ],
+    "respuesta": "9 m",
+    "explicacion": "√81=9."
+  },
+  {
+    "subtemaId": 5,
+    "tipo": "mcq",
+    "enunciado": "Si 2^x=32, entonces x es:",
+    "opciones": [
+      "3",
+      "4",
+      "5",
+      "6"
+    ],
+    "respuesta": "5",
+    "explicacion": "2^5=32."
+  },
+  {
+    "subtemaId": 5,
+    "tipo": "vf",
+    "enunciado": "Potenciación, radicación y logaritmación están relacionadas.",
+    "opciones": null,
+    "respuesta": "V",
+    "explicacion": "Las tres se conectan mediante la potencia."
+  },
+  {
+    "subtemaId": 5,
+    "tipo": "mcq",
+    "enunciado": "Si el lado de un cuadrado es 11, su área es:",
+    "opciones": [
+      "22",
+      "111",
+      "121",
+      "132"
+    ],
+    "respuesta": "121",
+    "explicacion": "11^2=121."
+  },
+  {
+    "subtemaId": 5,
+    "tipo": "mcq",
+    "enunciado": "Si el área es 169, el lado es:",
+    "opciones": [
+      "11",
+      "12",
+      "13",
+      "14"
+    ],
+    "respuesta": "13",
+    "explicacion": "√169=13."
+  },
+  {
+    "subtemaId": 5,
+    "tipo": "vf",
+    "enunciado": "Si 10^3=1000, entonces log10(1000)=3.",
+    "opciones": null,
+    "respuesta": "V",
+    "explicacion": "El logaritmo indica el exponente."
+  },
+  {
+    "subtemaId": 5,
+    "tipo": "mcq",
+    "enunciado": "¿Qué operación usarías para hallar el lado de un cuadrado si conoces el área?",
+    "opciones": [
+      "Suma",
+      "Resta",
+      "Radicación",
+      "Multiplicación"
+    ],
+    "respuesta": "Radicación",
+    "explicacion": "La raíz permite hallar el lado."
+  },
+  {
+    "subtemaId": 11,
+    "tipo": "mcq",
+    "enunciado": "¿Qué es una muestra?",
+    "opciones": [
+      "Todo el grupo",
+      "Una parte del grupo",
+      "Un gráfico",
+      "Una tabla"
+    ],
+    "respuesta": "Una parte del grupo",
+    "explicacion": "La muestra es una parte de la población."
+  },
+  {
+    "subtemaId": 12,
+    "tipo": "mcq",
+    "enunciado": "¿Cuál es una variable cualitativa?",
+    "opciones": [
+      "Edad",
+      "Peso",
+      "Color",
+      "Altura"
+    ],
+    "respuesta": "Color",
+    "explicacion": "Describe una cualidad."
+  },
+  {
+    "subtemaId": 13,
+    "tipo": "mcq",
+    "enunciado": "¿Para qué sirve una tabla?",
+    "opciones": [
+      "Decorar",
+      "Organizar datos",
+      "Multiplicar",
+      "Restar"
+    ],
+    "respuesta": "Organizar datos",
+    "explicacion": "Las tablas organizan información."
+  },
+  {
+    "subtemaId": 13,
+    "tipo": "vf",
+    "enunciado": "Los gráficos ayudan a entender datos.",
+    "opciones": null,
+    "respuesta": "V",
+    "explicacion": "Permiten visualizar información."
+  },
+  {
+    "subtemaId": 14,
+    "tipo": "mcq",
+    "enunciado": "¿Cuál de estos números representa una deuda?",
+    "opciones": [
+      "+8",
+      "-8",
+      "0",
+      "+1"
+    ],
+    "respuesta": "-8",
+    "explicacion": "Una deuda suele representarse con número negativo."
+  },
+  {
+    "subtemaId": 14,
+    "tipo": "vf",
+    "enunciado": "El número 0 es positivo.",
+    "opciones": null,
+    "respuesta": "F",
+    "explicacion": "El 0 no es positivo ni negativo."
+  },
+  {
+    "subtemaId": 14,
+    "tipo": "mcq",
+    "enunciado": "¿Cuál situación puede representarse con +6?",
+    "opciones": [
+      "6 metros bajo el agua",
+      "Deber 6 mil pesos",
+      "Ganar 6 puntos",
+      "Bajar 6 pisos"
+    ],
+    "respuesta": "Ganar 6 puntos",
+    "explicacion": "Una ganancia o avance suele representarse con signo positivo."
+  },
+  {
+    "subtemaId": 14,
+    "tipo": "mcq",
+    "enunciado": "¿Cuál situación puede representarse con -3?",
+    "opciones": [
+      "Subir 3 pisos",
+      "Temperatura de 3°C bajo cero",
+      "Ganar 3 puntos",
+      "Ahorrar 3 mil pesos"
+    ],
+    "respuesta": "Temperatura de 3°C bajo cero",
+    "explicacion": "Bajo cero se representa con signo negativo."
+  },
+  {
+    "subtemaId": 15,
+    "tipo": "mcq",
+    "enunciado": "En la recta numérica, el número mayor está más hacia la...",
+    "opciones": [
+      "izquierda",
+      "derecha",
+      "mitad",
+      "arriba"
+    ],
+    "respuesta": "derecha",
+    "explicacion": "Los números aumentan hacia la derecha."
+  },
+  {
+    "subtemaId": 15,
+    "tipo": "mcq",
+    "enunciado": "¿Cuál es mayor?",
+    "opciones": [
+      "-7",
+      "-3",
+      "Son iguales",
+      "No se puede saber"
+    ],
+    "respuesta": "-3",
+    "explicacion": "-3 está más a la derecha que -7."
+  },
+  {
+    "subtemaId": 15,
+    "tipo": "vf",
+    "enunciado": "0 es mayor que -4.",
+    "opciones": null,
+    "respuesta": "V",
+    "explicacion": "0 está a la derecha de cualquier entero negativo."
+  },
+  {
+    "subtemaId": 15,
+    "tipo": "mcq",
+    "enunciado": "Ordena de menor a mayor: -2, 4, 0",
+    "opciones": [
+      "4, 0, -2",
+      "-2, 0, 4",
+      "0, -2, 4",
+      "-2, 4, 0"
+    ],
+    "respuesta": "-2, 0, 4",
+    "explicacion": "En la recta: -2 queda a la izquierda, luego 0 y luego 4."
+  },
+  {
+    "subtemaId": 16,
+    "tipo": "mcq",
+    "enunciado": "¿Cuánto es (-5) + (-4)?",
+    "opciones": [
+      "9",
+      "-9",
+      "-1",
+      "1"
+    ],
+    "respuesta": "-9",
+    "explicacion": "Mismo signo negativo: se suman y se conserva el signo."
+  },
+  {
+    "subtemaId": 16,
+    "tipo": "mcq",
+    "enunciado": "¿Cuánto es 8 + (-3)?",
+    "opciones": [
+      "11",
+      "-11",
+      "5",
+      "-5"
+    ],
+    "respuesta": "5",
+    "explicacion": "Signos diferentes: 8-3=5 y queda positivo."
+  },
+  {
+    "subtemaId": 16,
+    "tipo": "vf",
+    "enunciado": "Si los sumandos tienen signos diferentes, siempre se suman los valores.",
+    "opciones": null,
+    "respuesta": "F",
+    "explicacion": "Si tienen signos diferentes, se restan los valores absolutos."
+  },
+  {
+    "subtemaId": 16,
+    "tipo": "mcq",
+    "enunciado": "La temperatura está en -2°C y sube 6°C. ¿Cuál es la temperatura final?",
+    "opciones": [
+      "-8°C",
+      "4°C",
+      "-4°C",
+      "8°C"
+    ],
+    "respuesta": "4°C",
+    "explicacion": "-2 + 6 = 4."
+  },
+  {
+    "subtemaId": 17,
+    "tipo": "mcq",
+    "enunciado": "¿Cuánto es 7 - (-3)?",
+    "opciones": [
+      "4",
+      "10",
+      "-10",
+      "-4"
+    ],
+    "respuesta": "10",
+    "explicacion": "Restar un negativo es sumar su opuesto: 7+3=10."
+  },
+  {
+    "subtemaId": 17,
+    "tipo": "mcq",
+    "enunciado": "¿Cuánto es -4 - 5?",
+    "opciones": [
+      "1",
+      "-9",
+      "9",
+      "-1"
+    ],
+    "respuesta": "-9",
+    "explicacion": "-4 + (-5) = -9."
+  },
+  {
+    "subtemaId": 17,
+    "tipo": "vf",
+    "enunciado": "5 - (-2) es igual a 3.",
+    "opciones": null,
+    "respuesta": "F",
+    "explicacion": "5 - (-2) = 5 + 2 = 7."
+  },
+  {
+    "subtemaId": 17,
+    "tipo": "mcq",
+    "enunciado": "¿Cuál es el primer paso correcto para resolver 6 - (-4)?",
+    "opciones": [
+      "Cambiarlo por 6 + 4",
+      "Cambiarlo por 6 - 4",
+      "Cambiarlo por -6 + 4",
+      "No hacer nada"
+    ],
+    "respuesta": "Cambiarlo por 6 + 4",
+    "explicacion": "Restar un negativo equivale a sumar positivo."
+  },
+  {
+    "subtemaId": 18,
+    "tipo": "mcq",
+    "enunciado": "¿Cuánto es (-3) × 4?",
+    "opciones": [
+      "12",
+      "-12",
+      "7",
+      "-7"
+    ],
+    "respuesta": "-12",
+    "explicacion": "Negativo por positivo da negativo."
+  },
+  {
+    "subtemaId": 18,
+    "tipo": "mcq",
+    "enunciado": "¿Cuánto es (-5) × (-2)?",
+    "opciones": [
+      "-10",
+      "10",
+      "-7",
+      "7"
+    ],
+    "respuesta": "10",
+    "explicacion": "Negativo por negativo da positivo."
+  },
+  {
+    "subtemaId": 18,
+    "tipo": "vf",
+    "enunciado": "En multiplicación, dos signos negativos producen un resultado positivo.",
+    "opciones": null,
+    "respuesta": "V",
+    "explicacion": "Es la regla de signos."
+  },
+  {
+    "subtemaId": 18,
+    "tipo": "mcq",
+    "enunciado": "Si un jugador pierde 3 puntos en cada ronda durante 4 rondas, ¿cuál es su cambio total?",
+    "opciones": [
+      "12",
+      "-12",
+      "-7",
+      "7"
+    ],
+    "respuesta": "-12",
+    "explicacion": "-3 × 4 = -12."
+  },
+  {
+    "subtemaId": 18,
+    "tipo": "mcq",
+    "enunciado": "¿Cuánto es (-3)×4?",
+    "opciones": [
+      "12",
+      "-12",
+      "7",
+      "-7"
+    ],
+    "respuesta": "-12",
+    "explicacion": "Negativo por positivo da negativo."
+  },
+  {
+    "subtemaId": 18,
+    "tipo": "mcq",
+    "enunciado": "¿Cuánto es (-5)×(-2)?",
+    "opciones": [
+      "-10",
+      "10",
+      "-7",
+      "7"
+    ],
+    "respuesta": "10",
+    "explicacion": "Negativo por negativo da positivo."
+  },
+  {
+    "subtemaId": 18,
+    "tipo": "vf",
+    "enunciado": "Dos signos negativos multiplicados dan positivo.",
+    "opciones": null,
+    "respuesta": "V",
+    "explicacion": "Es la regla de signos."
+  },
+  {
+    "subtemaId": 18,
+    "tipo": "mcq",
+    "enunciado": "Si se pierden 3 puntos por ronda durante 4 rondas, el cambio total es:",
+    "opciones": [
+      "12",
+      "-12",
+      "-7",
+      "7"
+    ],
+    "respuesta": "-12",
+    "explicacion": "(-3)×4=-12."
+  },
+  {
+    "subtemaId": 18,
+    "tipo": "vf",
+    "enunciado": "Positivo por negativo da negativo.",
+    "opciones": null,
+    "respuesta": "V",
+    "explicacion": "Es una regla básica."
+  },
+  {
+    "subtemaId": 18,
+    "tipo": "mcq",
+    "enunciado": "¿Cuánto es 6×(-2)?",
+    "opciones": [
+      "-12",
+      "12",
+      "-8",
+      "8"
+    ],
+    "respuesta": "-12",
+    "explicacion": "Positivo por negativo da negativo."
+  },
+  {
+    "subtemaId": 18,
+    "tipo": "mcq",
+    "enunciado": "¿Cuánto es (-4)×(-3)?",
+    "opciones": [
+      "-12",
+      "12",
+      "-7",
+      "7"
+    ],
+    "respuesta": "12",
+    "explicacion": "Negativo por negativo da positivo."
+  },
+  {
+    "subtemaId": 18,
+    "tipo": "vf",
+    "enunciado": "(-2)×5 representa un cambio negativo repetido.",
+    "opciones": null,
+    "respuesta": "V",
+    "explicacion": "Puede interpretarse como una pérdida repetida."
+  },
+  {
+    "subtemaId": 19,
+    "tipo": "mcq",
+    "enunciado": "¿Cuánto es (-20) ÷ 5?",
+    "opciones": [
+      "4",
+      "-4",
+      "5",
+      "-5"
+    ],
+    "respuesta": "-4",
+    "explicacion": "Negativo dividido positivo da negativo."
+  },
+  {
+    "subtemaId": 19,
+    "tipo": "mcq",
+    "enunciado": "¿Cuánto es (-24) ÷ (-6)?",
+    "opciones": [
+      "-4",
+      "4",
+      "-18",
+      "18"
+    ],
+    "respuesta": "4",
+    "explicacion": "Negativo dividido negativo da positivo."
+  },
+  {
+    "subtemaId": 19,
+    "tipo": "vf",
+    "enunciado": "La división sigue la misma regla de signos que la multiplicación.",
+    "opciones": null,
+    "respuesta": "V",
+    "explicacion": "Sí, ambas comparten la misma regla."
+  },
+  {
+    "subtemaId": 19,
+    "tipo": "mcq",
+    "enunciado": "¿Cuál multiplicación verifica que (-12) ÷ 3 = -4?",
+    "opciones": [
+      "-4 × 3 = -12",
+      "-4 × -3 = 12",
+      "3 × 4 = 12",
+      "4 × 3 = -12"
+    ],
+    "respuesta": "-4 × 3 = -12",
+    "explicacion": "Para comprobar una división multiplicamos cociente por divisor."
+  },
+  {
+    "subtemaId": 19,
+    "tipo": "mcq",
+    "enunciado": "¿Cuánto es (-20)÷5?",
+    "opciones": [
+      "4",
+      "-4",
+      "5",
+      "-5"
+    ],
+    "respuesta": "-4",
+    "explicacion": "Negativo entre positivo da negativo."
+  },
+  {
+    "subtemaId": 19,
+    "tipo": "mcq",
+    "enunciado": "¿Cuánto es (-24)÷(-6)?",
+    "opciones": [
+      "-4",
+      "4",
+      "-18",
+      "18"
+    ],
+    "respuesta": "4",
+    "explicacion": "Negativo entre negativo da positivo."
+  },
+  {
+    "subtemaId": 19,
+    "tipo": "mcq",
+    "enunciado": "Si una pérdida total de 16 puntos se reparte en 4 rondas, en cada ronda se pierde:",
+    "opciones": [
+      "4",
+      "-4",
+      "-8",
+      "8"
+    ],
+    "respuesta": "-4",
+    "explicacion": "(-16)÷4=-4."
+  },
+  {
+    "subtemaId": 19,
+    "tipo": "vf",
+    "enunciado": "Negativo entre negativo da positivo.",
+    "opciones": null,
+    "respuesta": "V",
+    "explicacion": "Es la regla correcta."
+  },
+  {
+    "subtemaId": 19,
+    "tipo": "mcq",
+    "enunciado": "¿Cuál multiplicación verifica que (-12)÷3=-4?",
+    "opciones": [
+      "-4×3=-12",
+      "-4×(-3)=12",
+      "3×4=12",
+      "4×3=-12"
+    ],
+    "respuesta": "-4×3=-12",
+    "explicacion": "La multiplicación permite comprobar la división."
+  },
+  {
+    "subtemaId": 19,
+    "tipo": "mcq",
+    "enunciado": "¿Cuánto es 18÷(-3)?",
+    "opciones": [
+      "-6",
+      "6",
+      "-9",
+      "9"
+    ],
+    "respuesta": "-6",
+    "explicacion": "Positivo entre negativo da negativo."
+  },
+  {
+    "subtemaId": 19,
+    "tipo": "vf",
+    "enunciado": "24÷6=4",
+    "opciones": null,
+    "respuesta": "V",
+    "explicacion": "División exacta."
+  },
+  {
+    "subtemaId": 32,
+    "tipo": "mcq",
+    "enunciado": "¿Qué indica la frecuencia absoluta?",
+    "opciones": [
+      "El porcentaje de un dato",
+      "La cantidad de veces que aparece un dato",
+      "El color del dato",
+      "La posición del dato"
+    ],
+    "respuesta": "La cantidad de veces que aparece un dato",
+    "explicacion": "La frecuencia absoluta cuenta cuántas veces aparece un dato o categoría."
+  },
+  {
+    "subtemaId": 32,
+    "tipo": "mcq",
+    "enunciado": "Si en una lista la palabra “azul” aparece 5 veces, su frecuencia absoluta es:",
+    "opciones": [
+      "5",
+      "50%",
+      "1",
+      "0.5"
+    ],
+    "respuesta": "5",
+    "explicacion": "La frecuencia absoluta es la cantidad exacta de repeticiones."
+  },
+  {
+    "subtemaId": 32,
+    "tipo": "vf",
+    "enunciado": "La frecuencia absoluta se expresa siempre como una cantidad, no como porcentaje.",
+    "opciones": null,
+    "respuesta": "V",
+    "explicacion": "Sí. La frecuencia absoluta cuenta cuántas veces aparece algo."
+  },
+  {
+    "subtemaId": 32,
+    "tipo": "mcq",
+    "enunciado": "En la lista: perro, gato, perro, ave, perro, gato, la frecuencia absoluta de “perro” es:",
+    "opciones": [
+      "2",
+      "3",
+      "4",
+      "6"
+    ],
+    "respuesta": "3",
+    "explicacion": "La palabra “perro” aparece 3 veces."
+  },
+  {
+    "subtemaId": 32,
+    "tipo": "vf",
+    "enunciado": "Si una categoría aparece una sola vez, su frecuencia absoluta es 1.",
+    "opciones": null,
+    "respuesta": "V",
+    "explicacion": "Correcto. La frecuencia absoluta indica el número exacto de apariciones."
+  },
+  {
+    "subtemaId": 32,
+    "tipo": "mcq",
+    "enunciado": "¿Qué debes hacer primero para hallar la frecuencia absoluta?",
+    "opciones": [
+      "Dividir entre el total",
+      "Convertir a porcentaje",
+      "Contar cuántas veces aparece cada dato",
+      "Dibujar un gráfico"
+    ],
+    "respuesta": "Contar cuántas veces aparece cada dato",
+    "explicacion": "El primer paso es observar y contar las repeticiones."
+  },
+  {
+    "subtemaId": 32,
+    "tipo": "mcq",
+    "enunciado": "En la lista: rojo, azul, rojo, verde, rojo, azul, la frecuencia absoluta de azul es:",
+    "opciones": [
+      "1",
+      "2",
+      "3",
+      "6"
+    ],
+    "respuesta": "2",
+    "explicacion": "Azul aparece 2 veces."
+  },
+  {
+    "subtemaId": 32,
+    "tipo": "mcq",
+    "enunciado": "¿Cuál de estas opciones muestra una frecuencia absoluta?",
+    "opciones": [
+      "25%",
+      "0.4",
+      "4",
+      "40%"
+    ],
+    "respuesta": "4",
+    "explicacion": "La frecuencia absoluta es una cantidad exacta, como 4."
+  },
+  {
+    "subtemaId": 33,
+    "tipo": "mcq",
+    "enunciado": "¿Para qué sirve una tabla de frecuencia?",
+    "opciones": [
+      "Para decorar datos",
+      "Para organizar datos",
+      "Para borrar datos",
+      "Para inventar datos"
+    ],
+    "respuesta": "Para organizar datos",
+    "explicacion": "Una tabla de frecuencia organiza la información y muestra cuántas veces aparece cada dato."
+  },
+  {
+    "subtemaId": 33,
+    "tipo": "mcq",
+    "enunciado": "En una tabla de frecuencia, la columna de frecuencia muestra:",
+    "opciones": [
+      "El color del dato",
+      "La cantidad de veces que aparece",
+      "El tamaño del dato",
+      "La posición del dato"
+    ],
+    "respuesta": "La cantidad de veces que aparece",
+    "explicacion": "La frecuencia indica cuántas veces se repite una categoría o valor."
+  },
+  {
+    "subtemaId": 33,
+    "tipo": "vf",
+    "enunciado": "En una tabla de frecuencia, una misma categoría debe escribirse una sola vez.",
+    "opciones": null,
+    "respuesta": "V",
+    "explicacion": "Sí. Cada categoría debe aparecer una sola vez con su conteo total."
+  },
+  {
+    "subtemaId": 33,
+    "tipo": "mcq",
+    "enunciado": "Si la lista es: azul, rojo, azul, verde, azul, la frecuencia de azul es:",
+    "opciones": [
+      "1",
+      "2",
+      "3",
+      "5"
+    ],
+    "respuesta": "3",
+    "explicacion": "Azul aparece 3 veces."
+  },
+  {
+    "subtemaId": 33,
+    "tipo": "vf",
+    "enunciado": "Una tabla de frecuencia ayuda a leer los datos con más claridad que una lista desordenada.",
+    "opciones": null,
+    "respuesta": "V",
+    "explicacion": "Sí, porque organiza la información."
+  },
+  {
+    "subtemaId": 33,
+    "tipo": "mcq",
+    "enunciado": "¿Cuál es el primer paso para construir una tabla de frecuencia?",
+    "opciones": [
+      "Dibujar un gráfico",
+      "Identificar las categorías",
+      "Convertir a porcentaje",
+      "Dividir entre el total"
+    ],
+    "respuesta": "Identificar las categorías",
+    "explicacion": "Primero se observan los datos y se reconocen las categorías distintas."
+  },
+  {
+    "subtemaId": 33,
+    "tipo": "mcq",
+    "enunciado": "Si una categoría aparece en dos filas distintas, la tabla está:",
+    "opciones": [
+      "Correcta",
+      "Más completa",
+      "Mal organizada",
+      "Más rápida"
+    ],
+    "respuesta": "Mal organizada",
+    "explicacion": "Cada categoría debe aparecer una sola vez en la tabla."
+  },
+  {
+    "subtemaId": 33,
+    "tipo": "mcq",
+    "enunciado": "¿Qué representa mejor una tabla de frecuencia?",
+    "opciones": [
+      "Una lista repetida sin orden",
+      "Una forma organizada de los datos",
+      "Un dibujo sin datos",
+      "Una operación de suma"
+    ],
+    "respuesta": "Una forma organizada de los datos",
+    "explicacion": "La tabla ordena los datos y facilita su lectura."
+  },
+  {
+    "subtemaId": 34,
+    "tipo": "mcq",
+    "enunciado": "Si una categoría aparece 4 veces en un total de 20 datos, su frecuencia relativa es:",
+    "opciones": [
+      "0.2",
+      "0.4",
+      "4.0",
+      "20%"
+    ],
+    "respuesta": "0.2",
+    "explicacion": "La frecuencia relativa se calcula dividiendo 4 entre 20: 4/20 = 0.2."
+  },
+  {
+    "subtemaId": 34,
+    "tipo": "mcq",
+    "enunciado": "Si la frecuencia relativa de una categoría es 0.25, su porcentaje es:",
+    "opciones": [
+      "2.5%",
+      "25%",
+      "250%",
+      "0.25%"
+    ],
+    "respuesta": "25%",
+    "explicacion": "Para pasar de decimal a porcentaje se multiplica por 100: 0.25 = 25%."
+  },
+  {
+    "subtemaId": 34,
+    "tipo": "vf",
+    "enunciado": "La frecuencia acumulada se obtiene sumando progresivamente las frecuencias.",
+    "opciones": null,
+    "respuesta": "V",
+    "explicacion": "Sí, la acumulada se construye sumando fila por fila."
+  },
+  {
+    "subtemaId": 34,
+    "tipo": "mcq",
+    "enunciado": "Si las frecuencias son 2, 3 y 5, la tercera frecuencia acumulada es:",
+    "opciones": [
+      "5",
+      "8",
+      "10",
+      "15"
+    ],
+    "respuesta": "10",
+    "explicacion": "La acumulada se obtiene sumando 2 + 3 + 5 = 10."
+  },
+  {
+    "subtemaId": 34,
+    "tipo": "vf",
+    "enunciado": "La frecuencia relativa y la frecuencia absoluta significan lo mismo.",
+    "opciones": null,
+    "respuesta": "F",
+    "explicacion": "No. La frecuencia absoluta cuenta y la relativa compara con el total."
+  },
+  {
+    "subtemaId": 34,
+    "tipo": "mcq",
+    "enunciado": "En una tabla, una categoría tiene frecuencia 6 y el total de datos es 12. Su frecuencia relativa es:",
+    "opciones": [
+      "0.5",
+      "6.0",
+      "50",
+      "12/6"
+    ],
+    "respuesta": "0.5",
+    "explicacion": "Se divide 6 entre 12: 6/12 = 0.5."
+  },
+  {
+    "subtemaId": 34,
+    "tipo": "mcq",
+    "enunciado": "Si una frecuencia relativa es 0.4, eso representa:",
+    "opciones": [
+      "4%",
+      "40%",
+      "400%",
+      "0.04%"
+    ],
+    "respuesta": "40%",
+    "explicacion": "0.4 equivale a 40%."
+  },
+  {
+    "subtemaId": 34,
+    "tipo": "mcq",
+    "enunciado": "¿Cuál de estas opciones describe mejor la frecuencia acumulada?",
+    "opciones": [
+      "Cuenta una sola categoría",
+      "Compara una categoría con el total",
+      "Suma las frecuencias hasta cierta fila",
+      "Convierte datos en gráfico"
+    ],
+    "respuesta": "Suma las frecuencias hasta cierta fila",
+    "explicacion": "La acumulada indica cuánto se ha reunido hasta una posición de la tabla."
+  },
+  {
+    "subtemaId": 35,
+    "tipo": "mcq",
+    "enunciado": "¿Qué representa la barra más alta en un gráfico de barras?",
+    "opciones": [
+      "La categoría menos frecuente",
+      "La categoría más frecuente",
+      "La categoría más pequeña",
+      "La categoría más nueva"
+    ],
+    "respuesta": "La categoría más frecuente",
+    "explicacion": "La barra más alta muestra la mayor frecuencia."
+  },
+  {
+    "subtemaId": 35,
+    "tipo": "mcq",
+    "enunciado": "En un gráfico de barras, las categorías suelen ubicarse en:",
+    "opciones": [
+      "El eje horizontal",
+      "El eje vertical",
+      "La barra más alta",
+      "El título"
+    ],
+    "respuesta": "El eje horizontal",
+    "explicacion": "Las categorías van en el eje horizontal."
+  },
+  {
+    "subtemaId": 35,
+    "tipo": "vf",
+    "enunciado": "La altura de una barra depende de la frecuencia de la categoría.",
+    "opciones": null,
+    "respuesta": "V",
+    "explicacion": "Sí. La barra representa cuántas veces aparece la categoría."
+  },
+  {
+    "subtemaId": 35,
+    "tipo": "mcq",
+    "enunciado": "Si una tabla indica que azul = 5 y rojo = 2, entonces en el gráfico:",
+    "opciones": [
+      "La barra roja será más alta",
+      "La barra azul será más alta",
+      "Las dos barras serán iguales",
+      "No se puede saber"
+    ],
+    "respuesta": "La barra azul será más alta",
+    "explicacion": "La frecuencia de azul es mayor que la de rojo."
+  },
+  {
+    "subtemaId": 35,
+    "tipo": "vf",
+    "enunciado": "En un gráfico de barras, el eje vertical puede mostrar las frecuencias.",
+    "opciones": null,
+    "respuesta": "V",
+    "explicacion": "Sí. El eje vertical representa las cantidades."
+  },
+  {
+    "subtemaId": 35,
+    "tipo": "mcq",
+    "enunciado": "¿Qué se necesita antes de construir un gráfico de barras?",
+    "opciones": [
+      "Un dibujo libre",
+      "Una tabla o conteo de frecuencias",
+      "Una operación de resta",
+      "Solo colores"
+    ],
+    "respuesta": "Una tabla o conteo de frecuencias",
+    "explicacion": "El gráfico se construye con datos ya organizados."
+  },
+  {
+    "subtemaId": 35,
+    "tipo": "mcq",
+    "enunciado": "¿Qué error sería incorrecto en un gráfico de barras?",
+    "opciones": [
+      "Usar datos reales",
+      "Comparar alturas",
+      "Cambiar la altura de una barra sin base en la tabla",
+      "Leer la barra más alta"
+    ],
+    "respuesta": "Cambiar la altura de una barra sin base en la tabla",
+    "explicacion": "Las barras deben representar fielmente la frecuencia."
+  },
+  {
+    "subtemaId": 35,
+    "tipo": "mcq",
+    "enunciado": "Si dos categorías tienen la misma frecuencia, en el gráfico sus barras deben ser:",
+    "opciones": [
+      "Más bajas",
+      "Más altas",
+      "De igual altura",
+      "De distinto color obligatoriamente"
+    ],
+    "respuesta": "De igual altura",
+    "explicacion": "La misma frecuencia implica la misma altura."
+  }
+]

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="418e5dd5-9adf-4c8e-b9d5-c0ea43f3d847" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/credenciales_estudiantes.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/estudiantes.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/intro.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/juegos.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/plantillas.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/quiz.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/recursos.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/talleres.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/videos.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deploy/detener_plataforma.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deploy/iniciar_plataforma.vbs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deploy/open.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deploy/run.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deploy/ver_ip.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/import.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/index.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/profesor.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/seleccionar.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/subtema.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/tema.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/grado.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/grado.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/principal.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/intro-interactivos.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/core/dom.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/logout.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/periodo.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/periodo.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/profesor.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/profesor.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/seleccionar.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/seleccionar.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/session.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/subtema.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/subtema.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/tema-lista.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/tema.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/tema.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/videos/subtema-1.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/crear_estructura_septimo.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/import_septimo.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/import_septimo_periodos_2_y_3.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/import_students.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/import_subtemas_septimo.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 5,
+  "fromUser": false
+}]]></component>
+  <component name="ProjectId" id="3KQkekwu4dharDrkjnRDyTKrOeU" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "v2",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/nelso/OneDrive/Documentos/APPS/laura-vicuna-matematicas",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-37e91769500f-intellij.indexing.shared.core-IU-261.25134.95" />
+        <option value="bundled-js-predefined-d6986cc7102b-31caf2ab9e3c-JavaScript-IU-261.25134.95" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="418e5dd5-9adf-4c8e-b9d5-c0ea43f3d847" name="Changes" comment="" />
+      <created>1791497276163</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1791497276163</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
